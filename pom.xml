@@ -41,6 +41,21 @@
     <version>1.0.2</version> <!-- Ensure you use the latest version -->
 </dependency>
 
+  
+<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+<dependency>
+    <groupId>io.appium</groupId>
+    <artifactId>java-client</artifactId>
+    <version>9.3.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-remote-driver</artifactId>
+    <version>4.27.0</version>
+</dependency>
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -87,13 +102,12 @@
 			<version>4.23.1</version>
 		</dependency>
 
-		<!--
-		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.23.1</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.27.0</version>
+</dependency>
 
 
 		<dependency>
@@ -117,7 +131,12 @@
 			<artifactId>github-api</artifactId>
 			<version>1.321</version>
 		</dependency>
-
+<!-- https://mvnrepository.com/artifact/io.github.ashwithpoojary98/appium_flutterfinder_java -->
+<dependency>
+   <groupId>io.github.ashwithpoojary98</groupId>
+   <artifactId>appium_flutterfinder_java</artifactId>
+   <version>1.0.5</version>
+</dependency>
     
   </dependencies>
 
