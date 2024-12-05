@@ -46,7 +46,7 @@ public class ReuseableCode extends Basetest {
 
 	}
 
-	public void reusebaleCodeFordealsCreation() throws InterruptedException {
+	public String reusebaleCodeFordealsCreation() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
@@ -171,7 +171,7 @@ public class ReuseableCode extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(40000);
+		Thread.sleep(30000);
 
 		// login as admin
 
@@ -257,10 +257,11 @@ public class ReuseableCode extends Basetest {
 		} else {
 			System.out.println("Deal successfully approved: " + dealTitle1);
 		}
+		return dealNameWithTimestamp;
 
 	}
 
-	public void reusebaleCodeForDailyDealsCreation() throws InterruptedException {
+	public String reusebaleCodeForDailyDealsCreation() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -465,237 +466,236 @@ public class ReuseableCode extends Basetest {
 		} else {
 			System.out.println("Deal successfully approved: " + dealTitle1);
 		}
-
+		return readableTimestamp;
 	}
 
-public void reusebaleCodeForEventCreation() throws InterruptedException {
+	public String reusebaleCodeForEventCreation() throws InterruptedException {
 
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-	WebElement createButtonOnDashboard = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
-	createButtonOnDashboard.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebElement createButtonOnDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
+		createButtonOnDashboard.click();
 
-	WebElement eventButton = wait.until(
-			ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Event Request']")));
-	eventButton.click();
+		WebElement eventButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Event Request']")));
+		eventButton.click();
 
-	Faker faker = new Faker();
-	// Generate a random username
-	String baseUsername = faker.name().username();
-	// Get the current local time and format it for better readability
-	LocalDateTime now = LocalDateTime.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	String readableTimestamp = now.format(formatter);
+		Faker faker = new Faker();
+		// Generate a random username
+		String baseUsername = faker.name().username();
+		// Get the current local time and format it for better readability
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String readableTimestamp = now.format(formatter);
 
-	// Combine username with the readable timestamp
-	String dealNameWithTimestamp = baseUsername + " [Date: " + readableTimestamp + "]";
+		// Combine username with the readable timestamp
+		String eventNameWithTimestamp = baseUsername + " [Date: " + readableTimestamp + "]";
 
-	WebElement eventTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("eventTitle")));
-	eventTitle.sendKeys(dealNameWithTimestamp);
+		WebElement eventTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("eventTitle")));
+		eventTitle.sendKeys(eventNameWithTimestamp);
 
-	WebElement eventMainCategory = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.id("select2-main_category-container")));
-	eventMainCategory.click();
+		WebElement eventMainCategory = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id("select2-main_category-container")));
+		eventMainCategory.click();
 
-	WebElement searchLiveMusic = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@aria-label='Search']")));
-	searchLiveMusic.sendKeys("Live Music");
+		WebElement searchLiveMusic = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@aria-label='Search']")));
+		searchLiveMusic.sendKeys("Live Music");
 
-	Actions actions = new Actions(driver);
+		Actions actions = new Actions(driver);
 
-	actions.sendKeys(Keys.ENTER).perform();
-
-	WebElement eventSubCategory = wait.until(ExpectedConditions
-			.visibilityOfElementLocated(By.xpath("//textarea[@placeholder='Select Sub Category']")));
-	String[] subCategories = { "Sports", "food", "Night Life" };
-	for (String subCategory : subCategories) {
-		eventSubCategory.sendKeys(subCategory);
 		actions.sendKeys(Keys.ENTER).perform();
+
+		WebElement eventSubCategory = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//textarea[@placeholder='Select Sub Category']")));
+		String[] subCategories = { "Sports", "food" };
+		for (String subCategory : subCategories) {
+			eventSubCategory.sendKeys(subCategory);
+			actions.sendKeys(Keys.ENTER).perform();
+		}
+
+		WebElement eventDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("description")));
+		eventDescription.sendKeys("Get ready to embark on a culinary adventure like noet Dining Experience! Indulge ");
+
+		WebElement eventAdditionalInfo = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id("additional_terms")));
+		eventAdditionalInfo.sendKeys(
+				"Get ready to embark on a culinary adveExperience! Indulge in a meticulously crafted menu feature");
+
+		System.out.println("Time at Event Title input: " + System.currentTimeMillis());
+
+		WebElement scrollFirst = driver.findElement(By.id("showImageHere"));
+		WebElement uploadElement = driver.findElement(By.id("imageInput"));
+
+		actions.moveToElement(scrollFirst).perform();
+		// Scroll to the file upload elemen
+		//
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		// js.executeScript("arguments[0].scrollIntoView(true);", scrollFirst);
+		// Provide the absolute file path of the image to the file upload element
+		File file = new File("/Users/yeshsharma/Downloads/doctor.jpeg");
+		uploadElement.sendKeys(file.getAbsolutePath());
+
+		WebElement cropImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crop")));
+		cropImage.click();
+
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+		// Get today's date in the format yyyy-MM-dd
+		LocalDate today = LocalDate.now();
+		LocalDate startDate = today.plusDays(1);
+		String formattedDate = startDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+		// Locate the date input element
+		WebElement dateInput = driver.findElement(By.id("validFrom"));
+		actions.moveToElement(dateInput).perform();
+		// Send the current date to the input field
+		dateInput.sendKeys(formattedDate);
+
+		LocalDate currentDate = LocalDate.now();
+		LocalDate expiryDate = currentDate.plusDays(2);
+
+		// Format the date in the required format (yyyy-MM-dd)
+		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+		// Locate the expiry date input field
+		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+		actions.moveToElement(expiryDateInput).perform();
+		// Send the formatted date to the input field
+		expiryDateInput.sendKeys(newFormattedDate);
+		WebElement body = driver.findElement(By.tagName("body"));
+		body.click();
+		WebElement checkboxForStartAndEndTime = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id("alldayPlaceholder")));
+		actions.moveToElement(checkboxForStartAndEndTime).perform();
+		checkboxForStartAndEndTime.click();
+
+		WebElement checkboxForStartListing = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_soon_placeholder")));
+		actions.moveToElement(checkboxForStartListing).perform();
+		checkboxForStartListing.click();
+
+		LocalDate today1 = LocalDate.now();
+		String formattedDate1 = today1.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+		WebElement selectListingDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("listing_date")));
+		actions.moveToElement(selectListingDate).perform();
+		selectListingDate.sendKeys(formattedDate1);
+
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+		WebElement externalBookingURL = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("booking_url")));
+		actions.moveToElement(externalBookingURL).perform();
+		externalBookingURL.sendKeys("www.whitdeals.com");
+
+		WebElement contactName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("contactName")));
+		actions.moveToElement(contactName).perform();
+		contactName.sendKeys("john wick");
+
+		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("phone")));
+		phone.sendKeys("3453453464");
+
+		WebElement websiteURL = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("url")));
+		websiteURL.sendKeys("https://staging.whitdeals.com.au/business/event-request/create");
+
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+		email.sendKeys("john1@gmail.com");
+
+		WebElement submit = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
+		actions.moveToElement(submit).perform();
+		submit.click();
+
+		Thread.sleep(35000);
+
+		ReuseableCode reuse = new ReuseableCode(driver);
+		reuse.loginAsAdmin();
+
+		WebElement BusinessRequest = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@id='panel6']//a[@class='text-decoration-none']")));
+		BusinessRequest.click();
+
+		WebElement PendingRequest = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'Pending')]")));
+		PendingRequest.click();
+
+		WebElement dailyDealTab = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-value='events']")));
+		dailyDealTab.click();
+
+		String dealTitle1 = eventNameWithTimestamp; // Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='event_table']//tr"));
+
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
+
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
+
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
+
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(dealTitle1.toLowerCase())) {
+					System.out.println("Match found for deal title: " + dealTitle1);
+
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//input[contains(@class, 'checkbox')]"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + dealTitle1);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
+					}
+
+					// Exit both the row and pagination loops
+					break;
+				}
+			}
+
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
+			}
+
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
+
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + dealTitle1);
+		} else {
+			System.out.println("Deal successfully approved: " + dealTitle1);
+		}
+		return eventNameWithTimestamp;
 	}
-
-	WebElement eventDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("description")));
-	eventDescription.sendKeys("Get ready to embark on a culinary adventure like noet Dining Experience! Indulge ");
-
-	WebElement eventAdditionalInfo = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.id("additional_terms")));
-	eventAdditionalInfo.sendKeys(
-			"Get ready to embark on a culinary adveExperience! Indulge in a meticulously crafted menu feature");
-
-	System.out.println("Time at Event Title input: " + System.currentTimeMillis());
-
-	WebElement scrollFirst = driver.findElement(By.id("showImageHere"));
-	WebElement uploadElement = driver.findElement(By.id("imageInput"));
-
-	actions.moveToElement(scrollFirst).perform();
-	// Scroll to the file upload elemen
-	//
-
-	JavascriptExecutor js = (JavascriptExecutor) driver;
-	// js.executeScript("arguments[0].scrollIntoView(true);", scrollFirst);
-	// Provide the absolute file path of the image to the file upload element
-	File file = new File("/Users/yeshsharma/Downloads/doctor.jpeg");
-	uploadElement.sendKeys(file.getAbsolutePath());
-
-	WebElement cropImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crop")));
-	cropImage.click();
-
-	js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-
-	// Get today's date in the format yyyy-MM-dd
-	LocalDate today = LocalDate.now();
-	LocalDate startDate = today.plusDays(1);
-	String formattedDate = startDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-	// Locate the date input element
-	WebElement dateInput = driver.findElement(By.id("validFrom"));
-	actions.moveToElement(dateInput).perform();
-	// Send the current date to the input field
-	dateInput.sendKeys(formattedDate);
-
-	LocalDate currentDate = LocalDate.now();
-	LocalDate expiryDate = currentDate.plusDays(2);
-
-	// Format the date in the required format (yyyy-MM-dd)
-	String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-	// Locate the expiry date input field
-	WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-	actions.moveToElement(expiryDateInput).perform();
-	// Send the formatted date to the input field
-	expiryDateInput.sendKeys(newFormattedDate);
-	WebElement body = driver.findElement(By.tagName("body"));
-	body.click();
-	WebElement checkboxForStartAndEndTime = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.id("alldayPlaceholder")));
-	actions.moveToElement(checkboxForStartAndEndTime).perform();
-	checkboxForStartAndEndTime.click();
-
-	WebElement checkboxForStartListing = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_soon_placeholder")));
-	actions.moveToElement(checkboxForStartListing).perform();
-	checkboxForStartListing.click();
-
-	LocalDate today1 = LocalDate.now();
-	String formattedDate1 = today1.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-	WebElement selectListingDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("listing_date")));
-	actions.moveToElement(selectListingDate).perform();
-	selectListingDate.sendKeys(formattedDate1);
-
-	js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-
-	WebElement externalBookingURL = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("booking_url")));
-	actions.moveToElement(externalBookingURL).perform();
-	externalBookingURL.sendKeys("www.whitdeals.com");
-
-	WebElement contactName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("contactName")));
-	actions.moveToElement(contactName).perform();
-	contactName.sendKeys("john wick");
-
-	WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("phone")));
-	phone.sendKeys("3453453464");
-
-	WebElement websiteURL = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("url")));
-	websiteURL.sendKeys("https://staging.whitdeals.com.au/business/event-request/create");
-
-	WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
-	email.sendKeys("john1@gmail.com");
-
-	WebElement submit = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
-	actions.moveToElement(submit).perform();
-	submit.click();
-	
-	Thread.sleep(35000);
-    
-   	ReuseableCode reuse = new ReuseableCode(driver);
-        reuse.loginAsAdmin();
-       
-    	WebElement BusinessRequest  = wait.until(
-   			ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@id='panel6']//a[@class='text-decoration-none']")));
-   	BusinessRequest.click();
-       
-    	WebElement PendingRequest  = wait.until(
-   			ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'Pending')]")));
-   	PendingRequest.click();
-   	
-   	
-   	
-   	WebElement dailyDealTab  = wait.until(
-   			ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-value='events']")));
-   	dailyDealTab.click();
-       
-   	String dealTitle1 = dealNameWithTimestamp; // Deal title to search for
-   	boolean dealFound = false;
-
-   	// Loop through pagination
-   	while (true) {
-   	    // Locate the table rows
-   	    List<WebElement> rows = driver.findElements(By.xpath("//table[@id='event_table']//tr"));
-
-   	    // Print the count of rows
-   	    System.out.println("Number of deals found: " + rows.size());
-
-   	    // Print all rows on the current page
-   	    for (WebElement row : rows) {
-   	        System.out.println("Row text: " + row.getText());
-   	    }
-
-   	    // Iterate through the rows to find the desired deal
-   	    for (WebElement row : rows) {
-   	        String rowText = row.getText();
-   	        System.out.println("Checking row: " + rowText);
-
-   	        // Check if the row contains the desired deal title
-   	        if (rowText.toLowerCase().contains(dealTitle1.toLowerCase())) {
-   	            System.out.println("Match found for deal title: " + dealTitle1);
-
-   	            try {
-   	                // Locate the checkbox and click it
-   	                WebElement checkbox = row.findElement(By.xpath(".//input[contains(@class, 'checkbox')]"));
-   	                actions.moveToElement(checkbox).click().perform();
-
-   	                System.out.println("Checkbox clicked for deal: " + dealTitle1);
-   	                dealFound = true;
-   	            } catch (Exception e) {
-   	                System.out.println("Error clicking the checkbox: " + e.getMessage());
-   	            }
-
-   	            // Exit both the row and pagination loops
-   	            break;
-   	        }
-   	    }
-
-   	    // If deal is found, stop further searching
-   	    if (dealFound) {
-   	        System.out.println("Deal found and approved. Stopping further search.");
-   	        break;
-   	    }
-
-   	    // Handle pagination if deal is not found
-   	    try {
-   	        WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
-   	        if (nextButton.isEnabled()) {
-   	            System.out.println("Navigating to the next page...");
-   	            actions.moveToElement(nextButton).click().perform();
-   	            Thread.sleep(2000); // Allow time for the next page to load
-   	        } else {
-   	            System.out.println("No more pages to search.");
-   	            break;
-   	        }
-   	    } catch (NoSuchElementException e) {
-   	        System.out.println("Pagination 'Next' button not found. Ending search.");
-   	        break;
-   	    }
-   	}
-
-   	// Final result
-   	if (!dealFound) {
-   	    System.out.println("Deal not found: " + dealTitle1);
-   	} else {
-   	    System.out.println("Deal successfully approved: " + dealTitle1);
-   	}
-}
 
 	public void reusebaleCodeForLoyatyCardCreationOneCardIsAlreadyPresent() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -951,194 +951,292 @@ public void reusebaleCodeForEventCreation() throws InterruptedException {
 		}
 
 	}
-	
-	
-	
+
 	public void reusebaleCodeForLoyatyCardCreationNoCardIsPresent() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
 		loginApplication();
 		Actions actions = new Actions(driver);
 		try {
-		WebElement ButtonDashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//li[contains(@class,'mt-3')]//a[@class='text-decoration-none d-flex-start']")));
-		ButtonDashboard.click();
+			WebElement ButtonDashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//li[contains(@class,'mt-3')]//a[@class='text-decoration-none d-flex-start']")));
+			ButtonDashboard.click();
 
 // Step 1: Click the create button on the dashboard
-		WebElement createButtonOnDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
-		createButtonOnDashboard.click();
+			WebElement createButtonOnDashboard = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
+			createButtonOnDashboard.click();
 
 // Step 2: Navigate to the loyalty card creation page
-		WebElement loyaltyCardButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//a[@href='https://staging.whitdeals.com.au/business/loyalty-card-requests/create']")));
-		loyaltyCardButton.click();
+			WebElement loyaltyCardButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//a[@href='https://staging.whitdeals.com.au/business/loyalty-card-requests/create']")));
+			loyaltyCardButton.click();
 
 // Step 3: Generate a unique loyalty card name using Faker
-		Faker faker = new Faker();
-		String baseUsername = faker.name().username();
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		String readableTimestamp = now.format(formatter);
-		String LCNameWithTimestamp = baseUsername + " [Date: " + readableTimestamp + "]";
+			Faker faker = new Faker();
+			String baseUsername = faker.name().username();
+			LocalDateTime now = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			String readableTimestamp = now.format(formatter);
+			String LCNameWithTimestamp = baseUsername + " [Date: " + readableTimestamp + "]";
 
 // Step 4: Fill out the loyalty card form
-		WebElement LCTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_title")));
-		LCTitle.sendKeys(LCNameWithTimestamp);
+			WebElement LCTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_title")));
+			LCTitle.sendKeys(LCNameWithTimestamp);
 
-		WebElement LCDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_description")));
-		LCDescription.sendKeys(
-				"Get ready to embark on a culinary adventure like no other with our exclusive Gourmet Dining Experience! Indulge in a meticulously crafted menu featuring locally sourced, fresh ingredients, paired perfectly with a selection of fine wines and handcrafted cocktails.");
+			WebElement LCDescription = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_description")));
+			LCDescription.sendKeys(
+					"Get ready to embark on a culinary adventure like no other with our exclusive Gourmet Dining Experience! Indulge in a meticulously crafted menu featuring locally sourced, fresh ingredients, paired perfectly with a selection of fine wines and handcrafted cocktails.");
 
-		WebElement LCTermsAndCondition = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_term_condtion")));
-		LCTermsAndCondition.sendKeys("This deal is valid only for the specified dates mentioned in the offer.");
+			WebElement LCTermsAndCondition = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_term_condtion")));
+			LCTermsAndCondition.sendKeys("This deal is valid only for the specified dates mentioned in the offer.");
 
 // Step 5: Upload an image
-		WebElement scrollFirst = driver.findElement(By.id("showImageHere"));
-		WebElement uploadElement = driver.findElement(By.id("imageInput"));
-		Thread.sleep(2000);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView(true);", scrollFirst);
+			WebElement scrollFirst = driver.findElement(By.id("showImageHere"));
+			WebElement uploadElement = driver.findElement(By.id("imageInput"));
+			Thread.sleep(2000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", scrollFirst);
 
-		File file = new File("/Users/yeshsharma/Downloads/doctor.jpeg");
-		uploadElement.sendKeys(file.getAbsolutePath());
+			File file = new File("/Users/yeshsharma/Downloads/doctor.jpeg");
+			uploadElement.sendKeys(file.getAbsolutePath());
 
-		WebElement cropImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crop")));
-		cropImage.click();
+			WebElement cropImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crop")));
+			cropImage.click();
 
 // Step 6: Select fixed location and address
-		WebElement fixedLocationCheckbox = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("fixed_location")));
-		actions.moveToElement(fixedLocationCheckbox).perform();
-		fixedLocationCheckbox.click();
+			WebElement fixedLocationCheckbox = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.id("fixed_location")));
+			actions.moveToElement(fixedLocationCheckbox).perform();
+			fixedLocationCheckbox.click();
 
-		WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_id")));
-		actions.moveToElement(selectLocation).perform();
-		Select locationSelect = new Select(selectLocation);
-		locationSelect.selectByIndex(2);
+			WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_id")));
+			actions.moveToElement(selectLocation).perform();
+			Select locationSelect = new Select(selectLocation);
+			locationSelect.selectByIndex(2);
 
 // Step 7: Add social media handle
-		WebElement socialHandles = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("facebook")));
-		actions.moveToElement(socialHandles).perform();
-		socialHandles.sendKeys("www.facebook.com");
+			WebElement socialHandles = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("facebook")));
+			actions.moveToElement(socialHandles).perform();
+			socialHandles.sendKeys("www.facebook.com");
 
 // Step 8: Configure stamp allocation
-		WebElement maxDailyStampAllocation = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("max_daily_allocation")));
-		actions.moveToElement(maxDailyStampAllocation).perform();
-		Select dailyStampSelect = new Select(maxDailyStampAllocation);
-		dailyStampSelect.selectByIndex(2);
+			WebElement maxDailyStampAllocation = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.id("max_daily_allocation")));
+			actions.moveToElement(maxDailyStampAllocation).perform();
+			Select dailyStampSelect = new Select(maxDailyStampAllocation);
+			dailyStampSelect.selectByIndex(2);
 
-		WebElement totalStamps = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("total_stamps")));
-		actions.moveToElement(totalStamps).perform();
-		Select totalStampSelect = new Select(totalStamps);
-		totalStampSelect.selectByIndex(2);
+			WebElement totalStamps = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("total_stamps")));
+			actions.moveToElement(totalStamps).perform();
+			Select totalStampSelect = new Select(totalStamps);
+			totalStampSelect.selectByIndex(2);
 
 // Step 9: Add reward details
-		WebElement awardName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("lc_reward[]")));
-		actions.moveToElement(awardName).perform();
-		awardName.sendKeys("testaward");
+			WebElement awardName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("lc_reward[]")));
+			actions.moveToElement(awardName).perform();
+			awardName.sendKeys("testaward");
 
-		WebElement validThru = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("reward_valid_thru")));
-		actions.moveToElement(validThru).perform();
-		Select validThruSelect = new Select(validThru);
-		validThruSelect.selectByIndex(2);
+			WebElement validThru = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("reward_valid_thru")));
+			actions.moveToElement(validThru).perform();
+			Select validThruSelect = new Select(validThru);
+			validThruSelect.selectByIndex(2);
 
 // Scroll to the bottom of the page
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		WebElement startDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_date")));
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-		startDate.sendKeys(formattedDate);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
+			WebElement startDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_date")));
+			LocalDate today = LocalDate.now();
+			String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			startDate.sendKeys(formattedDate);
 
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
+			LocalDate currentDate = LocalDate.now();
+			LocalDate expiryDate = currentDate.plusDays(1);
 
-		endDate.sendKeys(newFormattedDate);
-		
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
-		
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			// Format the date in the required format (yyyy-MM-dd)
+			String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-		WebElement rememberCheckbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("remember")));
-		actions.moveToElement(rememberCheckbox).perform();
-		rememberCheckbox.click();
+			endDate.sendKeys(newFormattedDate);
 
-		WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("upload")));
-		actions.moveToElement(submitButton).perform();
-		submitButton.click();
+			WebElement body = driver.findElement(By.tagName("body"));
+			body.click();
 
-		Thread.sleep(35000);
-	
-	
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.loginAsAdmin();
+			WebElement rememberCheckbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("remember")));
+			actions.moveToElement(rememberCheckbox).perform();
+			rememberCheckbox.click();
 
-		WebElement BusinessRequest = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//li[@id='panel6']//a[@class='text-decoration-none']")));
-		BusinessRequest.click();
+			WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("upload")));
+			actions.moveToElement(submitButton).perform();
+			submitButton.click();
 
-		WebElement PendingRequest = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'Pending')]")));
-		PendingRequest.click();
+			Thread.sleep(35000);
 
-		WebElement dailyDealTab = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-value='loyalty cards']")));
-		dailyDealTab.click();
+			ReuseableCode reuse = new ReuseableCode(driver);
+			reuse.loginAsAdmin();
 
-		String dealTitle1 = LCNameWithTimestamp; // Deal title to search for
-		boolean dealFound = false;
+			WebElement BusinessRequest = wait.until(ExpectedConditions
+					.visibilityOfElementLocated(By.xpath("//li[@id='panel6']//a[@class='text-decoration-none']")));
+			BusinessRequest.click();
+
+			WebElement PendingRequest = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'Pending')]")));
+			PendingRequest.click();
+
+			WebElement dailyDealTab = wait.until(
+					ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-value='loyalty cards']")));
+			dailyDealTab.click();
+
+			String dealTitle1 = LCNameWithTimestamp; // Deal title to search for
+			boolean dealFound = false;
 
 // Loop through pagination
+			while (true) {
+				// Locate the table rows
+				List<WebElement> rows1 = driver.findElements(By.xpath("//table[@id='loyalty_table']//tr"));
+
+				// Print the count of rows
+				System.out.println("Number of deals found: " + rows1.size());
+
+				// Print all rows on the current page
+				for (WebElement row : rows1) {
+					System.out.println("Row text: " + row.getText());
+				}
+
+				// Iterate through the rows to find the desired deal
+				for (WebElement row : rows1) {
+					String rowText = row.getText();
+					System.out.println("Checking row: " + rowText);
+
+					// Check if the row contains the desired deal title
+					if (rowText.toLowerCase().contains(dealTitle1.toLowerCase())) {
+						System.out.println("Match found for deal title: " + dealTitle1);
+
+						try {
+							// Locate the checkbox and click it
+							WebElement checkbox = row.findElement(By.xpath(".//input[contains(@class, 'checkbox')]"));
+							actions.moveToElement(checkbox).click().perform();
+
+							System.out.println("Checkbox clicked for deal: " + dealTitle1);
+							dealFound = true;
+						} catch (Exception e) {
+							System.out.println("Error clicking the checkbox: " + e.getMessage());
+						}
+
+						// Exit both the row and pagination loops
+						break;
+					}
+				}
+
+				// If deal is found, stop further searching
+				if (dealFound) {
+					System.out.println("Deal found and approved. Stopping further search.");
+					break;
+				}
+
+				// Handle pagination if deal is not found
+				try {
+					WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+					if (nextButton.isEnabled()) {
+						System.out.println("Navigating to the next page...");
+						actions.moveToElement(nextButton).click().perform();
+						Thread.sleep(2000); // Allow time for the next page to load
+					} else {
+						System.out.println("No more pages to search.");
+						break;
+					}
+				} catch (NoSuchElementException e) {
+					System.out.println("Pagination 'Next' button not found. Ending search.");
+					break;
+				}
+			}
+
+// Final result
+			if (!dealFound) {
+				System.out.println("Deal not found: " + dealTitle1);
+			} else {
+				System.out.println("Deal successfully approved: " + dealTitle1);
+			}
+
+			WebElement approveButton = wait.until(
+					ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
+			approveButton.click();
+
+			Thread.sleep(2000);
+			WebElement confirmApproveButton = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
+			confirmApproveButton.click();
+
+		} catch (Exception e) {
+
+			System.out.println("Error: Loyalty card alredy present " + e.getMessage());
+		}
+
+	}
+
+	public void reusebaleCodeForDealDashboard() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
+
+		ReuseableCode reuse = new ReuseableCode(driver);
+
+		String createdDealName = reuse.reusebaleCodeFordealsCreation();
+
+		System.out.println("Created Deal Name: " + createdDealName);
+
+		WebElement approveButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
+		approveButton.click();
+
+		Thread.sleep(2000);
+		WebElement confirmApproveButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
+		confirmApproveButton.click();
+
+		Thread.sleep(5000);
+		loginApplication();
+		WebElement dealDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deals']")));
+		dealDashboard.click();
+
+		Actions actions = new Actions(driver);
+		// Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
 		while (true) {
 			// Locate the table rows
-			List<WebElement> rows1 = driver.findElements(By.xpath("//table[@id='loyalty_table']//tr"));
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
 
 			// Print the count of rows
-			System.out.println("Number of deals found: " + rows1.size());
+			System.out.println("Number of deals found: " + rows.size());
 
 			// Print all rows on the current page
-			for (WebElement row : rows1) {
+			for (WebElement row : rows) {
 				System.out.println("Row text: " + row.getText());
 			}
 
 			// Iterate through the rows to find the desired deal
-			for (WebElement row : rows1) {
+			for (WebElement row : rows) {
 				String rowText = row.getText();
 				System.out.println("Checking row: " + rowText);
 
 				// Check if the row contains the desired deal title
-				if (rowText.toLowerCase().contains(dealTitle1.toLowerCase())) {
-					System.out.println("Match found for deal title: " + dealTitle1);
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
 
 					try {
 						// Locate the checkbox and click it
-						WebElement checkbox = row.findElement(By.xpath(".//input[contains(@class, 'checkbox')]"));
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
 						actions.moveToElement(checkbox).click().perform();
 
-						System.out.println("Checkbox clicked for deal: " + dealTitle1);
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
 						dealFound = true;
 					} catch (Exception e) {
 						System.out.println("Error clicking the checkbox: " + e.getMessage());
@@ -1172,35 +1270,219 @@ public void reusebaleCodeForEventCreation() throws InterruptedException {
 			}
 		}
 
-// Final result
+		// Final result
 		if (!dealFound) {
-			System.out.println("Deal not found: " + dealTitle1);
+			System.out.println("Deal not found: " + createdDealName);
 		} else {
-			System.out.println("Deal successfully approved: " + dealTitle1);
+			System.out.println("Deal successfully approved: " + createdDealName);
 		}
-	
-	
-		WebElement approveButton  = wait.until(
+		Thread.sleep(2000);
+
+	}
+
+	public void reusebaleCodeForDailyDealDashboard() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
+		loginApplication();
+
+		ReuseableCode reuse = new ReuseableCode(driver);
+
+		String createdDealName = reuse.reusebaleCodeForDailyDealsCreation();
+
+		WebElement approveButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
-		approveButton.click();  
-	         
-	         Thread.sleep(2000);
-		WebElement confirmApproveButton  = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
-		confirmApproveButton.click();  
-	         
-	     
+		approveButton.click();
+
+		Thread.sleep(2000);
+		WebElement confirmApproveButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
+		confirmApproveButton.click();
+
+		Thread.sleep(5000);
+
+		loginApplication();
+
+		WebElement dealDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
+		dealDashboard.click();
+
+		Actions actions = new Actions(driver);
+		// Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
+
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
+
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
+
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
+
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
+
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
+					}
+
+					// Exit both the row and pagination loops
+					break;
+				}
+			}
+
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
+			}
+
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
+
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + createdDealName);
+		} else {
+			System.out.println("Deal successfully approved: " + createdDealName);
+		}
+		Thread.sleep(2000);
+
+	}
+
+	public void reusebaleCodeForEventDashboard() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
+		loginApplication();
+
+		ReuseableCode reuse = new ReuseableCode(driver);
+
+		String createdDealName = reuse.reusebaleCodeForEventCreation();
+
+		WebElement approveButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
+		approveButton.click();
+
+		Thread.sleep(2000);
+		WebElement confirmApproveButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
+		confirmApproveButton.click();
+
+		Thread.sleep(5000);
+
+		loginApplication();
+
+		WebElement dealDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Events']")));
+		dealDashboard.click();
+
+		Actions actions = new Actions(driver);
+		// Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
+
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
+
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
+
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
+
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
+
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
+					}
+
+					// Exit both the row and pagination loops
+					break;
+				}
+			}
+
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
+			}
+
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
+
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + createdDealName);
+		} else {
+			System.out.println("Deal successfully approved: " + createdDealName);
+		}
+		Thread.sleep(2000);
 
 		
-	
-		}catch(Exception e) {
-			
-			 System.out.println("Error: Loyalty card alredy present " + e.getMessage());
-		}
-	
 	}
-	
-	
-	
 
 }

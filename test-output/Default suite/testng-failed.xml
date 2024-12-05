@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="businessUser.LoyaltyCard">
+      <class name="businessUser.Createdeal">
         <methods>
-          <include name="createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminDeclineWithOutMessageTheLoyaltyCard"/>
+          <include name="createdealBybusinessUserAndAdminApprovesThedeal"/>
+          <include name="dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount"/>
           <include name="setUp"/>
-          <include name="createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminApprovesTheLoyaltyCard"/>
-          <include name="createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin"/>
         </methods>
-      </class> <!-- businessUser.LoyaltyCard -->
+      </class> <!-- businessUser.Createdeal -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -81,9 +81,11 @@ public class LoyaltyCard extends Basetest {
 		declineMessage.sendKeys("declining because of testing");
 
 		Thread.sleep(2000);
+		
 		WebElement confirmDeclineButton = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
 		confirmDeclineButton.click();
+		
 
 	}
 
