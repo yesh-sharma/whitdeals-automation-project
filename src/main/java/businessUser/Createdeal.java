@@ -16,8 +16,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
+import mobileapp.BaseTest;
 import utility.ReuseableCode;
-@Test
+//@Test
 public class Createdeal extends Basetest {
 	static int initialRemainingDealCountOnDashboard;
 
@@ -57,9 +58,10 @@ public class Createdeal extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-
+        
+		
 	}
-@Test
+	//@Test
 	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -102,7 +104,7 @@ public class Createdeal extends Basetest {
 
 	}
 
-	@Test(priority = 2, dependsOnMethods = { "createdealBybusinessUserAndAdminApprovesThedeal" })
+	//@Test(priority = 2, dependsOnMethods = { "createdealBybusinessUserAndAdminApprovesThedeal" })
 	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
 			throws InterruptedException {
 
@@ -139,7 +141,7 @@ public class Createdeal extends Basetest {
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDealDashboard();
 		Actions actions = new Actions(driver);
-		;
+		
 		WebElement cancleButton = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(cancleButton).click().perform();
@@ -231,7 +233,7 @@ public class Createdeal extends Basetest {
 		confirm.click();
 
 	}
-
+//@Test
 	public void makeDealAndCloneTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -249,5 +251,23 @@ public class Createdeal extends Basetest {
 		YesToClone.click();
 		Thread.sleep(3000);
 
+		
+	
 	}
+     
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 }
+

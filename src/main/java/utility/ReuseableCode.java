@@ -379,7 +379,7 @@ public class ReuseableCode extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(40000);
+		Thread.sleep(25000);
 
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
@@ -607,7 +607,7 @@ public class ReuseableCode extends Basetest {
 		actions.moveToElement(submit).perform();
 		submit.click();
 
-		Thread.sleep(35000);
+		Thread.sleep(25000);
 
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
@@ -957,6 +957,8 @@ public class ReuseableCode extends Basetest {
 
 		loginApplication();
 		Actions actions = new Actions(driver);
+
+		
 		try {
 			WebElement ButtonDashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//li[contains(@class,'mt-3')]//a[@class='text-decoration-none d-flex-start']")));
@@ -973,12 +975,13 @@ public class ReuseableCode extends Basetest {
 			loyaltyCardButton.click();
 
 // Step 3: Generate a unique loyalty card name using Faker
-			Faker faker = new Faker();
-			String baseUsername = faker.name().username();
-			LocalDateTime now = LocalDateTime.now();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-			String readableTimestamp = now.format(formatter);
-			String LCNameWithTimestamp = baseUsername + " [Date: " + readableTimestamp + "]";
+//			Faker faker = new Faker();
+//			String baseUsername = faker.name().username();
+//			LocalDateTime now = LocalDateTime.now();
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//			String readableTimestamp = now.format(formatter);
+//			String LCNameWithTimestamp = baseUsername + " [Date: " + readableTimestamp + "]";
+			String LCNameWithTimestamp = "LoyaltyCardTest";
 
 // Step 4: Fill out the loyalty card form
 			WebElement LCTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_title")));
@@ -1484,5 +1487,105 @@ public class ReuseableCode extends Basetest {
 
 		
 	}
+	
+	
+	
+	public void reusebaleCodeForLoyatycardDashboard() throws InterruptedException {
+	
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
+		loginApplication();
+		
+		WebElement LoyaltyCardDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Loyalty Cards']")));
+		LoyaltyCardDashboard.click();
+		
+        String createdDealName = "LoyaltyCardTest";
+		Actions actions = new Actions(driver);
+		// Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
+
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
+
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
+
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
+
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
+
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
+					}
+
+					// Exit both the row and pagination loops
+					break;
+				}
+			}
+
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
+			}
+
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
+
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + createdDealName);
+		} else {
+			System.out.println("Deal successfully approved: " + createdDealName);
+		}
+		Thread.sleep(2000);
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	}
 }

@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 
 import basetest.Basetest;
 import utility.ReuseableCode;
-@Test
+
 public class DailyDeals extends Basetest {
 	
 	 static int initialRemainingDailyDealCountOnDashboard;
@@ -62,7 +62,7 @@ public class DailyDeals extends Basetest {
 		confirmApproveButton.click();
 
 	}
-	
+	@Test
 	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -86,7 +86,7 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	
+	@Test
 	public void createDailyDealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 	
 	
@@ -143,7 +143,7 @@ public class DailyDeals extends Basetest {
 	
 }
 	
-
+@Test
 	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -204,7 +204,7 @@ public class DailyDeals extends Basetest {
 		
 	}
 	
-	
+	@Test
 	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -243,7 +243,7 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	
+	@Test
 	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

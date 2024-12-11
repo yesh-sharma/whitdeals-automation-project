@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-12-05T10:47:18 IST" name="Default suite" finished-at="2024-12-05T10:48:34 IST" duration-ms="75560">
+  <suite started-at="2024-12-11T11:18:36 IST" name="Default suite" finished-at="2024-12-11T11:19:33 IST" duration-ms="57520">
     <groups>
     </groups>
-    <test started-at="2024-12-05T10:47:18 IST" name="Default test" finished-at="2024-12-05T10:48:34 IST" duration-ms="75560">
-      <class name="businessUser.Event">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Event@383dc82c]" started-at="2024-12-05T10:47:18 IST" name="setUp" finished-at="2024-12-05T10:47:27 IST" duration-ms="8237" status="PASS">
+    <test started-at="2024-12-11T11:18:36 IST" name="Default test" finished-at="2024-12-11T11:19:33 IST" duration-ms="57520">
+      <class name="admin.Deal">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.Deal@2bdd8394]" started-at="2024-12-11T11:18:36 IST" name="setUp" finished-at="2024-12-11T11:18:37 IST" duration-ms="1439" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createEventByBusinessUserAfterThatCancled()[pri:0, instance:businessUser.Event@383dc82c]" started-at="2024-12-05T10:47:27 IST" name="createEventByBusinessUserAfterThatCancled" finished-at="2024-12-05T10:48:34 IST" duration-ms="67303" status="PASS">
+        <test-method signature="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal()[pri:0, instance:admin.Deal@2bdd8394]" started-at="2024-12-11T11:18:37 IST" name="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal" finished-at="2024-12-11T11:19:33 IST" duration-ms="56068" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createEventByBusinessUserAfterThatCancled -->
-      </class> <!-- businessUser.Event -->
+        </test-method> <!-- searchDealcreatedByAdminForBusinessUserAndRTZThatDeal -->
+      </class> <!-- admin.Deal -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

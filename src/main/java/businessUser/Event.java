@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import basetest.Basetest;
 import utility.ReuseableCode;
-
+@Test
 public class Event extends Basetest {
 
 
@@ -82,7 +82,9 @@ public class Event extends Basetest {
 		confirmApproveButton.click();  
 	
 	}
-	@Test
+	
+	
+
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -100,7 +102,7 @@ public class Event extends Basetest {
 		
 	}	
 	
-
+@Test
 	public void createEventByBusinessUserAndCloneTheEvent() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -111,5 +113,15 @@ public class Event extends Basetest {
 	    Thread.sleep(1000);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
