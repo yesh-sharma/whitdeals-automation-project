@@ -3,8 +3,18 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="deals.Createdeal"/>
-      <class name="basetest.Basetest"/>
+      <class name="businessUser.Createdeal"/>
+     
+         <class name="businessUser.DailyDeals"/>
+      
+         <class name="businessUser.DealWithMobile"/>
+         <class name="businessUser.Event"/>
+         <class name="businessUser.LoyaltyCard"/>
+      
+         <class name="admin.DealsAdmin"/>
+       <class name="admin.DailyDealsAdmin"/>
+      <class name="admin.EventAdmin"/>
+      <class name="admin.LoyaltyCardAdmin"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -22,7 +22,7 @@ import utility.ReuseableCode;
 
 public class LoyaltyCard extends Basetest {
 
-   // @Test(priority = 1)
+    @Test(priority = 1)
 	public void createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin()
 			throws InterruptedException {
 
@@ -32,7 +32,7 @@ public class LoyaltyCard extends Basetest {
 	}
 
 	
-	// @Test(priority = 2, dependsOnMethods ={"createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin" })
+	 @Test(priority = 2, dependsOnMethods ={"createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin" })
 	
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminApprovesTheLoyaltyCard()
 			throws InterruptedException {
@@ -52,7 +52,7 @@ public class LoyaltyCard extends Basetest {
 
 	}
 
-	 //@Test(priority = 3)
+	@Test(priority = 3)
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminDeclineWithOutMessageTheLoyaltyCard()
 			throws InterruptedException {
 
@@ -74,7 +74,7 @@ public class LoyaltyCard extends Basetest {
 
 	}
 
-	 //@Test(priority = 4)
+	 @Test(priority = 4)
 	
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminDeclineWithMessageTheLoyaltyCard()
 			throws InterruptedException {
@@ -96,7 +96,7 @@ public class LoyaltyCard extends Basetest {
 		confirmDeclineButton.click();
 
 	}
-	 //@Test(priority = 5)
+	 @Test(priority = 5)
 
 	public void searchLoyaltycardAndCloneTheloyaltycard() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -111,7 +111,7 @@ public class LoyaltyCard extends Basetest {
 		Thread.sleep(3000);
 
 	}
-	// @Test(priority = 6)
+	 @Test(priority = 6)
 	
 	public void searchLoyaltycardAndPauseTheloyaltycard() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -149,7 +149,7 @@ public class LoyaltyCard extends Basetest {
 
 	}
 
-	// @Test(priority = 7)
+	 @Test(priority = 7)
 	
 	public void searchLoyaltycardAndcancleTheloyaltycardPartially() throws InterruptedException {
 
@@ -173,7 +173,7 @@ public class LoyaltyCard extends Basetest {
 
 	}
 	
-@Test
+	 @Test(priority = 9)
 	public void searchLoyaltycardAndcancleTheloyaltycardCompletely() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -208,7 +208,7 @@ public class LoyaltyCard extends Basetest {
 
 	}
 	
-	// @Test(priority = 8)
+	 @Test(priority = 8)
 	
 	public void searchLoyaltycardAndEditLoyaltyCardAndApprovedByAdmin() throws InterruptedException {
 	

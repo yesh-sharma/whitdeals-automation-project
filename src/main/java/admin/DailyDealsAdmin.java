@@ -17,136 +17,63 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
-
 import utility.ReuseableCodeForAdminModule;
 
-public class Deal extends Basetest  {
-	
-	
-	public void createdealByAdminForbusinessUser() throws InterruptedException {
-	
+public class DailyDealsAdmin extends Basetest {
+	@Test(priority=1)
+	public void createDailyDealByAdminForbusinessUser() throws InterruptedException {
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
-		
+
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
+
+		WebElement dealsButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Daily Deals']")));
 		dealsButton.click();
-		
-		
-		WebElement ActiveDeals = driver.findElement(By.xpath("(//div[@class='display-5 mt-2'])[3]")); 
+
+		WebElement ActiveDeals = driver.findElement(By.xpath("(//div[@class='display-5 mt-2'])[3]"));
 		int activeDealCount = Integer.parseInt(ActiveDeals.getText());
-		
-		reuse.reusebaleCodeFordealsCreation();
-	
-		WebElement ActiveDealsAfterCreation = driver.findElement(By.xpath("(//div[@class='display-5 mt-2'])[3]")); 
+
+		reuse.reusebaleCodeForDailyDealsCreation();
+
+		WebElement ActiveDealsAfterCreation = driver.findElement(By.xpath("(//div[@class='display-5 mt-2'])[3]"));
 		int activeDealCountAfterCreation = Integer.parseInt(ActiveDealsAfterCreation.getText());
-	
-		Assert.assertEquals(activeDealCountAfterCreation, activeDealCount+ 1,
-				"Active count did not increase by 1!");
-	
-		
-		
-		
-}
-	
-	
-	public void searchDealcreatedByAdminForBusinessUserAndCloneThatDeal() throws InterruptedException {
-	
+
+		Assert.assertEquals(activeDealCountAfterCreation, activeDealCount + 1, "Active count did not increase by 1!");
+
+	}
+	@Test(priority=2)
+	public void searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal() throws InterruptedException {
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
+
+		WebElement dealsButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Daily Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
-	    Actions actions = new Actions(driver);
-	
-	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		reuse.reusebaleCodeForDailyDealsDashboard();
+		Actions actions = new Actions(driver);
+
+		WebElement cloneButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Deal'][normalize-space()='Clone']")));
-		actions.moveToElement(pauseButton).click().perform();
+		actions.moveToElement(cloneButton).click().perform();
 
 		WebElement yesButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Yes']")));
 		yesButton.click();
-	
-	
-	}
-	
-	public void searchDealcreatedByAdminForBusinessUserAndGoToDetailsPageAndAddPriorityToThatDeal() throws InterruptedException {
-	
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
-		reuse.loginAsAdmin();
-		WebElement assetsButtonOnDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
-		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
-		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
-	    Actions actions = new Actions(driver);
-	
-	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//ul[@class='dropdown-menu show']//a[@class='dropdown-item'][normalize-space()='Details']")));
-		actions.moveToElement(pauseButton).click().perform();
-	
-	
 
-		WebElement prioritiesButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Priorities']")));
-		actions.moveToElement(prioritiesButton).click().perform();
-	
-	
-	
-		WebElement addNewPrioritiesButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Add new priority']")));
-		actions.moveToElement(addNewPrioritiesButton).click().perform();
-	
-	
-		WebElement status= wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("status")));
-	
-		Select low= new Select(status);
-		low.selectByIndex(1);
-		
-		
-		WebElement action= wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("action")));
-	
-		Select requiringCall= new Select(action);
-		requiringCall.selectByIndex(2);
-		
-		WebElement assigne= wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("assignee")));
-	
-		Select yesh= new Select(assigne);
-		yesh.selectByIndex(4);
-		
-		
-		WebElement Note = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@class='form-control dark-input mt-2']")));
-		Note.click();
-		Note.sendKeys("call the business user");
-		
-		WebElement submit = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='modal-footer']//button[@type='submit'][normalize-space()='Submit']")));
-		submit.click();
-		
 	}
-	
-	
-	public void searchDealcreatedByAdminForBusinessUserAndPauseThatDeal() throws InterruptedException {
-	
+
+	@Test(priority=4)
+	public void searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
@@ -154,17 +81,17 @@ public class Deal extends Basetest  {
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
+
+		WebElement dealsButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Daily Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
-	    Actions actions = new Actions(driver);
-	
-	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//ul[@class='dropdown-menu show']//a[@id='pauseIcon']")));
+		reuse.reusebaleCodeForDailyDealsDashboard();
+		Actions actions = new Actions(driver);
+
+		WebElement pauseButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='pauseIcon']")));
 		actions.moveToElement(pauseButton).click().perform();
-	
+
 		Thread.sleep(1000);
 
 		WebElement yesButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yesPauseDeal")));
@@ -188,63 +115,63 @@ public class Deal extends Basetest  {
 		pauseTime.sendKeys(formattedTime);
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
-	
 
 	}
-	
-	
-	public void searchDealcreatedByAdminForBusinessUserAndEditThatDeal() throws InterruptedException {
-		
+
+	@Test(priority=3)
+	public void searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal() throws InterruptedException {
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
+
+		WebElement dealsButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Daily Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
-	    Actions actions = new Actions(driver);
-	
-	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		reuse.reusebaleCodeForDailyDealsDashboard();
+		Actions actions = new Actions(driver);
+
+		WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Edit Deal'][normalize-space()='Edit']")));
 		actions.moveToElement(pauseButton).click().perform();
-	
+
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
 		Select select1 = new Select(dealRestriction);
 		select1.selectByIndex(4);
-	
-		WebElement Checkbox = driver.findElement(By.id("declaration"));
+
+		WebElement Checkbox = driver.findElement(By.id("remember"));
 		actions.moveToElement(Checkbox).perform();
 		Checkbox.click();
+
 
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
 		Thread.sleep(30000);
+
 	}
 	
-	
-	
-	
+	@Test(priority=5)
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
-	
+		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
+
+		WebElement dealsButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Daily Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
-	    Actions actions = new Actions(driver);
-	
+		reuse.reusebaleCodeForDailyDealsDashboard();
+		Actions actions = new Actions(driver);
+
+
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(pauseButton).click().perform();
@@ -270,30 +197,22 @@ public class Deal extends Basetest  {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 	
-	
+			
+
 	}
-	
-	
-	@Test
+	@Test(priority=6)
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
-	
-	
+		
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		
-		WebElement assetsButtonOnDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
-		assetsButtonOnDashboard.click();
-		
-		WebElement dealsButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
-		dealsButton.click();
-		
-		String createdDealName= reuse.reusebaleCodeFordealsCreationForRTZ();
 		
 		
-	  
+		String createdDealName= reuse.reusebaleCodeForDailyDealsCreationForRTZ();
+		
+
 	    Actions actions = new Actions(driver);
 	
 			boolean dealFound = false;
@@ -384,6 +303,19 @@ public class Deal extends Basetest  {
 			WebElement YesToCancle = wait
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
 			YesToCancle.click();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 	}
-	
+
 }

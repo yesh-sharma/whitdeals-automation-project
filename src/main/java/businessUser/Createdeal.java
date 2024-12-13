@@ -16,7 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
-import mobileapp.BaseTest;
+
 import utility.ReuseableCode;
 //@Test
 public class Createdeal extends Basetest {
@@ -61,7 +61,7 @@ public class Createdeal extends Basetest {
         
 		
 	}
-	//@Test
+	@Test(priority = 4)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -82,7 +82,7 @@ public class Createdeal extends Basetest {
 		confirmDeclineButton.click();
 
 	}
-
+	@Test(priority = 3)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -104,7 +104,7 @@ public class Createdeal extends Basetest {
 
 	}
 
-	//@Test(priority = 2, dependsOnMethods = { "createdealBybusinessUserAndAdminApprovesThedeal" })
+	@Test(priority = 2, dependsOnMethods = { "createdealBybusinessUserAndAdminApprovesThedeal" })
 	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
 			throws InterruptedException {
 
@@ -135,7 +135,7 @@ public class Createdeal extends Basetest {
 				"Active count did not increase by 1!");
 
 	}
-
+	@Test(priority = 5)
 	public void makeDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -169,7 +169,7 @@ public class Createdeal extends Basetest {
 		submit.click();
 
 	}
-
+	@Test(priority = 6)
 	public void makeDealAndRTZTheDealByBusinessUser() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -196,7 +196,7 @@ public class Createdeal extends Basetest {
 		YesToCancle.click();
 
 	}
-
+	@Test(priority = 7)
 	public void makeDealAndPauseTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -233,7 +233,7 @@ public class Createdeal extends Basetest {
 		confirm.click();
 
 	}
-//@Test
+	@Test(priority = 8)
 	public void makeDealAndCloneTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
