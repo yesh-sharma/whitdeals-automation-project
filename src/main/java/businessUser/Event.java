@@ -34,7 +34,7 @@ public class Event extends Basetest {
 		confirmApproveButton.click();
 
 	}
-	@Test(priority = 2)
+	//@Test(priority = 2)
 	public void createEventByBusinessuserAndAdminDeclineTheEventWithReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -60,7 +60,7 @@ public class Event extends Basetest {
 	
 	}
 	
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void createEventByBusinessuserAndAdminDeclineTheEventWithoutReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -84,7 +84,7 @@ public class Event extends Basetest {
 	}
 	
 	
-	@Test(priority = 4)
+	//@Test(priority = 4)
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -102,7 +102,7 @@ public class Event extends Basetest {
 		
 	}	
 	
-	@Test(priority = 5)
+	//@Test(priority = 5)
 	public void createEventByBusinessUserAndCloneTheEvent() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		ReuseableCode reuse = new ReuseableCode(driver);

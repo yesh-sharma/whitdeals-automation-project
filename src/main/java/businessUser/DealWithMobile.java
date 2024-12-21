@@ -51,17 +51,6 @@ public class DealWithMobile extends Basetest  {
 			
 			
 			
-			try {
-			    ProcessBuilder emulatorBuilder = new ProcessBuilder(
-			        "open", "-a", "/Users/yeshsharma/Library/Android/sdk/emulator/emulator", 
-			        "--args", "-avd", "emulator-5554"
-			    );
-			    emulatorBuilder.start();
-			    Thread.sleep(5000);
-			} catch (Exception e) {
-			    e.printStackTrace();
-			}
-
 	
 
 			driver1 = new AndroidDriver(new URL(appiumServerUrl), dc);
@@ -121,13 +110,11 @@ public class DealWithMobile extends Basetest  {
 					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 			allDeal.click();
 			
+			WebElement click = wait1.until(ExpectedConditions
+					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"​P​a​u​s​e​d​ ​R​e​d​e​e​m​-​ ​S​a​v​e​d​ ​U​n​i​q​u​e​\")")));
+			click.click();
 			
-			WebElement claimButton = wait1.until(ExpectedConditions
-					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Claim\").instance(0)")));
-			claimButton.click();
-			
-			loginApplication();
-			driver1.quit();
+		
 			
 	}
 	

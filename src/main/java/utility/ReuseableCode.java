@@ -1,6 +1,7 @@
 package utility;
 
 import java.io.File;
+import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,14 +17,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.javafaker.Faker;
 
 import basetest.Basetest;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 
 public class ReuseableCode extends Basetest {
+	
 
 	public ReuseableCode(WebDriver driver) {
 		this.driver = driver;
@@ -81,7 +87,7 @@ public class ReuseableCode extends Basetest {
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
 		Select select1 = new Select(dealRestriction);
-		select1.selectByIndex(2);
+		select1.selectByIndex(7);
 
 		WebElement dealDescription = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_description")));
@@ -125,7 +131,11 @@ public class ReuseableCode extends Basetest {
 
 		// Send the current date to the input field
 		dateInput.sendKeys(formattedDate);
-
+   
+		WebElement body = driver.findElement(By.tagName("body"));
+		body.click();
+		
+		
 		// Get the current local time
 		// Get the current local time in 24-hour format
 		LocalTime currentTime = LocalTime.now();
@@ -137,10 +147,10 @@ public class ReuseableCode extends Basetest {
 		String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
 
 		// Locate the time input element
-		WebElement timeInput = driver.findElement(By.id("valid_from_time"));
-		timeInput.clear();
+		//WebElement timeInput = driver.findElement(By.id("valid_from_time"));
+		//timeInput.clear();
 		// Send the new time value to the input field
-		timeInput.sendKeys(formattedTime);
+		//timeInput.sendKeys(formattedTime);
 
 		LocalDate currentDate = LocalDate.now();
 		LocalDate expiryDate = currentDate.plusDays(1);
@@ -154,8 +164,8 @@ public class ReuseableCode extends Basetest {
 		// Send the formatted date to the input field
 		expiryDateInput.sendKeys(newFormattedDate);
 
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
+		WebElement body1 = driver.findElement(By.tagName("body"));
+		body1.click();
 		Thread.sleep(1000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		Actions actions = new Actions(driver);
@@ -171,8 +181,11 @@ public class ReuseableCode extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(30000);
-
+		
+         Thread.sleep(30000);
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
 		// login as admin
 
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -540,7 +553,9 @@ public class ReuseableCode extends Basetest {
 		WebElement cropImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crop")));
 		cropImage.click();
 
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		WebElement addScheduled = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Add schedule']")));
+		actions.moveToElement(addScheduled).click().perform();
 
 		// Get today's date in the format yyyy-MM-dd
 		LocalDate today = LocalDate.now();
@@ -553,6 +568,10 @@ public class ReuseableCode extends Basetest {
 		// Send the current date to the input field
 		dateInput.sendKeys(formattedDate);
 
+		WebElement calenderIcon = driver
+				.findElement(By.xpath("//div[@class='form-group ']//div[@class='col-6']//img[@alt='calendar-svg']"));
+		actions.moveToElement(calenderIcon).click().perform();
+
 		LocalDate currentDate = LocalDate.now();
 		LocalDate expiryDate = currentDate.plusDays(2);
 
@@ -562,14 +581,20 @@ public class ReuseableCode extends Basetest {
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
-		// Send the formatted date to the input field
+
 		expiryDateInput.sendKeys(newFormattedDate);
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
-		WebElement checkboxForStartAndEndTime = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("alldayPlaceholder")));
-		actions.moveToElement(checkboxForStartAndEndTime).perform();
-		checkboxForStartAndEndTime.click();
+		WebElement calenderIcon2 = driver
+				.findElement(By.xpath("//div[@class='form-group ']//div[@class=' col-6']//img[@alt='calendar-svg']"));
+		actions.moveToElement(calenderIcon2).click().perform();
+		Thread.sleep(2000);
+		WebElement save = driver.findElement(By.xpath("//button[@id='notificationCreateBtn']"));
+		actions.moveToElement(save).click().perform();
+		
+//		
+//		WebElement checkboxForStartAndEndTime = wait
+//				.until(ExpectedConditions.visibilityOfElementLocated(By.id("alldayPlaceholder")));
+//		actions.moveToElement(checkboxForStartAndEndTime).perform();
+//		checkboxForStartAndEndTime.click();
 
 		WebElement checkboxForStartListing = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_soon_placeholder")));
@@ -607,7 +632,7 @@ public class ReuseableCode extends Basetest {
 		actions.moveToElement(submit).perform();
 		submit.click();
 
-		Thread.sleep(25000);
+		Thread.sleep(35000);
 
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
@@ -1182,7 +1207,7 @@ public class ReuseableCode extends Basetest {
 
 	}
 
-	public void reusebaleCodeForDealDashboard() throws InterruptedException {
+	public String reusebaleCodeForDealDashBoardWithMobileToCheckCancleFunctionality() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -1192,7 +1217,8 @@ public class ReuseableCode extends Basetest {
 		String createdDealName = reuse.reusebaleCodeFordealsCreation();
 
 		System.out.println("Created Deal Name: " + createdDealName);
-
+		
+	
 		WebElement approveButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
 		approveButton.click();
@@ -1203,12 +1229,40 @@ public class ReuseableCode extends Basetest {
 		confirmApproveButton.click();
 
 		Thread.sleep(5000);
+		
+		
+		
+		// Mobile autmomation part
+
+		MobileUtils mobileUtils = new MobileUtils();
+		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
+
+		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
+				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
+
+		
+		WebElement dealButton = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
+		dealButton.click();
+		
+
+		WebElement allDeal = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
+		allDeal.click();
+
+		WebElement claimButton = wait1.until(ExpectedConditions.elementToBeClickable(
+				AppiumBy.androidUIAutomator("new UiSelector().description(\"Claim\").instance(0)")));
+		claimButton.click();
+		Actions actions = new Actions(driver);
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
 		loginApplication();
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deals']")));
 		dealDashboard.click();
 
-		Actions actions = new Actions(driver);
+		
 		// Deal title to search for
 		boolean dealFound = false;
 
@@ -1280,7 +1334,7 @@ public class ReuseableCode extends Basetest {
 			System.out.println("Deal successfully approved: " + createdDealName);
 		}
 		Thread.sleep(2000);
-
+        return createdDealName;
 	}
 
 	public void reusebaleCodeForDailyDealDashboard() throws InterruptedException {
@@ -1575,17 +1629,192 @@ public class ReuseableCode extends Basetest {
 		Thread.sleep(2000);
 
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+	}
 	
+	
+	public void reuseableCodeformobile(AndroidDriver driver1) throws InterruptedException {
+	
+ try{
+			String appiumServerUrl = "http://127.0.0.1:4723/";
+			UiAutomator2Options dc = new UiAutomator2Options();
+			dc.setCapability("platformName", "Android");
+			dc.setCapability("deviceName", "emulator-5554");
+			dc.setCapability("appium:automationName", "UiAutomator2");
+			//dc.setCapability("appium:app", System.getProperty("user.dir") + "/apps/whitdeals1.apk");
+			 dc.setCapability("app","/Users/yeshsharma/Downloads/whitdeals1.apk");
+			dc.setCapability("appPackage", "com.example.WhitdealsApp");
+			dc.setCapability("appActivity", "com.example.WhitdealsApp.MainActivity");
+			
+			driver1 = new AndroidDriver(new URL(appiumServerUrl), dc);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		 FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1)
+	                .withTimeout(Duration.ofSeconds(20))
+	                .pollingEvery(Duration.ofMillis(500))
+	                .ignoring(Exception.class);
+		
+			WebElement locationPermission = wait1
+					.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator(
+							"new UiSelector().resourceId(\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\")")));
+			locationPermission.click();
+
+			WebElement allowNotification = wait1
+					.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator(
+							"new UiSelector().resourceId(\"com.android.permissioncontroller:id/permission_allow_button\")")));
+			allowNotification.click();
+			WebElement menu = wait1.until(ExpectedConditions.elementToBeClickable(
+					AppiumBy.androidUIAutomator("new UiSelector().description(\"Menu\n" + "Tab 5 of 5\")")));
+			menu.click();
+			WebElement loginButton = wait1.until(ExpectedConditions
+					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));
+			loginButton.click();
+
+			WebElement email = wait1.until(ExpectedConditions.elementToBeClickable(AppiumBy
+					.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)")));
+			email.click();
+			email.sendKeys("saransh1@gmail.com");
+			WebElement password = wait1.until(ExpectedConditions.elementToBeClickable(AppiumBy
+					.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)")));
+			password.click();
+			password.sendKeys("qwerty12");
+
+			WebElement submit = wait1.until(ExpectedConditions
+					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));
+			submit.click();
+
+			WebElement cancleFaceID = wait1.until(ExpectedConditions
+					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Cancel\")")));
+			Thread.sleep(3000);
+			cancleFaceID.click();
 	
 	}
+	
+	
+	public String reusebaleCodeForDealDashboard() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
+
+		ReuseableCode reuse = new ReuseableCode(driver);
+
+		String createdDealName = reuse.reusebaleCodeFordealsCreation();
+
+		System.out.println("Created Deal Name: " + createdDealName);
+		
+	
+		WebElement approveButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
+		approveButton.click();
+
+		Thread.sleep(2000);
+		WebElement confirmApproveButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
+		confirmApproveButton.click();
+
+		Thread.sleep(5000);
+		Actions actions = new Actions(driver);
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
+		
+		loginApplication();
+		WebElement dealDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deals']")));
+		dealDashboard.click();
+
+		
+		// Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
+
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
+
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
+
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
+
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
+
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
+					}
+
+					// Exit both the row and pagination loops
+					break;
+				}
+			}
+
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
+			}
+
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
+
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + createdDealName);
+		} else {
+			System.out.println("Deal successfully approved: " + createdDealName);
+		}
+		Thread.sleep(2000);
+return createdDealName;
+	
+	
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

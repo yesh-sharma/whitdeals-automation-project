@@ -22,7 +22,7 @@ import utility.ReuseableCodeForAdminModule;
 
 public class DealsAdmin extends Basetest  {
 	
-	//@Test(priority=1)
+	@Test(priority=1)
 	public void createdealByAdminForbusinessUser() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -54,7 +54,7 @@ public class DealsAdmin extends Basetest  {
 		
 }
 	
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void searchDealcreatedByAdminForBusinessUserAndCloneThatDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -82,7 +82,7 @@ public class DealsAdmin extends Basetest  {
 	}
 	
 	
-	//@Test(priority=3)
+	@Test(priority=3)
 	public void searchDealcreatedByAdminForBusinessUserAndGoToDetailsPageAndAddPriorityToThatDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -148,7 +148,7 @@ public class DealsAdmin extends Basetest  {
 	
 	
 	
-	//@Test(priority=4)
+	@Test(priority=4)
 	public void searchDealcreatedByAdminForBusinessUserAndPauseThatDeal() throws InterruptedException {
 	
 
@@ -182,7 +182,7 @@ public class DealsAdmin extends Basetest  {
 		LocalTime currentTime = LocalTime.now();
 
 		// Add 4 hours and 35 minutes to the current time
-		LocalTime newTime = currentTime.plusHours(4).plusMinutes(35);
+		LocalTime newTime = currentTime.plusHours(4).plusMinutes(31);
 
 		// Format the new time in HH:mm (24-hour format)
 		String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -196,7 +196,7 @@ public class DealsAdmin extends Basetest  {
 
 	}
 
-	//@Test(priority=5)
+	@Test(priority=5)
 	public void searchDealcreatedByAdminForBusinessUserAndEditThatDeal() throws InterruptedException {
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -233,7 +233,7 @@ public class DealsAdmin extends Basetest  {
 	
 	
 	
-	//@Test(priority=6)
+	@Test(priority=6)
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -277,8 +277,8 @@ public class DealsAdmin extends Basetest  {
 	
 	}
 	
-	@Test
-	//@Test(priority=7)
+
+	@Test(priority=7)
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 	
 	

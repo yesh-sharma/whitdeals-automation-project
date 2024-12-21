@@ -2,20 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-12-13T11:51:54 IST" name="Default suite" finished-at="2024-12-13T11:52:59 IST" duration-ms="64171">
+  <suite started-at="2024-12-21T16:25:52 IST" name="Default suite" finished-at="2024-12-21T16:26:52 IST" duration-ms="59702">
     <groups>
     </groups>
-    <test started-at="2024-12-13T11:51:54 IST" name="Default test" finished-at="2024-12-13T11:52:59 IST" duration-ms="64171">
-      <class name="admin.DealsAdmin">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DealsAdmin@2bdd8394]" started-at="2024-12-13T11:51:54 IST" name="setUp" finished-at="2024-12-13T11:52:01 IST" duration-ms="6529" status="PASS">
+    <test started-at="2024-12-21T16:25:52 IST" name="Default test" finished-at="2024-12-21T16:26:52 IST" duration-ms="59702">
+      <class name="mobileapp.BaseTest">
+        <test-method signature="setUp()[pri:0, instance:mobileapp.BaseTest@2438dcd]" started-at="2024-12-21T16:25:52 IST" name="setUp" finished-at="2024-12-21T16:26:52 IST" duration-ms="59680" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal()[pri:0, instance:admin.DealsAdmin@2bdd8394]" started-at="2024-12-13T11:52:01 IST" name="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal" finished-at="2024-12-13T11:52:59 IST" duration-ms="57625" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchDealcreatedByAdminForBusinessUserAndRTZThatDeal -->
-      </class> <!-- admin.DealsAdmin -->
+      </class> <!-- mobileapp.BaseTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
