@@ -60,11 +60,11 @@ public class MobileUtils {
    			WebElement email = wait1.until(ExpectedConditions.elementToBeClickable(AppiumBy
    					.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)")));
    			email.click();
-   			email.sendKeys("saransh1@gmail.com");
+   			email.sendKeys("yesh@zasyasolutions.com");
    			WebElement password = wait1.until(ExpectedConditions.elementToBeClickable(AppiumBy
    					.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)")));
    			password.click();
-   			password.sendKeys("qwerty12");
+   			password.sendKeys("Yesh255198@");
 
    			WebElement submit = wait1.until(ExpectedConditions
    					.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));

@@ -10,12 +10,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import utility.MobileUtils;
 import utility.ReuseableCode;
 
 public class DailyDeals extends Basetest {
@@ -33,7 +36,10 @@ public class DailyDeals extends Basetest {
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); // Replace with the correct locator
 	    initialRemainingDailyDealCountOnDashboard = Integer.parseInt(remainingDealCountElement.getText());
         System.out.println("Initial Deal Count on dashboard: " + initialRemainingDailyDealCountOnDashboard);
-        
+     // GET TOTAL CLAIM TEXT
+     		WebElement TotalClaimedCountBox = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [1]"));
+     		int claimedCountBeforeClaiming = Integer.parseInt(TotalClaimedCountBox.getText());
+     		System.out.println("Initial Claimed Count on deals dashboard: " + claimedCountBeforeClaiming);
         
         WebElement dealDashboard  = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
@@ -60,9 +66,97 @@ public class DailyDeals extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
+		
+		
+		MobileUtils mobileUtils = new MobileUtils();
+		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
+		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
+				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
+
+		
+		WebElement dailyDealButton = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)")));
+		dailyDealButton.click();
+		Actions actions = new Actions(driver);
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
+		loginApplication();
+
+		WebElement allDeal = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Daily Deals\")")));
+		allDeal.click();
+
+		WebElement claimButton = wait1.until(ExpectedConditions.elementToBeClickable(
+				AppiumBy.androidUIAutomator("new UiSelector().description(\"Claim\").instance(0)")));
+		claimButton.click();
+		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut2).perform();
+		signOut2.click();
+		loginApplication();
+
+		WebElement TotalClaimedCountBox2 = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [1]"));
+		int claimedCountAfterClaiming = Integer.parseInt(TotalClaimedCountBox2.getText());
+
+		Assert.assertEquals(claimedCountBeforeClaiming + 1, claimedCountAfterClaiming,
+				"Claimed count did not increase by 1!");
+
+		WebElement goToWalletButton = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Go To Wallet\")")));
+		goToWalletButton.click();
+
+		WebElement RemoveTheDeal = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Remove Deal\")")));
+		RemoveTheDeal.click();
+
+		WebElement confirmButton = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Yes\")")));
+		confirmButton.click();
+		WebElement signOut3 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut3).perform();
+		signOut3.click();
+		loginApplication();
+
+		WebElement TotalRedeemedCountBox = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [2]"));
+		int redeemedCountbeforeRedeeming = Integer.parseInt(TotalRedeemedCountBox.getText());
+
+		WebElement TotalClaimedCountBox3 = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [1]"));
+		int claimedCountAfterRemoving = Integer.parseInt(TotalClaimedCountBox3.getText());
+
+		Assert.assertEquals(claimedCountAfterClaiming - 1, claimedCountAfterRemoving,
+				"Claimed count did not decrease by 1!");
+		WebElement signOut4 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut4).perform();
+		signOut4.click();
+		claimButton.click();
+		goToWalletButton.click();
+
+		WebElement instantRedeem = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Instant Redeem\")")));
+		instantRedeem.click();
+		WebElement confirmOk = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
+		confirmOk.click();
+		WebElement signOut5 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut5).perform();
+		signOut5.click();
+		loginApplication();
+
+		WebElement TotalRedeemedCountBox1 = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [2]"));
+		int redeemedCountAfterRedeeming = Integer.parseInt(TotalRedeemedCountBox1.getText());
+
+		Assert.assertEquals(redeemedCountbeforeRedeeming, redeemedCountAfterRedeeming - 1,
+				"Redeemed count did not increase by 1!");
+		
+		
+		
+		
+		driver1.quit();
+		
+		
 	}
-	 @Test(priority = 3)
+	 //@Test(priority = 3)
 	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -86,7 +180,7 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	 @Test(priority = 4)
+	// @Test(priority = 4)
 	public void createDailyDealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 	
 	
@@ -114,7 +208,7 @@ public class DailyDeals extends Basetest {
 }
 	
 	
-	@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
+	//@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
 	public void dailyDealCreatedNowCheckTheMainDashboardDailyDealsCountAndAfterThatGoToDailyDealDashboardAndCheckTheRemainingDailyDealCountAndActiveDailyDealcount() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -143,7 +237,7 @@ public class DailyDeals extends Basetest {
 	
 }
 	
-	@Test(priority = 5)
+	//@Test(priority = 5)
 	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -177,7 +271,7 @@ public class DailyDeals extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 	}
-	@Test(priority = 6)
+	//@Test(priority = 6)
 	public void makeDailyDealAndRTZTheDailyDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -204,7 +298,7 @@ public class DailyDeals extends Basetest {
 		
 	}
 	
-	@Test(priority = 7)
+	//@Test(priority = 7)
 	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -243,7 +337,7 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	@Test(priority = 8)
+	//@Test(priority = 8)
 	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

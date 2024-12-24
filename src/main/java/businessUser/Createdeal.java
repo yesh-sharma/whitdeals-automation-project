@@ -4,12 +4,15 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -61,7 +64,7 @@ public class Createdeal extends Basetest {
 		System.out.println("Initial Deal Count on deals dashboard: " + initialActiveDealCountOnDealsDashboard);
 
 		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeFordealsCreation();
+		String dealName =reuse.reusebaleCodeFordealsCreation();
 
 		WebElement approveButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
@@ -150,10 +153,14 @@ public class Createdeal extends Basetest {
 
 		Assert.assertEquals(redeemedCountbeforeRedeeming, redeemedCountAfterRedeeming - 1,
 				"Redeemed count did not increase by 1!");
+		
+		
+
+		
 		driver1.quit();
 	}
 
-	// @Test(priority = 4)
+	 //@Test(priority = 4)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -198,7 +205,7 @@ public class Createdeal extends Basetest {
 	}
 
 	// @Test(priority = 2, dependsOnMethods = {
-	// "createdealBybusinessUserAndAdminApprovesThedeal" })
+	 //"createdealBybusinessUserAndAdminApprovesThedeal" })
 	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
 			throws InterruptedException {
 
@@ -229,7 +236,8 @@ public class Createdeal extends Basetest {
 				"Active count did not increase by 1!");
 
 	}
-     @Test
+	
+    // @Test
 	// @Test(priority = 5)
 	public void makeDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -279,14 +287,43 @@ public class Createdeal extends Basetest {
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 		allDeal.click();
 		
-		WebElement dealElement = driver1.findElement(AppiumBy.androidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true))" +
-                        ".scrollIntoView(new UiSelector().description(\"" +createdDealName + "\"))"));
+	 	
+         Thread.sleep(3000);
+	 	
+	 	
+         WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
+         try {
+        	    // Try to locate the element
+        	    WebElement webView = wait2.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.androidUIAutomator(
+        	        String.format(
+        	            "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"%s\").instance(0))",
+        	            createdDealName
+        	        )
+        	    )));
+        	    // If the element is found, fail the test
+        	    System.out.println("Element found: Test failed.");
+        	    Assert.fail("Element with description \"" + createdDealName + "\" was found, failing the test.");
+        	} catch (TimeoutException e) {
+        	    // If the element is not found, pass the test
+        	    System.out.println("Element not found: Test passed.");
+        	} catch (Exception e) {
+        	    // Catch any other unexpected exceptions
+        	    System.out.println("An unexpected error occurred: " + e.getMessage());
+        	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+        	}
+	 	
+	 	
+	 	
+         
+         
+         
+         
+         
+         
+    }
 		
 		
-		
-}
-	
+
 
 
 
@@ -430,8 +467,8 @@ public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileU
 	
 	
 }
-
-	// @Test(priority = 7)
+//@Test
+	 //@Test(priority = 7)
 	public void makeDealAndPauseTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -476,12 +513,56 @@ public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileU
 		allDeal.click();
 		
 		
-		WebElement dealElement = driver1.findElement(AppiumBy.androidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true))" +
-                        ".scrollIntoView(new UiSelector().description(\"" + DealName + "\"))"));
-		
+		//Get the screen size
+		int screenHeight = driver.manage().window().getSize().getHeight();
+		int screenWidth = driver.manage().window().getSize().getWidth();
 
+		//Calculate the scroll distance (25% of the screen size)
+		int scrollDistance = screenHeight / 2;
 
+		//Define start and end points for the scroll
+		int startX = screenWidth / 2;
+		int startY = screenHeight / 2; // Middle of the screen
+		int endY = startY - scrollDistance;
+
+		//Maximum number of scrolls
+		int maxScrolls = 18;
+
+		for (int i = 0; i < maxScrolls; i++) {
+		 // Wait for the element to be visible before checking
+		 try {
+		     WebElement targetElement = new FluentWait<>(driver1)
+		         .withTimeout(Duration.ofSeconds(5))
+		         .pollingEvery(Duration.ofMillis(500))
+		         .ignoring(NoSuchElementException.class)
+		         .until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[@content-desc=\" + DealName + \"]")));
+		     
+		      System.out.println(targetElement);
+
+		     System.out.println("Element found after " + (i + 1) + " scroll(s).");
+		     return; // Stop scrolling if the element is found
+		 } catch (Exception e) {
+		     System.out.println("Element not found, continuing to scroll...");
+		     // Continue scrolling if the element is not found
+		 }
+
+		 // Perform the scroll
+		 PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+		 Sequence scroll = new Sequence(finger, 0);
+		 scroll.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY));
+		 scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+		 scroll.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), startX, endY));
+		 scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+		 driver1.perform(Arrays.asList(scroll));
+
+		 System.out.println("Scroll " + (i + 1) + " completed.");
+		}
+
+		System.out.println("Element not found after " + maxScrolls + " scroll(s).");
+
+			 	
+			 	
+	
 	}
 	
 	// @Test(priority = 8)

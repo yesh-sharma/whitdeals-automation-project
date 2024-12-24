@@ -24,7 +24,7 @@ public class EventAdmin extends Basetest {
 		
 	    String  eventName = reuse.reusebaleCodeForEventCreation();
 	    System.out.println(eventName);
-	
+	    
 
 }
 	

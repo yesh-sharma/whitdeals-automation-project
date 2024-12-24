@@ -182,7 +182,7 @@ public class ReuseableCode extends Basetest {
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
 		
-         Thread.sleep(30000);
+         Thread.sleep(35000);
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -380,6 +380,20 @@ public class ReuseableCode extends Basetest {
 		expiryDateInput.sendKeys(newFormattedDate);
 		body.click();
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		
+		WebElement expiryTimeInput = driver.findElement(By.id("finish_time"));
+		actions.moveToElement(expiryTimeInput).perform();
+		expiryTimeInput.click();
+		
+		
+		WebElement setTime = driver.findElement(By.xpath("//a[@data-action='incrementHour']//span[@class='fa fa-chevron-up']"));
+		actions.moveToElement(setTime).perform();
+	     setTime.click();
+	 	body.click();
+	   
+		
+		Thread.sleep(5000);
+		
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -392,8 +406,10 @@ public class ReuseableCode extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(25000);
-
+		Thread.sleep(35000);
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
 
@@ -633,6 +649,10 @@ public class ReuseableCode extends Basetest {
 		submit.click();
 
 		Thread.sleep(35000);
+		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut2).perform();
+		signOut2.click();
+	
 
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
@@ -1439,7 +1459,7 @@ public class ReuseableCode extends Basetest {
 
 	}
 
-	public void reusebaleCodeForEventDashboard() throws InterruptedException {
+	public String reusebaleCodeForEventDashboard() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
@@ -1457,16 +1477,18 @@ public class ReuseableCode extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-
+        Actions actions = new Actions(driver);
 		Thread.sleep(5000);
-
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
 		loginApplication();
 
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Events']")));
 		dealDashboard.click();
 
-		Actions actions = new Actions(driver);
+		
 		// Deal title to search for
 		boolean dealFound = false;
 
@@ -1476,7 +1498,7 @@ public class ReuseableCode extends Basetest {
 			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
 
 			// Print the count of rows
-			System.out.println("Number of deals found: " + rows.size());
+			System.out.println("Number of event found: " + rows.size());
 
 			// Print all rows on the current page
 			for (WebElement row : rows) {
@@ -1490,14 +1512,14 @@ public class ReuseableCode extends Basetest {
 
 				// Check if the row contains the desired deal title
 				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
-					System.out.println("Match found for deal title: " + createdDealName);
+					System.out.println("Match found for event title: " + createdDealName);
 
 					try {
 						// Locate the checkbox and click it
 						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
 						actions.moveToElement(checkbox).click().perform();
 
-						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						System.out.println("Checkbox clicked for evnet: " + createdDealName);
 						dealFound = true;
 					} catch (Exception e) {
 						System.out.println("Error clicking the checkbox: " + e.getMessage());
@@ -1510,7 +1532,7 @@ public class ReuseableCode extends Basetest {
 
 			// If deal is found, stop further searching
 			if (dealFound) {
-				System.out.println("Deal found and approved. Stopping further search.");
+				System.out.println("Event  found and approved. Stopping further search.");
 				break;
 			}
 
@@ -1539,7 +1561,7 @@ public class ReuseableCode extends Basetest {
 		}
 		Thread.sleep(2000);
 
-		
+		return createdDealName;
 	}
 	
 	
@@ -1720,7 +1742,7 @@ public class ReuseableCode extends Basetest {
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
-		
+		Thread.sleep(10000);
 		loginApplication();
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deals']")));

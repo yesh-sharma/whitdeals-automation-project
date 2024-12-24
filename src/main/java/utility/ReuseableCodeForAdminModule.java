@@ -741,7 +741,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 			eventSubCategory.sendKeys(subCategory);
 			actions.sendKeys(Keys.ENTER).perform();
 		}
-
+		
 		WebElement eventDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("description")));
 		eventDescription.sendKeys("Get ready to embark on a culinary adventure like noet Dining Experience! Indulge ");
 
