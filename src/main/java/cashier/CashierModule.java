@@ -21,7 +21,7 @@ public class CashierModule extends Basetest {
 	public void makeDealRedeemDealWithUniqueQrCodeAndGetValidateByCashier() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
-		String createdDealName = reuse.reusebaleCodeForCashierModule() ;
+		 reuse.reusebaleCodeForCashierModule() ;
 
 		Actions actions = new Actions(driver);
 

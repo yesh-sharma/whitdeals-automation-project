@@ -4065,7 +4065,7 @@ return createdDealName;
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
-		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
+		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
 		
@@ -4081,6 +4081,33 @@ return createdDealName;
 		WebElement claimButton = wait1.until(ExpectedConditions.elementToBeClickable(
 				AppiumBy.androidUIAutomator("new UiSelector().description(\"Claim\").instance(0)")));
 		claimButton.click();
+		WebElement goToWallet = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Go To Wallet\")")));
+		goToWallet.click();
+		
+		WebElement RedeemButton = wait1.until(ExpectedConditions.elementToBeClickable(
+				AppiumBy.androidUIAutomator("new UiSelector().description(\"Redeem\")")));
+		RedeemButton.click();
+		
+		WebElement okButton = wait1.until(ExpectedConditions.elementToBeClickable(
+				AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
+		okButton.click();
+		
+
+		WebElement viewCode = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"View Code\")")));
+		viewCode.click();
+		
+
+		WebElement Code = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.xpath("//android.view.View[@index=\"10\"]")));
+		
+		Thread.sleep(3000);
+	
+		@SuppressWarnings("deprecation")
+		String contentDesc = Code.getAttribute("content-desc");
+		System.out.println("Dynamic Content-Desc: " + contentDesc);
+
 		
 		Thread.sleep(3000);
 		driver1.quit();
@@ -4090,7 +4117,37 @@ return createdDealName;
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
-		loginApplication();
+		loginApplicationAsCashier() ;
+		
+		WebElement codeInput = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.id("dealCode")));
+		codeInput.sendKeys(contentDesc);
+		
+		
+		
+		
+		WebElement validate= wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.id("validate")));
+		validate.click();
+		
+		
+		WebElement done= wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Done']")));
+		done.click();
+		
+		
+		Thread.sleep(4000);
+		
+		
+		WebElement signOut1 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut1).perform();
+		signOut1.click();
+		loginApplication() ;
+		
+		
+		
+		
+		
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deals']")));
 		dealDashboard.click();
@@ -4167,7 +4224,7 @@ return createdDealName;
 			System.out.println("Deal successfully approved: " + createdDealName);
 		}
 		Thread.sleep(2000);
-        return createdDealName;
+        return contentDesc ;
 	}
 
 	
@@ -4198,7 +4255,7 @@ return createdDealName;
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
 		// Use the Select class to handle the <select> element
 		Select select = new Select(redemptionMethod);
-		select.selectByIndex(2);
+		select.selectByIndex(1);
 
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
@@ -4297,8 +4354,9 @@ return createdDealName;
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		WebElement okButton = driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > section:nth-child(6) > div:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)"));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		

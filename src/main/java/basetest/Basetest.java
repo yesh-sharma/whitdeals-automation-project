@@ -120,6 +120,38 @@ public class Basetest {
 //       if (driver != null) {
 //            driver.quit();
 //        }
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 public void loginApplicationAsCashier() throws InterruptedException {
+    	    	
+    	    	
+    	        driver.get("https://staging.whitdeals.com.au/login");
+
+    	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+    	        WebElement useremail = wait.until(ExpectedConditions
+    	                .elementToBeClickable(By.id("user_name")));
+
+    	        useremail.sendKeys("hiceh26329@aqqor.com");
+    	        WebElement passwordEle = wait.until(ExpectedConditions
+    	                .elementToBeClickable(By.id("user_password")));
+
+    	        passwordEle.sendKeys("Yesh255198@");
+    	        WebElement submitbutton = wait.until(ExpectedConditions
+    	                .elementToBeClickable(By.xpath("//button[@type='submit']")));
+
+    	        submitbutton.click();
+    	    }
+
+    	 
+    	 
+    	 
+    	 
+    	 
     }
 
 

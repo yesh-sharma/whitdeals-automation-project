@@ -71,7 +71,7 @@ public class MobileUtils {
             WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(
                     AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));
             submit.click();
-            Thread.sleep(6000);
+            Thread.sleep(7000);
             
                 // Handle notifications permission
             	   WebElement cancelFaceID = wait.until(ExpectedConditions.elementToBeClickable(
