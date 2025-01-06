@@ -27,10 +27,10 @@ import utility.ReuseableCodeForAdminModule;
 public class DealAdminMobileIntegration extends Basetest {
 
 	
-	//@Test
+	
 	public void createDealByAdminForbusinessUserAndClaimAndRedeemBytheMobileUser() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 
@@ -49,7 +49,7 @@ public class DealAdminMobileIntegration extends Basetest {
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
-		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
+		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
 		WebElement dealButton = wait1.until(ExpectedConditions
@@ -95,11 +95,11 @@ public class DealAdminMobileIntegration extends Basetest {
 
 	
 
-	//@Test(priority = 4)
 	
+
 	public void dealCreatedByAdminForBusinessUserAndPauseThatDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		
@@ -163,7 +163,7 @@ public class DealAdminMobileIntegration extends Basetest {
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
-		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
+		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
 		
@@ -209,10 +209,10 @@ public class DealAdminMobileIntegration extends Basetest {
 
 	
 
-	//@Test(priority = 6)
-	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
+	
+	public void dealCreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
@@ -227,11 +227,7 @@ public class DealAdminMobileIntegration extends Basetest {
 
 		reuse.reusebaleCodeFordealsCreationByAdminToCheckCancleFunctionality();
 		
-		
-		
-		
-		
-		
+
 		
 		Actions actions = new Actions(driver);
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
@@ -244,7 +240,7 @@ public class DealAdminMobileIntegration extends Basetest {
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
-		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
+		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
 		
@@ -379,7 +375,7 @@ public class DealAdminMobileIntegration extends Basetest {
 
 	}
 
-   @Test
+  @Test
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

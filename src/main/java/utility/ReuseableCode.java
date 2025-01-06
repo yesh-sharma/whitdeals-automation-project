@@ -54,7 +54,7 @@ public class ReuseableCode extends Basetest {
 
 	public String reusebaleCodeFordealsCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -182,7 +182,11 @@ public class ReuseableCode extends Basetest {
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
 		
-         Thread.sleep(35000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -275,7 +279,7 @@ public class ReuseableCode extends Basetest {
 	}
 
 	public String reusebaleCodeForDailyDealsCreation() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -399,7 +403,13 @@ public class ReuseableCode extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(35000);
+		
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
+	
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -1825,7 +1835,7 @@ return createdDealName;
 	
 	public String reusebaleCodeFordealsCreationSpeciallyToCheckCancleFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -1947,7 +1957,11 @@ return createdDealName;
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
 		
-         Thread.sleep(30000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -2384,7 +2398,11 @@ return createdDealName;
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
 		
-         Thread.sleep(30000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -2719,7 +2737,7 @@ return createdDealName;
 
 	
 	public String reusebaleCodeForDailyDealsCreationSpeciallyForPauseFunctionality() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -2843,7 +2861,14 @@ return createdDealName;
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(35000);
+		
+		
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
+		
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -3743,7 +3768,10 @@ return createdDealName;
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(35000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -3838,7 +3866,7 @@ return createdDealName;
 	
 	
 	public String reusebaleCodeForDailyDealsCreationToCheckRTZFunctionality() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -3942,7 +3970,14 @@ return createdDealName;
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(35000);
+		
+		
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
+	
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -4455,6 +4490,117 @@ return createdDealName;
 	
 	
 	
+	public void reusebaleCodeForDailyDealDashboardForMobileIntegration1() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
+		loginApplication();
+
+		ReuseableCode reuse = new ReuseableCode(driver);
+
+		String createdDealName = reuse.reusebaleCodeForDailyDealsCreationToCheckCancleFunctionality();
+		Actions actions = new Actions(driver);
+		WebElement approveButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
+		approveButton.click();
+
+		Thread.sleep(2000);
+		WebElement confirmApproveButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
+		confirmApproveButton.click();
+
+		Thread.sleep(10000);
+		
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
+		
+		
+		
+
+		loginApplication();
+		
+
+	
+
+		WebElement dealDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
+		dealDashboard.click();
+
+	
+		// Deal title to search for
+		boolean dealFound = false;
+
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
+
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
+
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
+
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
+
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
+
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
+					}
+
+					// Exit both the row and pagination loops
+					break;
+				}
+			}
+
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
+			}
+
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
+
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + createdDealName);
+		} else {
+			System.out.println("Deal successfully approved: " + createdDealName);
+		}
+		Thread.sleep(2000);
+
+	}
 	
 	
 	

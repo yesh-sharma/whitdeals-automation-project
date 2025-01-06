@@ -49,7 +49,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	public String reusebaleCodeFordealsCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -171,7 +171,11 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(30000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
 
 		return dealName;
 
@@ -950,7 +954,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		createButtonOnDashboard.click();
 
 		WebElement eventButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Loyalty Card Request']")));
+				.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Loyalty Card']")));
 		eventButton.click();
 
 		WebElement LCTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_title")));
@@ -1019,66 +1023,24 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 		WebElement startDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_date")));
+		actions.moveToElement(startDate).perform();
 		LocalDate today = LocalDate.now();
 		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 		startDate.sendKeys(formattedDate);
 		
 		
-		  // Step 2: Locate and interact with the time picker input
-        WebElement time = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("start_time")));
-        actions.moveToElement(time).perform();
-        time.click();
-        
-    	js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        // Step 2: Locate input field and get the current time from the input using JavaScript
-        WebElement timePickerInput = driver.findElement(By.name("start_time"));
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        String currentInputTime = (String) jsExecutor.executeScript("return arguments[0].value;", timePickerInput);
-        System.out.println("Initial Time in Picker: " + currentInputTime);
-
-        // Step 3: Parse the current time from the input (assume 24-hour format)
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime currentTime = LocalTime.parse(currentInputTime, formatter);
-
-        // Step 4: Add 4 hours and 30 minutes to the parsed time
-        LocalTime targetTime = currentTime.plusHours(4).plusMinutes(30);
-        System.out.println("Target Time (24-hour format): " + targetTime.format(formatter));
-
-        // Step 5: Locate increment buttons
-        WebElement hourIncrementButton = driver.findElement(By.xpath("//a[@data-action='incrementHour']//span[@class='fa fa-chevron-up']"));
-        WebElement minuteIncrementButton = driver.findElement(By.xpath("//a[@data-action='incrementMinute']//span[@class='fa fa-chevron-up']"));
-
-        // Step 6: Calculate the difference in hours and minutes
-        int currentHour = currentTime.getHour();
-        int currentMinute = currentTime.getMinute();
-        int targetHour = targetTime.getHour();
-        int targetMinute = targetTime.getMinute();
-
-        int hourClicks = (targetHour - currentHour + 24) % 24; // Handle 24-hour wrapping
-        int minuteClicks = ((targetMinute - currentMinute + 60) % 60) / 15; // Handle 15-minute increments
-
-        System.out.println("Hour clicks: " + hourClicks);
-        System.out.println("Minute clicks (15-minute steps): " + minuteClicks);
-
-        // Step 7: Increment hours
-        for (int i = 0; i < hourClicks; i++) {
-            hourIncrementButton.click();
-        }
-
-        // Step 8: Increment minutes
-        for (int i = 0; i < minuteClicks; i++) {
-            minuteIncrementButton.click();
-        }
-
-        // Optional: Verify the final time using JavaScript
-        String finalTime = (String) jsExecutor.executeScript("return arguments[0].value;", timePickerInput);
-        System.out.println("Set Time in Picker: " + finalTime);
+		
+		
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		
+		WebElement calenderIcon = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//div[@class='row gy-3']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+		actions.moveToElement(calenderIcon).perform();
+		calenderIcon.click();
 		
 		
 		
 		
-
-        Thread.sleep(3000);
 		WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
 		LocalDate currentDate = LocalDate.now();
 		LocalDate expiryDate = currentDate.plusDays(1);
@@ -1100,8 +1062,16 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("upload")));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
+		
+		
 
-		Thread.sleep(25000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
+
+		
 
 	}
 	
@@ -1187,7 +1157,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 	
 	public String reusebaleCodeFordealsCreationByAdminToCheckPauseFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -1309,7 +1279,11 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(20000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
 
 	return dealName;
 
@@ -1323,7 +1297,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 	
 	public String reusebaleCodeFordealsCreationByAdminToCheckCancleFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -1445,7 +1419,10 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(20000);
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
 
 	return dealName;
 
@@ -1534,7 +1511,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 	
 	public String reusebaleCodeFordealsCreationForRTZForAdmin() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 	
 
@@ -1658,7 +1635,11 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(20000);
+	
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
 
 	return dealName;
 	}

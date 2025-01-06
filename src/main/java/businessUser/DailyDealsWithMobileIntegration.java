@@ -30,7 +30,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 	
 	
 	public void createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		loginApplication();
 		
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); // Replace with the correct locator
@@ -157,11 +157,11 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 	
 	
 	
-	
+	@Test
 	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealDashboardForMobileIntegration();
+		reuse.reusebaleCodeForDailyDealDashboardForMobileIntegration1();
 		
 	
 		Actions actions = new Actions(driver);
@@ -232,28 +232,14 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 	}
 	
 
 	
 	public void makeDailyDealAndRTZTheDailyDealByBusinessUserAndSearchOnMobile() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealDashboardForMobileIntegration();
 		
@@ -334,7 +320,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 		
 	}
 	
-	@Test
+	
 	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);

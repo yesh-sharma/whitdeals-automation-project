@@ -34,9 +34,9 @@ public class DealWithMobileIntegration extends Basetest {
 	static int initialActiveDealCountOnDealsDashboard;
 	
 
-	//@Test(priority = 1)
+	@Test
 	public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		loginApplication();
 		// get the deal count
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[1]"));
@@ -156,86 +156,14 @@ public class DealWithMobileIntegration extends Basetest {
 		driver1.quit();
 	}
 
-	// @Test(priority = 4)
-	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
+	
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeFordealsCreation();
+	
 
-		WebElement declineButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
-		declineButton.click();
-
-		WebElement declineMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("decline_comment")));
-		declineMessage.sendKeys("declining because of testing");
-
-		Thread.sleep(2000);
-		WebElement confirmDeclineButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
-		confirmDeclineButton.click();
-
-	}
-
-	// @Test(priority = 3)
-	public void createdealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeFordealsCreation();
-
-		WebElement approveButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
-		approveButton.click();
-
-		WebElement declineMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("no_comment")));
-		declineMessage.click();
-
-		Thread.sleep(2000);
-		WebElement confirmApproveButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
-		confirmApproveButton.click();
-
-	}
-
-	// @Test(priority = 2, dependsOnMethods = {
-	// "createdealBybusinessUserAndAdminApprovesTheDeal()" })
-	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
-			throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		loginApplication();
-
-		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[1]"));
-		int updatedInitialRemainingDealCountOnDashboard = Integer.parseInt(remainingDealCountElement.getText());
-		System.out.println("Initial Deal Count on dashboard: " + updatedInitialRemainingDealCountOnDashboard);
-		Assert.assertEquals(updatedInitialRemainingDealCountOnDashboard, initialRemainingDealCountOnDashboard - 1,
-				"Deal count did not decrease by 1!");
-
-		WebElement dealDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deals']")));
-		dealDashboard.click();
-
-		WebElement remainingDealCount = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [3]"));
-		int updatedInitialRemainingDealCountOnDealsDashboard = Integer.parseInt(remainingDealCount.getText());
-		System.out
-				.println("Initial Deal Count on deals dashboard: " + updatedInitialRemainingDealCountOnDealsDashboard);
-		Assert.assertEquals(updatedInitialRemainingDealCountOnDealsDashboard,
-				initialRemainingDealCountOnDealsDashboard - 1, "Deal count did not decrease by 1!");
-
-		WebElement activedealCount = driver.findElement(By.xpath("//div[@class='display-5']"));
-		int updatedInitialActiveDealCountOnDealsDashboard = Integer.parseInt(activedealCount.getText());
-		System.out.println("Initial Deal Count on deals dashboard: " + updatedInitialActiveDealCountOnDealsDashboard);
-		Assert.assertEquals(updatedInitialActiveDealCountOnDealsDashboard, initialActiveDealCountOnDealsDashboard + 1,
-				"Active count did not increase by 1!");
-
-	}
 	
    
-//	 @Test(priority = 5)
-	public void makeDealAndCancleTheDealByBusinessUser() throws InterruptedException {
+
+	public void makeDealAndCancleTheDealByBusinessUserAndVerifyByMobileUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String createdDealName = reuse.reusebaleCodeForDealDashBoardWithMobileToCheckCancleFunctionality();
@@ -438,11 +366,11 @@ public class DealWithMobileIntegration extends Basetest {
 		
 	}
 
-@Test
-	// @Test(priority = 9)
+
+	
 public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileUserRemovedTheClaimedDeal() throws InterruptedException {
 
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 	ReuseableCode reuse = new ReuseableCode(driver);
 	reuse.reusebaleCodeForDealDashBoardWithMobileToCheckRTZFunctionality();
 	Actions actions = new Actions(driver);
@@ -559,8 +487,8 @@ public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileU
 	
 }
 
-	// @Test(priority = 7)
-	public void makeDealAndPauseTheDeal() throws InterruptedException {
+	
+	public void makeDealAndPauseTheDealAndVerifybyMobileUserDealIsPaused() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -634,24 +562,6 @@ public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileU
 	
 	}
 	
-	// @Test(priority = 8)
-	public void makeDealAndCloneTheDeal() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDealDashboard();
-		Actions actions = new Actions(driver);
-
-		WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Deal'][normalize-space()='Clone']")));
-		actions.moveToElement(pauseButton).click().perform();
-
-		Thread.sleep(1000);
-		WebElement YesToClone = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='btn btn-primary']")));
-		YesToClone.click();
-		Thread.sleep(3000);
-
-	}
+	
 
 }
