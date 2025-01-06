@@ -155,14 +155,8 @@ public class SpinToWin extends Basetest {
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Yes']")));
 			yesButton.click();
 		
-		
-		
-		
-		
 	
 	}
-	
-	
 	
 	
 	@Test(priority=3)
@@ -214,12 +208,7 @@ public class SpinToWin extends Basetest {
 			WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 			confirm.click();
 		
-		
-		
-		
-		
-		
-		
+			
 	
 	}
 	
@@ -315,12 +304,7 @@ public class SpinToWin extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 	
-		
-		
-		
-		
-		
-		
+	
 		
 	
 	}

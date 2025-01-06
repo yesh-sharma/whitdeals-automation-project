@@ -4,6 +4,8 @@ import java.io.File;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -13,7 +15,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -38,6 +40,21 @@ public class Basetest {
 
         // Initialize the driver based on the browser value
         if (browser.equalsIgnoreCase("chrome")) {
+        	
+        	
+        	 ChromeOptions options = new ChromeOptions();
+             
+             // Add desired configurations
+             options.addArguments("--start-maximized"); // Starts Chrome maximized
+             options.addArguments("--disable-notifications"); // Disables browser notifications
+             options.addArguments("--incognito"); // Opens browser in incognito mode
+             
+             // Optional: Disable images for faster tests
+             Map<String, Object> prefs = new HashMap<>();
+             prefs.put("profile.managed_default_content_settings.images", 2);
+             options.setExperimentalOption("prefs", prefs);
+
+        	
            
             driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("firefox")) {

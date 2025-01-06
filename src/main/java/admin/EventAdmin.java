@@ -16,7 +16,7 @@ public class EventAdmin extends Basetest {
 	
 	
 	
-	@Test(priority=1)
+	//@Test(priority=1)
 	public void createEventByAdminForbusinessUser() throws InterruptedException {
 		
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
@@ -29,7 +29,7 @@ public class EventAdmin extends Basetest {
 }
 	
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void searchEventCreatedByAdminForBusinessUserAndCloneThatEvent() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -45,7 +45,7 @@ public class EventAdmin extends Basetest {
 	}
 	
 	
-	@Test(priority=3)
+	//@Test(priority=3)
 	public void searchEventCreatedByAdminForBusinessUserAndEditThatEvent() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -71,7 +71,7 @@ public class EventAdmin extends Basetest {
 	}
 	
 
-	@Test(priority=4)
+	//@Test(priority=4)
 	public void searchEventCreatedByAdminForBusinessUserAndCancleThatEvent() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

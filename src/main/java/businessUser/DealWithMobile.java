@@ -18,10 +18,10 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 
 import utility.ReuseableCode;
 
+@Test
 public class DealWithMobile extends Basetest  {
 
 	private AndroidDriver driver1;
-	@Test
 	public void createDealByBusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

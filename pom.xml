@@ -41,13 +41,13 @@
     <version>1.0.2</version> <!-- Ensure you use the latest version -->
 </dependency>
 
-  
 <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
 <dependency>
     <groupId>io.appium</groupId>
     <artifactId>java-client</artifactId>
-    <version>9.3.0</version>
+    <version>9.2.1</version>
 </dependency>
+
 
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
 <dependency>

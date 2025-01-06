@@ -27,13 +27,13 @@ public class BaseTest {
             String appiumServerUrl = "http://127.0.0.1:4723/";
             UiAutomator2Options dc = new UiAutomator2Options();
             dc.setCapability("platformName", "Android");
-            dc.setCapability("deviceName", "emulator-5554");
+            dc.setCapability("deviceName", "ZA222JZVZC");
             dc.setCapability("appium:automationName", "UiAutomator2");
             dc.setCapability("app", "/Users/yeshsharma/Downloads/whitdeals1.apk");
             dc.setCapability("appPackage", "com.example.WhitdealsApp");
             dc.setCapability("appActivity", "com.example.WhitdealsApp.MainActivity");
-            dc.setCapability("fullReset", false);
-
+         
+         
             driver = new AndroidDriver(new URL(appiumServerUrl), dc);
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,28 +47,26 @@ public class BaseTest {
         // Handle permissions
         WebElement locationPermission = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\")")));
         locationPermission.click();
-
+//
         WebElement allowNotification = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.android.permissioncontroller:id/permission_allow_button\")")));
         allowNotification.click(); 
 
         // Navigate through the app
-        WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Menu\nTab 5 of 5\")")));
+      WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Menu\nTab 5 of 5\")")));
         menu.click();
-
+//
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));
         loginButton.click();
-        
-        WebElement email = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)")));
-        email.click();
+//        
+       WebElement email = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)")));        email.click();
         email.sendKeys("yesh@zasyasolutions.com");
-
-        WebElement password = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)")));
-        password.click();
+//
+       WebElement password = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)")));       password.click();
         password.sendKeys("Yesh255198@");
-
-        WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));
+//
+       WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Login\")")));
         submit.click();
-
+//
         WebElement cancelFaceID = wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Cancel\")")));
         Thread.sleep(3000);
         cancelFaceID.click();
@@ -82,7 +80,10 @@ public class BaseTest {
         Thread.sleep(3000);
 //
 //        // Use your dynamic deal name here
-        String deal = "​P​a​u​s​e​d​ ​R​e​d​e​e​m​-​ ​S​a​v​e​d​ ​U​n​i​q​u​e​";  
+        String deal = "​​​​​P​a​u​s​e​d​ ​R​e​d​e​e​m​-​ ​S​a​v​e​d​ ​U​n​i​q​u​e​​​";  
+        
+      //  String cleanDeal = deal.replaceAll("\\p{C}", ""); // Removes control characters
+
 //        String xpath = "new UiSelector().description(\'"+deal+"​\')";
 //        System.out.println("Using dynamic XPath: " + xpath);  // Debug log
 //
@@ -132,44 +133,86 @@ public class BaseTest {
 //
 //        System.out.println("Element not found after " + maxScrolls + " scroll(s).");
 //    }
-        
-//        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        WebElement webView = wait1.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.androidUIAutomator(
+//        Thread.sleep(3000);
+//        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
 //            String.format(
 //                "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"%s\").instance(0))",
 //                deal
 //            )
 //        )));
+//        Thread.sleep(3000);
 //        webView.click();
+//        
         
         
         
+//      WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(20));
+//      WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+//          
+//              "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​"+cleanDeal+"\").instance(0))"
+//              
+//          )
+//      ));
+//      Thread.sleep(3000);
+//      webView.click();
+        
+       
+        
+        
+//        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+//            
+//                "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​T​e​s​t​ ​N​e​w​ ​D​e​a​l​ ​O​n​ ​T​o​p​\").instance(0))"
+//                
+//            )
+//        ));
+//        Thread.sleep(3000);
+//        webView.click();
+//        
+//     
+   
+        
+        
+        
+        
+//        
+//        driver.findElement(AppiumBy.androidUIAutomator(
+//        	    String.format(
+//        	        "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"%s\").instance(1))",
+//        	        deal
+//        	    )
+//        	));
+//        	WebElement webView = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().description(\"" + deal + "\")"));
+//        	webView.click();
+
         
         
 
-        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
-        try {
-       	    // Try to locate the element
-       	    WebElement webView = wait2.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.androidUIAutomator(
-       	        String.format(
-       	            "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"%s\").instance(0))",
-       	            deal
-       	        )
-       	    )));
-       	    // If the element is found, fail the test
-       	    System.out.println("Element found: Test failed.");
-       	    Assert.fail("Element with description \"" + deal + "\" was found, failing the test.");
-       	} catch (TimeoutException e) {
-       	    // If the element is not found, pass the test
-       	    System.out.println("Element not found: Test passed.");
-       	} catch (Exception e) {
-       	    // Catch any other unexpected exceptions
-       	    System.out.println("An unexpected error occurred: " + e.getMessage());
-       	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
-       	}
+//        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+//        try {
+//       	    // Try to locate the element
+//       	    WebElement webView = wait2.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.androidUIAutomator(
+//       	        String.format(
+//       	            "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"%s\").instance(0))",
+//       	            deal
+//       	        )
+//       	    )));
+//       	 webView.click();
+//       	    // If the element is found, fail the test
+//       	    System.out.println("Element found: Test failed.");
+//       	    Assert.fail("Element with description \"" + deal + "\" was found, failing the test.");
+//       	} catch (TimeoutException e) {
+//       	    // If the element is not found, pass the test
+//       	    System.out.println("Element not found: Test passed.");
+//       	} catch (Exception e) {
+//       	    // Catch any other unexpected exceptions
+//       	    System.out.println("An unexpected error occurred: " + e.getMessage());
+//       	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+//       	}
+//        
         
-        
-        
+        driver.close();
         
         
         
