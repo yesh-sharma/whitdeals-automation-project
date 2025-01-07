@@ -29,7 +29,7 @@ public class DailyDealsAdminMobileIntegration extends Basetest {
 
 	public void createDailyDealByAdminForbusinessUser() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 
@@ -96,7 +96,7 @@ public class DailyDealsAdminMobileIntegration extends Basetest {
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
 		ok.click();
 		
-	
+	Thread.sleep(4000);
 	}
 	
 
@@ -184,7 +184,7 @@ public class DailyDealsAdminMobileIntegration extends Basetest {
 	
 	public void dealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		Actions actions = new Actions(driver);
@@ -260,6 +260,7 @@ public class DailyDealsAdminMobileIntegration extends Basetest {
 	
 
 	}
+	
 	@Test
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 		

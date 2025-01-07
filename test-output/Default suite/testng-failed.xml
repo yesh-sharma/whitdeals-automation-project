@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="admin.LoyaltyCardAdmin">
+      <class name="cashier.CashierModule">
         <methods>
-          <include name="createLoyaltycardByAdminForbusinessUser"/>
           <include name="setUp"/>
+          <include name="makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser"/>
         </methods>
-      </class> <!-- admin.LoyaltyCardAdmin -->
+      </class> <!-- cashier.CashierModule -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

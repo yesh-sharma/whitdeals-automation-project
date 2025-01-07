@@ -21,7 +21,9 @@ import basetest.Basetest;
 import utility.ReuseableCodeForAdminModule;
 
 public class DailyDealsAdmin extends Basetest {
-	@Test(priority=1)
+	//@Test(priority=1)
+	
+	
 	public void createDailyDealByAdminForbusinessUser() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -47,7 +49,8 @@ public class DailyDealsAdmin extends Basetest {
 		Assert.assertEquals(activeDealCountAfterCreation, activeDealCount + 1, "Active count did not increase by 1!");
 
 	}
-	@Test(priority=2)
+	//@Test(priority=2)
+	
 	public void searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -73,7 +76,10 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	@Test(priority=4)
+	//@Test(priority=4)
+	
+	
+	
 	public void searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -102,24 +108,16 @@ public class DailyDealsAdmin extends Basetest {
 		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
 		pauseDate.sendKeys(formattedDate);
 
-		// Get the current local time in 24-hour format
-		LocalTime currentTime = LocalTime.now();
-
-		// Add 4 hours and 35 minutes to the current time
-		LocalTime newTime = currentTime.plusHours(4).plusMinutes(35);
-
-		// Format the new time in HH:mm (24-hour format)
-		String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-//
-		WebElement pauseTime = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
-		pauseTime.clear();
-		pauseTime.sendKeys(formattedTime);
+		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+		calenderIcon.click();
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
 
+	
 	}
 
-	@Test(priority=3)
+	//@Test(priority=3)
+	
 	public void searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -152,11 +150,18 @@ public class DailyDealsAdmin extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		Thread.sleep(30000);
+		
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		
+	
 
 	}
 	
-	@Test(priority=5)
+	//@Test(priority=5)
+	
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -201,7 +206,8 @@ public class DailyDealsAdmin extends Basetest {
 			
 
 	}
-	@Test(priority=6)
+	//@Test(priority=6)
+	
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 		
 

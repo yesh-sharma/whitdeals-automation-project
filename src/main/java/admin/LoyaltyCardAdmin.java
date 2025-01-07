@@ -16,7 +16,7 @@ public class LoyaltyCardAdmin extends Basetest {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
-        reuse.reusebaleCodeForLoyaltyCardCreation();
+        reuse.reusebaleCodeForLoyaltyCardCreation(); 
 	
 	}
 }

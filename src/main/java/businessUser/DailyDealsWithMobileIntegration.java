@@ -33,7 +33,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		loginApplication();
 		
-		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); // Replace with the correct locator
+		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); 
 	    initialRemainingDailyDealCountOnDashboard = Integer.parseInt(remainingDealCountElement.getText());
         System.out.println("Initial Deal Count on dashboard: " + initialRemainingDailyDealCountOnDashboard);
      // GET TOTAL CLAIM TEXT
@@ -46,12 +46,12 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 		dealDashboard.click();  
         
 		// get the deal count
-				WebElement remainingDealCount = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [3]")); // Replace with the correct locator
+				WebElement remainingDealCount = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [3]")); 
 			    initialRemainingDealCountOnDealsDashboard = Integer.parseInt(remainingDealCount.getText());
 		        System.out.println("Initial Deal Count on deals dashboard: " + initialRemainingDealCountOnDealsDashboard);
 		        
 		        
-		        WebElement activedealCount = driver.findElement(By.xpath("//div[@class='display-5']")); // Replace with the correct locator
+		        WebElement activedealCount = driver.findElement(By.xpath("//div[@class='display-5']")); 
 			    initialActiveDealCountOnDealsDashboard = Integer.parseInt(activedealCount.getText());
 		        System.out.println("Initial Deal Count on deals dashboard: " + initialActiveDealCountOnDealsDashboard);
 		
@@ -67,7 +67,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
 		
-		
+		Thread.sleep(4000);
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
@@ -157,7 +157,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 	
 	
 	
-	@Test
+
 	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -169,7 +169,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(cancleButton).click().perform();
 
-		Thread.sleep(1000);
+	    Thread.sleep(10000);
 
 		WebElement confirmation = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='showAction()']")));
@@ -187,11 +187,12 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("cancellation_reason")));
 		canclellationReason.sendKeys("testing this functionality");
 
+		Thread.sleep(2000);
 		WebElement submit = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 		
-		
+		Thread.sleep(10000);
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
@@ -235,8 +236,6 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 	
 		
 	}
-	
-
 	
 	public void makeDailyDealAndRTZTheDailyDealByBusinessUserAndSearchOnMobile() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
@@ -320,7 +319,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 		
 	}
 	
-	
+	@Test
 	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);

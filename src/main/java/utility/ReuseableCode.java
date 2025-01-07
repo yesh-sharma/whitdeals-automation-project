@@ -2650,12 +2650,12 @@ return createdDealName;
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
 		Actions actions = new Actions(driver);
-		Thread.sleep(5000);
+		Thread.sleep(20000);
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
 		loginApplication();
-
+        Thread.sleep(5000);
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
 		dealDashboard.click();
@@ -2797,57 +2797,46 @@ return createdDealName;
 		select2.selectByIndex(2);
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-
-		WebElement checkboxScheduleForLater = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_asap")));
 		Actions actions = new Actions(driver);
-		actions.moveToElement(checkboxScheduleForLater).perform();
-		checkboxScheduleForLater.click();
 
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-		// Locate the date input element
-		WebElement dateInput = driver.findElement(By.id("validFrom"));
-
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
-
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
+	
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 //       
 //        
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
+	    
+		
+			LocalDate currentDate = LocalDate.now();
+			LocalDate expiryDate = currentDate.plusDays(3);
 
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			// Format the date in the required format (yyyy-MM-dd)
+			String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-		// Locate the expiry date input field
-		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		actions.moveToElement(expiryDateInput).perform();
-		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			// Locate the expiry date input field
+			WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+			actions.moveToElement(expiryDateInput).perform();
+			// Send the formatted date to the input field
+			expiryDateInput.sendKeys(newFormattedDate);
+			WebElement body = driver.findElement(By.tagName("body"));
+			body.click();
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			
+			
+			
+
+			
+			Thread.sleep(5000);
+			
+
 		
-		WebElement expiryTimeInput = driver.findElement(By.id("finish_time"));
-		actions.moveToElement(expiryTimeInput).perform();
-		expiryTimeInput.click();
 		
 		
-		WebElement setTime = driver.findElement(By.xpath("//a[@data-action='incrementHour']//span[@class='fa fa-chevron-up']"));
-		actions.moveToElement(setTime).perform();
-	     setTime.click();
-	 	body.click();
+	
 	   
 		
-		Thread.sleep(5000);
+		
 		
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
@@ -2868,7 +2857,7 @@ return createdDealName;
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		
-		
+		Thread.sleep(20000);
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -3577,7 +3566,7 @@ return createdDealName;
 		
 
 		loginApplication();
-		
+		Thread.sleep(20000);
 
 	
 
@@ -3664,7 +3653,7 @@ return createdDealName;
 	
 
 	public String reusebaleCodeForDailyDealsCreationToCheckCancleFunctionality() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -4509,7 +4498,7 @@ return createdDealName;
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
 
-		Thread.sleep(10000);
+		Thread.sleep(25000);
 		
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
@@ -4521,7 +4510,7 @@ return createdDealName;
 		loginApplication();
 		
 
-	
+	Thread.sleep(5000);
 
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));

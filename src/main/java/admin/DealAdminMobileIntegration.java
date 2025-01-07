@@ -376,7 +376,7 @@ public class DealAdminMobileIntegration extends Basetest {
 	}
 
   @Test
-	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
+	public void DealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
@@ -534,10 +534,6 @@ public class DealAdminMobileIntegration extends Basetest {
 		}
 		Thread.sleep(2000);
 		
-		
-		
-		
-
 		WebElement cancleButton = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(cancleButton).click().perform();
