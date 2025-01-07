@@ -3,25 +3,22 @@ package cashier;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import utility.MobileUtils;
+
 import utility.ReuseableCode;
 import utility.ReuseableCodeForAdminModule;
 
 public class CashierModule extends Basetest {
 
-	
 	public void makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser()
 			throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -57,8 +54,7 @@ public class CashierModule extends Basetest {
 		submit.click();
 
 	}
-
-	
+//yesh
 	@Test
 	public void dealCreatedByAdminForBusinessUserAndCashierValidateThedeal() throws InterruptedException {
 
@@ -76,8 +72,6 @@ public class CashierModule extends Basetest {
 		reuse.reusebaleCodeFordealsCreationByAdminToCheckcashierFunctionality();
 
 		Actions actions = new Actions(driver);
-
-	
 
 		WebElement assetsButtonOnDashboard1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
@@ -114,6 +108,5 @@ public class CashierModule extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 
-
-}
+	}
 }
