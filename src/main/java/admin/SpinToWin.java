@@ -129,7 +129,7 @@ public class SpinToWin extends Basetest {
 				Thread.sleep(30000);
 }
 	
-	@Test(priority=2)
+	     @Test(priority=2)
 	public void searchSpin2WinCreatedByAdminForBusinessUserAndCloneThatExistingSpin2Win() throws InterruptedException {
 		
 		

@@ -37,6 +37,7 @@ public class Deal extends Basetest {
 	
 
 	//@Test(priority = 1)
+	@Test
 	public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();

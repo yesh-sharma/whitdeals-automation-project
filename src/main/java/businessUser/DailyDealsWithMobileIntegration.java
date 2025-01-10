@@ -20,7 +20,7 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import utility.MobileUtils;
 import utility.ReuseableCode;
-
+@Test
 public class DailyDealsWithMobileIntegration extends Basetest {
 	
 	 static int initialRemainingDailyDealCountOnDashboard;
@@ -319,7 +319,7 @@ public class DailyDealsWithMobileIntegration extends Basetest {
 		
 	}
 	
-	@Test
+	
 	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);

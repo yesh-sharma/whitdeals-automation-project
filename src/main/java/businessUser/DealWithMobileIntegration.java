@@ -25,7 +25,7 @@ import io.appium.java_client.android.AndroidDriver;
 import utility.MobileUtils;
 import utility.ReuseableCode;
 
-//@Test
+@Test
 public class DealWithMobileIntegration extends Basetest {
 
 	static int initialRemainingDealCountOnDashboard;

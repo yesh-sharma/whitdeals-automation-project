@@ -25,7 +25,7 @@ import utility.ReuseableCode;
 public class EventWithMobileIntegration extends Basetest {
 
 	
-	// @Test(priority = 1)
+	 @Test(priority = 1)
 	public void createEventByBusinessuserAndAdminApprovesTheEvent() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -41,7 +41,9 @@ public class EventWithMobileIntegration extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-
+		
+		Actions actions = new Actions(driver);
+		
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
@@ -51,7 +53,7 @@ public class EventWithMobileIntegration extends Basetest {
 		WebElement eventButton = wait1.until(ExpectedConditions.elementToBeClickable(
 				AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(2)")));
 		eventButton.click();
-		Actions actions = new Actions(driver);
+
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
@@ -107,8 +109,8 @@ public class EventWithMobileIntegration extends Basetest {
 	
 
 
-	// @Test(priority = 4)
-@Test
+	 @Test(priority = 2)
+
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		ReuseableCode reuse = new ReuseableCode(driver);

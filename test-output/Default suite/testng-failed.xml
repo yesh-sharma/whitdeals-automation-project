@@ -5,8 +5,9 @@
     <classes>
       <class name="cashier.CashierModule">
         <methods>
+          <include name="dealcreatedByAdminForBusinessUserAndClaimedRedeemedAndValidatedByTheCashier"/>
           <include name="setUp"/>
-          <include name="makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser"/>
+          <include name="makeDailyDealByBusinessUserAndGotApprovedzByAdminClaimedRedeemedAndvalidateByTheCashier"/>
         </methods>
       </class> <!-- cashier.CashierModule -->
     </classes>

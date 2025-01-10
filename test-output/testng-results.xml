@@ -1,20 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="4" passed="2" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-07T17:19:10 IST" name="Default suite" finished-at="2025-01-07T17:20:59 IST" duration-ms="108355">
+  <suite started-at="2025-01-09T12:26:39 IST" name="Default suite" finished-at="2025-01-09T12:34:23 IST" duration-ms="463374">
     <groups>
     </groups>
-    <test started-at="2025-01-07T17:19:10 IST" name="Default test" finished-at="2025-01-07T17:20:59 IST" duration-ms="108355">
+    <test started-at="2025-01-09T12:26:39 IST" name="Default test" finished-at="2025-01-09T12:34:23 IST" duration-ms="463374">
       <class name="cashier.CashierModule">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:cashier.CashierModule@4a07d605]" started-at="2025-01-07T17:19:10 IST" name="setUp" finished-at="2025-01-07T17:19:13 IST" duration-ms="2179" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:26:39 IST" name="setUp" finished-at="2025-01-09T12:26:41 IST" duration-ms="1610" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="dealCreatedByAdminForBusinessUserAndCashierValidateThedeal()[pri:0, instance:cashier.CashierModule@4a07d605]" started-at="2025-01-07T17:19:13 IST" name="dealCreatedByAdminForBusinessUserAndCashierValidateThedeal" finished-at="2025-01-07T17:20:59 IST" duration-ms="106156" status="PASS">
+        <test-method signature="dealCreatedByAdminForBusinessUserAndCashierValidateThedeal()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:26:41 IST" name="dealCreatedByAdminForBusinessUserAndCashierValidateThedeal" finished-at="2025-01-09T12:28:55 IST" duration-ms="134432" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- dealCreatedByAdminForBusinessUserAndCashierValidateThedeal -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:28:55 IST" name="setUp" finished-at="2025-01-09T12:28:57 IST" duration-ms="1919" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="dealcreatedByAdminForBusinessUserAndClaimedRedeemedAndValidatedByTheCashier()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:28:57 IST" name="dealcreatedByAdminForBusinessUserAndClaimedRedeemedAndValidatedByTheCashier" finished-at="2025-01-09T12:30:34 IST" duration-ms="96651" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().className("android.widget.ImageView").instance(1) (tried for 20 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.1.1', java.version: '17.0.11'
+Driver info: driver.version: unknown]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().className("android.widget.ImageView").instance(1) (tried for 20 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.1.1', java.version: '17.0.11'
+Driver info: driver.version: unknown
+at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:265)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at utility.ReuseableCodeForAdminModule.reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckCashierFunctionality(ReuseableCodeForAdminModule.java:2711)
+at cashier.CashierModule.dealcreatedByAdminForBusinessUserAndClaimedRedeemedAndValidatedByTheCashier(CashierModule.java:167)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dealcreatedByAdminForBusinessUserAndClaimedRedeemedAndValidatedByTheCashier -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:30:34 IST" name="setUp" finished-at="2025-01-09T12:30:36 IST" duration-ms="1857" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="makeDailyDealByBusinessUserAndGotApprovedzByAdminClaimedRedeemedAndvalidateByTheCashier()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:30:36 IST" name="makeDailyDealByBusinessUserAndGotApprovedzByAdminClaimedRedeemedAndvalidateByTheCashier" finished-at="2025-01-09T12:32:25 IST" duration-ms="108749" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.id: deal_title (tried for 100 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.1.1', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.205, chrome: {chromedriverVersion: 131.0.6778.264 (2d05e315153..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53511}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:53511/devtoo..., se:cdpVersion: 131.0.6778.205, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6be8e6990a4d064e860f516ced88c916]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: deal_title (tried for 100 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.1.1', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.205, chrome: {chromedriverVersion: 131.0.6778.264 (2d05e315153..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53511}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:53511/devtoo..., se:cdpVersion: 131.0.6778.205, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6be8e6990a4d064e860f516ced88c916
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at utility.ReuseableCode.reusebaleCodeForDailyDealsCreationToCheckCashierValidationFunctionality(ReuseableCode.java:4804)
+at utility.ReuseableCode.reusebaleCodeForDailyDealDashboardForMobileIntegrationWithCashier(ReuseableCode.java:4593)
+at cashier.CashierModule.makeDailyDealByBusinessUserAndGotApprovedzByAdminClaimedRedeemedAndvalidateByTheCashier(CashierModule.java:123)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- makeDailyDealByBusinessUserAndGotApprovedzByAdminClaimedRedeemedAndvalidateByTheCashier -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:32:25 IST" name="setUp" finished-at="2025-01-09T12:32:26 IST" duration-ms="1414" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser()[pri:0, instance:cashier.CashierModule@7d7758be]" started-at="2025-01-09T12:32:26 IST" name="makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser" finished-at="2025-01-09T12:34:23 IST" duration-ms="116694" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser -->
       </class> <!-- cashier.CashierModule -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
