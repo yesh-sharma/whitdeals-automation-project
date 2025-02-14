@@ -74,7 +74,7 @@ public class DailyDeals extends Basetest {
 
 		
 	}
-	 //@Test(priority = 3)
+	 @Test(priority = 3)
 	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -98,7 +98,7 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	// @Test(priority = 4)
+	 @Test(priority = 4)
 	public void createDailyDealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 	
 	
@@ -126,7 +126,7 @@ public class DailyDeals extends Basetest {
 }
 	
 	
-	//@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
+	@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
 	public void dailyDealCreatedNowCheckTheMainDashboardDailyDealsCountAndAfterThatGoToDailyDealDashboardAndCheckTheRemainingDailyDealCountAndActiveDailyDealcount() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -155,7 +155,7 @@ public class DailyDeals extends Basetest {
 	
 }
 	
-	//@Test(priority = 5)
+	@Test(priority = 5)
 	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -189,7 +189,7 @@ public class DailyDeals extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 	}
-	//@Test(priority = 6)
+	@Test(priority = 6)
 	public void makeDailyDealAndRTZTheDailyDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -255,7 +255,7 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	//@Test(priority = 8)
+	@Test(priority = 8)
 	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

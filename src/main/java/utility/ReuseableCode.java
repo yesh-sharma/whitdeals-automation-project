@@ -1002,8 +1002,16 @@ public class ReuseableCode extends Basetest {
 
 // Step 2: Navigate to the loyalty card creation page
 			WebElement loyaltyCardButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//a[@href='https://staging.whitdeals.com.au/business/loyalty-card-requests/create']")));
-			loyaltyCardButton.click();
+					By.xpath("//a[@class='dropdown-item position-relative']")));
+	           
+	            actions.moveToElement(loyaltyCardButton).perform();
+	            Thread.sleep(3000);
+	            
+	            
+	            WebElement loyaltyCard = wait.until(ExpectedConditions.visibilityOfElementLocated(
+						By.cssSelector("ul[class='dropdown-menu custom-submenu'] a[class='dropdown-item']")));
+		           
+		         loyaltyCard.click();
 
 // Step 3: Generate a unique loyalty card name using Faker
 //			Faker faker = new Faker();
