@@ -82,7 +82,7 @@ public class ReuseableCode extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
 		// Use the Select class to handle the <select> element
 		Select select = new Select(redemptionMethod);
-		select.selectByIndex(2);
+		select.selectByIndex(1);
 
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
@@ -262,7 +262,7 @@ public class ReuseableCode extends Basetest {
 	}
 
 	public String reusebaleCodeForDailyDealsCreation() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -486,7 +486,7 @@ public class ReuseableCode extends Basetest {
 
 	public String reusebaleCodeForEventCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -628,13 +628,19 @@ public class ReuseableCode extends Basetest {
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
 		email.sendKeys("john1@gmail.com");
+		
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 		WebElement submit = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		actions.moveToElement(submit).perform();
 		submit.click();
-
-		Thread.sleep(35000);
+		
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+	
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut2).perform();
 		signOut2.click();
@@ -1367,16 +1373,18 @@ public class ReuseableCode extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-
+		Actions actions = new Actions(driver);
 		Thread.sleep(5000);
-
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
 		loginApplication();
-
+		Thread.sleep(15000);
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
 		dealDashboard.click();
 
-		Actions actions = new Actions(driver);
+	Thread.sleep(8000);
 		// Deal title to search for
 		boolean dealFound = false;
 

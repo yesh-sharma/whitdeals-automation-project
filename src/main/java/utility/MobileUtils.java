@@ -24,8 +24,8 @@ public class MobileUtils {
             options.setDeviceName("emulator-5554");
             options.setAutomationName("UiAutomator2");
             options.setApp("/Users/yeshsharma/Downloads/whitdeals1.apk");
-            options.setAppPackage("com.example.WhitdealsApp");
-            options.setAppActivity("com.example.WhitdealsApp.MainActivity");
+            options.setAppPackage("au.com.endlessoceans.whitdeals");
+            options.setAppActivity("au.com.endlessoceans.whitdeals.MainActivity");
 
             driver1 = new AndroidDriver(new URL(appiumServerUrl), options);
 

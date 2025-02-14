@@ -67,7 +67,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -95,7 +95,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -162,7 +162,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -209,7 +209,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -246,7 +246,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(

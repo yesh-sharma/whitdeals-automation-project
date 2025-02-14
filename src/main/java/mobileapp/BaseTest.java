@@ -27,11 +27,11 @@ public class BaseTest {
             String appiumServerUrl = "http://127.0.0.1:4723/";
             UiAutomator2Options dc = new UiAutomator2Options();
             dc.setCapability("platformName", "Android");
-            dc.setCapability("deviceName", "ZA222JZVZC");
+            dc.setCapability("deviceName", "emulator-5554");
             dc.setCapability("appium:automationName", "UiAutomator2");
             dc.setCapability("app", "/Users/yeshsharma/Downloads/whitdeals1.apk");
-            dc.setCapability("appPackage", "com.example.WhitdealsApp");
-            dc.setCapability("appActivity", "com.example.WhitdealsApp.MainActivity");
+            dc.setCapability("appPackage", "au.com.endlessoceans.whitdeals");
+           //dc.setCapability("appActivity", "com.example.WhitdealsApp.MainActivity");
          
          
             driver = new AndroidDriver(new URL(appiumServerUrl), dc);
