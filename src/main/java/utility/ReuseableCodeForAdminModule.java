@@ -142,8 +142,6 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		action.moveToElement(calenderIcon).click().perform();
 
 		
-		
-		
 		LocalDate currentDate = LocalDate.now();
 		LocalDate expiryDate = currentDate.plusDays(1);
 
@@ -416,7 +414,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement businessName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("business_id")));
 		// Use the Select class to handle the <select> element
 		Select selectBusinessUser = new Select(businessName);
-		selectBusinessUser.selectByIndex(8);
+		selectBusinessUser.selectByIndex(4);
 
 		WebElement redemptionMethod = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
@@ -976,7 +974,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement businessName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("business_id")));
 		// Use the Select class to handle the <select> element
 		Select selectBusinessUser = new Select(businessName);
-		selectBusinessUser.selectByIndex(6);
+		selectBusinessUser.selectByIndex(4);
 
 		WebElement LCDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_description")));
 		LCDescription.sendKeys(

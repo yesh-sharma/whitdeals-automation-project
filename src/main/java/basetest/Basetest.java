@@ -30,7 +30,7 @@ public class Basetest {
     public WebDriver driver;
     ConfigReader config = new ConfigReader(); // Instance of ConfigReader
 
-    @BeforeMethod
+     @BeforeMethod
     public void setUp() {
         // Get the browser value from the properties file
     	
@@ -89,7 +89,7 @@ public class Basetest {
         WebElement useremail = wait.until(ExpectedConditions
                 .elementToBeClickable(By.id("user_name")));
 
-        useremail.sendKeys("filife1974@abaot.com");
+        useremail.sendKeys("yeshsharma516032@gmail.com");
         WebElement passwordEle = wait.until(ExpectedConditions
                 .elementToBeClickable(By.id("user_password")));
 

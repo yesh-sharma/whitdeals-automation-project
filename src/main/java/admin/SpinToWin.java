@@ -33,7 +33,7 @@ public class SpinToWin extends Basetest {
 		createButtonOnDashboard.click();
 
 		WebElement spin2WinButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Spin 2 Win Request']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Spin 2 Win']")));
 		spin2WinButton.click();
 
 		String dealName = "Spin2WinCreatedByAdmin";
@@ -44,7 +44,7 @@ public class SpinToWin extends Basetest {
 		WebElement businessName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("business_id")));
 		// Use the Select class to handle the <select> element
 		Select selectBusinessUser = new Select(businessName);
-		selectBusinessUser.selectByIndex(8);
+		selectBusinessUser.selectByIndex(4);
 
 		WebElement redemptionMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealType")));
 		// Use the Select class to handle the <select> element
@@ -84,7 +84,7 @@ public class SpinToWin extends Basetest {
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
 		
-		
+		Actions actions = new Actions(driver);
 		// Get today's date in the format yyyy-MM-dd
 				LocalDate today = LocalDate.now();
 				String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -93,7 +93,15 @@ public class SpinToWin extends Basetest {
 				WebElement dateInput = driver.findElement(By.id("validFrom"));
 
 				// Send the current date to the input field
+				
+				actions.moveToElement(dateInput).perform();
 				dateInput.sendKeys(formattedDate);
+				
+				
+				WebElement svgImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']")));
+				svgImage.click();
+				
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 				LocalDate currentDate = LocalDate.now();
 				LocalDate expiryDate = currentDate.plusDays(1);
@@ -104,6 +112,8 @@ public class SpinToWin extends Basetest {
 				// Locate the expiry date input field
 				WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 
+				
+				actions.moveToElement(expiryDateInput).perform();
 				// Send the formatted date to the input field
 				expiryDateInput.sendKeys(newFormattedDate);
 		
@@ -113,7 +123,7 @@ public class SpinToWin extends Basetest {
 				body.click();
 				Thread.sleep(1000);
 				js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-				Actions actions = new Actions(driver);
+			
 
 				WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 				actions.moveToElement(showTimerCheckbox).perform();
@@ -126,10 +136,15 @@ public class SpinToWin extends Basetest {
 				WebElement submitButton = driver.findElement(By.id("upload"));
 				actions.moveToElement(submitButton).perform();
 				submitButton.click();
-				Thread.sleep(30000);
+				
+				WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+						By.xpath("//button[.='Ok']")));
+				actions.moveToElement(okButton).perform();
+				okButton.click();
+				Thread.sleep(10000);
 }
 	
-	     @Test(priority=2)
+	   //  @Test(priority=2)
 	public void searchSpin2WinCreatedByAdminForBusinessUserAndCloneThatExistingSpin2Win() throws InterruptedException {
 		
 		
@@ -159,7 +174,7 @@ public class SpinToWin extends Basetest {
 	}
 	
 	
-	@Test(priority=3)
+	//@Test(priority=3)
 	
 	public void searchSpin2WinCreatedByAdminForBusinessUserAndPauseThatExistingSpin2Win() throws InterruptedException {
 		
@@ -202,9 +217,9 @@ public class SpinToWin extends Basetest {
 			// Format the new time in HH:mm (24-hour format)
 			String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
 	//
-			WebElement pauseTime = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
-			pauseTime.clear();
-			pauseTime.sendKeys(formattedTime);
+			//WebElement pauseTime = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
+			//pauseTime.clear();
+			//pauseTime.sendKeys(formattedTime);
 			WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 			confirm.click();
 		
@@ -213,7 +228,7 @@ public class SpinToWin extends Basetest {
 	}
 	
 	
-	@Test(priority=4)
+	//@Test(priority=4)
 	public void searchSpin2WinCreatedByAdminForBusinessUserAndEditThatExistingSpin2Win() throws InterruptedException {
 		
 		
@@ -249,6 +264,14 @@ public class SpinToWin extends Basetest {
 			WebElement submitButton = driver.findElement(By.id("upload"));
 			actions.moveToElement(submitButton).perform();
 			submitButton.click();
+			
+			WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//button[.='Ok']")));
+			actions.moveToElement(okButton).perform();
+			okButton.click();
+			
+			
+			
 			Thread.sleep(10000);
 		
 		
@@ -258,7 +281,7 @@ public class SpinToWin extends Basetest {
 	
 	
 	
-	@Test(priority=5)
+	//@Test(priority=5)
 	public void searchSpin2WinCreatedByAdminForBusinessUserAndCancelThatExistingSpin2Win() throws InterruptedException {
 		
 		

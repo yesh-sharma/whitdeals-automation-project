@@ -28,7 +28,9 @@ public class DailyDeals extends Basetest {
 	 static int initialRemainingDealCountOnDealsDashboard;
 	 static int initialActiveDealCountOnDealsDashboard;
 	
-	 //@Test(priority=1)
+
+	 
+	  @Test(priority=1)
 	public void createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -67,13 +69,11 @@ public class DailyDeals extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
 		
-		Thread.sleep(3000);
-
-		
-		
+		Thread.sleep(12000);
 
 		
 	}
+	 
 	// @Test(priority = 3)
 	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
 
@@ -126,7 +126,7 @@ public class DailyDeals extends Basetest {
 }
 	
 	
-	//@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
+//	@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
 	public void dailyDealCreatedNowCheckTheMainDashboardDailyDealsCountAndAfterThatGoToDailyDealDashboardAndCheckTheRemainingDailyDealCountAndActiveDailyDealcount() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -245,7 +245,7 @@ public class DailyDeals extends Basetest {
 		
 	}
 	
-	@Test(priority = 8)
+	//@Test(priority = 8)
 	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

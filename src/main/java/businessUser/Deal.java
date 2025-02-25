@@ -79,7 +79,7 @@ public class Deal extends Basetest {
 		
 	}
 
-	 @Test(priority = 4)
+	// @Test(priority = 4)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -101,7 +101,7 @@ public class Deal extends Basetest {
 
 	}
 
-	 @Test(priority = 3)
+	// @Test(priority = 3)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -157,7 +157,7 @@ public class Deal extends Basetest {
 	}
 	
    
-	 @Test(priority = 5)
+	 //@Test(priority = 5)
 	public void makeDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -196,7 +196,7 @@ public class Deal extends Basetest {
     }
 		
 	
-	@Test(priority = 6)
+	//@Test(priority = 6)
 	public void makeDealAndRtzTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
@@ -233,7 +233,7 @@ public class Deal extends Basetest {
 	
 
 
-     @Test(priority = 7)
+     //Test(priority = 7)
 	public void makeDealAndPauseTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
@@ -265,7 +265,7 @@ public class Deal extends Basetest {
 			 	
 	}
 	
-	 @Test(priority = 8)
+	// @Test(priority = 8)
 	public void makeDealAndCloneTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

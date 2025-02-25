@@ -21,7 +21,9 @@ import basetest.Basetest;
 import utility.ReuseableCodeForAdminModule;
 
 public class DailyDealsAdmin extends Basetest {
-	//@Test(priority=1)
+	
+	
+	@Test(priority=1)
 	
 	
 	public void createDailyDealByAdminForbusinessUser() throws InterruptedException {
@@ -49,7 +51,7 @@ public class DailyDealsAdmin extends Basetest {
 		Assert.assertEquals(activeDealCountAfterCreation, activeDealCount + 1, "Active count did not increase by 1!");
 
 	}
-	//@Test(priority=2)
+	@Test(priority=2)
 	
 	public void searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal() throws InterruptedException {
 
@@ -76,7 +78,7 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	//@Test(priority=4)
+          @Test(priority=4)
 	
 	
 	
@@ -116,7 +118,7 @@ public class DailyDealsAdmin extends Basetest {
 	
 	}
 
-	//@Test(priority=3)
+	@Test(priority=3)
 	
 	public void searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal() throws InterruptedException {
 
@@ -151,16 +153,17 @@ public class DailyDealsAdmin extends Basetest {
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
 		
+		
 		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		
-	
 
 	}
 	
-	//@Test(priority=5)
+	
+	@Test(priority=5)
 	
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 		
@@ -206,7 +209,7 @@ public class DailyDealsAdmin extends Basetest {
 			
 
 	}
-	//@Test(priority=6)
+	@Test(priority=6)
 	
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 		

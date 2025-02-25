@@ -289,11 +289,11 @@ public class ReuseableCode extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
 		// Use the Select class to handle the <select> element
 		Select select = new Select(redemptionMethod);
-		select.selectByIndex(2);
+		select.selectByIndex(1);
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
 		Select select1 = new Select(dealRestriction);
-		select1.selectByIndex(2);
+		select1.selectByIndex(6);
 
 		WebElement dealDescription = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_description")));
@@ -996,7 +996,7 @@ public class ReuseableCode extends Basetest {
 		Actions actions = new Actions(driver);
 
 		
-		try {
+		
 			WebElement ButtonDashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//li[contains(@class,'mt-3')]//a[@class='text-decoration-none d-flex-start']")));
 			ButtonDashboard.click();
@@ -1008,8 +1008,17 @@ public class ReuseableCode extends Basetest {
 
 // Step 2: Navigate to the loyalty card creation page
 			WebElement loyaltyCardButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//a[@href='https://staging.whitdeals.com.au/business/loyalty-card-requests/create']")));
-			loyaltyCardButton.click();
+					By.xpath("//a[@class='dropdown-item position-relative']")));
+			actions.moveToElement(loyaltyCardButton).perform();
+			
+			Thread.sleep(3000);
+			WebElement loyaltyCard = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//span[normalize-space()='LCS1']")));
+			
+			loyaltyCard.click();
+			
+			
+			
 
 // Step 3: Generate a unique loyalty card name using Faker
 //			Faker faker = new Faker();
@@ -1092,6 +1101,11 @@ public class ReuseableCode extends Basetest {
 			LocalDate today = LocalDate.now();
 			String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 			startDate.sendKeys(formattedDate);
+			
+			Thread.sleep(2000);
+			WebElement calenderSvg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row row-gap-3']//div[@class='col-xs-12 col-md-6']//img[@alt='calendar-svg']")));
+		      calenderSvg.click();
+			
 
 			WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
 			LocalDate currentDate = LocalDate.now();
@@ -1102,15 +1116,17 @@ public class ReuseableCode extends Basetest {
 
 			endDate.sendKeys(newFormattedDate);
 
-			WebElement body = driver.findElement(By.tagName("body"));
-			body.click();
-
+			WebElement calenderSvg2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row mt-40 row-gap-3']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+		      calenderSvg2.click();
+				
+			
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 			WebElement rememberCheckbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("remember")));
 			actions.moveToElement(rememberCheckbox).perform();
 			rememberCheckbox.click();
 
+			
 			WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("upload")));
 			actions.moveToElement(submitButton).perform();
 			submitButton.click();
@@ -1212,11 +1228,11 @@ public class ReuseableCode extends Basetest {
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 			confirmApproveButton.click();
 
-		} catch (Exception e) {
+		
 			
 
-			System.out.println("Error: Loyalty card alredy present " + e.getMessage());
-		}
+			
+		
 
 	}
 

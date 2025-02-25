@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="businessUser.Event">
+      <class name="businessUser.Deal">
         <methods>
-          <include name="createEventByBusinessUserAndCloneTheEvent"/>
           <include name="setUp"/>
+          <include name="createdealBybusinessUserAndAdminApprovesTheDeal"/>
+          <include name="dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount"/>
         </methods>
-      </class> <!-- businessUser.Event -->
+      </class> <!-- businessUser.Deal -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
