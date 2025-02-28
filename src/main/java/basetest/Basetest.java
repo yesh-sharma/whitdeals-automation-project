@@ -48,7 +48,12 @@ public class Basetest {
              options.addArguments("--start-maximized"); // Starts Chrome maximized
              options.addArguments("--disable-notifications"); // Disables browser notifications
              options.addArguments("--incognito"); // Opens browser in incognito mode
-             
+             options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+             options.setExperimentalOption("useAutomationExtension", false);
+             options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36");
+             options.addArguments("--disable-blink-features=AutomationControlled"); // Helps avoid bot detection
+             options.addArguments("--start-maximized"); // Start browser in maximized mode
+
              // Optional: Disable images for faster tests
              Map<String, Object> prefs = new HashMap<>();
              prefs.put("profile.managed_default_content_settings.images", 2);

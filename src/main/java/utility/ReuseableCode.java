@@ -24,6 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.github.javafaker.Faker;
 
 import basetest.Basetest;
+import email.DealEmailVerification;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -175,6 +176,12 @@ public class ReuseableCode extends Basetest {
 		signOut.click();
 		// login as admin
 
+		
+		DealEmailVerification verify = new DealEmailVerification(driver);
+		
+		verify.verifyDealCreationEmail("Your Deal "+baseUsername+"is Unser ", "expecteddeal");
+		
+		
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
 
