@@ -1,18 +1,12 @@
 package mobileapp;
 
-import org.openqa.selenium.TimeoutException;
+
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.net.URL;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -27,11 +21,11 @@ public class BaseTest {
             String appiumServerUrl = "http://127.0.0.1:4723/";
             UiAutomator2Options dc = new UiAutomator2Options();
             dc.setCapability("platformName", "Android");
-            dc.setCapability("deviceName", "ZA222JZVZC");
+            dc.setCapability("deviceName", "emulator-5554");
             dc.setCapability("appium:automationName", "UiAutomator2");
             dc.setCapability("app", "/Users/yeshsharma/Downloads/whitdeals1.apk");
-            dc.setCapability("appPackage", "com.example.WhitdealsApp");
-            dc.setCapability("appActivity", "com.example.WhitdealsApp.MainActivity");
+            dc.setCapability("appPackage", "au.com.endlessoceans.whitdeals");
+           //dc.setCapability("appActivity", "com.example.WhitdealsApp.MainActivity");
          
          
             driver = new AndroidDriver(new URL(appiumServerUrl), dc);

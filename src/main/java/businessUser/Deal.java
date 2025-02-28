@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.PointerInput;
@@ -21,6 +22,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
+import email.BaseEmailVerification;
+import email.DealEmailVerification;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -36,8 +39,13 @@ public class Deal extends Basetest {
 	static int initialActiveDealCountOnDealsDashboard;
 	
 
-	//@Test(priority = 1)
-	@Test
+
+	DealEmailVerification verify = new DealEmailVerification(driver);
+	
+
+	
+	@Test(priority = 1)
+	
 	public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -79,7 +87,7 @@ public class Deal extends Basetest {
 		
 	}
 
-	 //@Test(priority = 4)
+	// @Test(priority = 4)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -123,8 +131,8 @@ public class Deal extends Basetest {
 
 	}
 
-	// @Test(priority = 2, dependsOnMethods = {
-	 //"createdealBybusinessUserAndAdminApprovesThedeal" })
+//	 @Test(priority = 2, dependsOnMethods = {
+//	 "createdealBybusinessUserAndAdminApprovesTheDeal" })
 	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
 			throws InterruptedException {
 
@@ -157,7 +165,7 @@ public class Deal extends Basetest {
 	}
 	
    
-	// @Test(priority = 5)
+	 //@Test(priority = 5)
 	public void makeDealAndCancleTheDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -196,7 +204,7 @@ public class Deal extends Basetest {
     }
 		
 	
-	// @Test(priority = 6)
+	//@Test(priority = 6)
 	public void makeDealAndRtzTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
@@ -233,7 +241,7 @@ public class Deal extends Basetest {
 	
 
 
-	 //@Test(priority = 7)
+     //Test(priority = 7)
 	public void makeDealAndPauseTheDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));

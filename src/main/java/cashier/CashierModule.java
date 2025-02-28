@@ -18,9 +18,9 @@ import io.appium.java_client.android.AndroidDriver;
 import utility.MobileUtils;
 import utility.ReuseableCode;
 import utility.ReuseableCodeForAdminModule;
-@Test
-public class CashierModule extends Basetest {
 
+public class CashierModule extends Basetest {
+	@Test
 	public void makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser()
 			throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));

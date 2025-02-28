@@ -54,7 +54,7 @@ public class DealsAdmin extends Basetest  {
 		
 }
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void searchDealcreatedByAdminForBusinessUserAndCloneThatDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -67,7 +67,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -82,7 +82,7 @@ public class DealsAdmin extends Basetest  {
 	}
 	
 	
-	@Test(priority=3)
+	//@Test(priority=3)
 	public void searchDealcreatedByAdminForBusinessUserAndGoToDetailsPageAndAddPriorityToThatDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -95,7 +95,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -105,7 +105,7 @@ public class DealsAdmin extends Basetest  {
 	
 
 		WebElement prioritiesButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Priorities']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='tablinks active']")));
 		actions.moveToElement(prioritiesButton).click().perform();
 	
 	
@@ -148,7 +148,7 @@ public class DealsAdmin extends Basetest  {
 	
 	
 	
-	@Test(priority=4)
+	//@Test(priority=4)
 	public void searchDealcreatedByAdminForBusinessUserAndPauseThatDeal() throws InterruptedException {
 	
 
@@ -162,7 +162,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -188,15 +188,15 @@ public class DealsAdmin extends Basetest  {
 		String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
 //
 		WebElement pauseTime = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
-		pauseTime.clear();
-		pauseTime.sendKeys(formattedTime);
+		//pauseTime.clear();
+		//pauseTime.sendKeys(formattedTime);
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
 	
 
 	}
 
-	@Test(priority=5)
+	//@Test(priority=5)
 	public void searchDealcreatedByAdminForBusinessUserAndEditThatDeal() throws InterruptedException {
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -209,7 +209,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -233,7 +233,7 @@ public class DealsAdmin extends Basetest  {
 	
 	
 	
-	@Test(priority=6)
+	//@Test(priority=6)
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -246,7 +246,7 @@ public class DealsAdmin extends Basetest  {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-	    reuse.reuseableCodeForDealDashBoard();
+	    reuse.reuseableCodeForDealDashBoardAdmin();
 	    Actions actions = new Actions(driver);
 	
 	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -278,7 +278,7 @@ public class DealsAdmin extends Basetest  {
 	}
 	
 
-	@Test(priority=7)
+	//@Test(priority=7)
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 	
 	

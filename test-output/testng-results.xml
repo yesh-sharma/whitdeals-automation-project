@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-22T21:20:32 IST" name="Default suite" finished-at="2025-01-22T21:23:25 IST" duration-ms="173210">
+  <suite started-at="2025-02-28T15:05:54 IST" name="Default suite" finished-at="2025-02-28T15:06:30 IST" duration-ms="35410">
     <groups>
     </groups>
-    <test started-at="2025-01-22T21:20:32 IST" name="Default test" finished-at="2025-01-22T21:23:25 IST" duration-ms="173210">
-      <class name="businessUser.LoyaltyCard">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.LoyaltyCard@53976f5c]" started-at="2025-01-22T21:20:32 IST" name="setUp" finished-at="2025-01-22T21:20:42 IST" duration-ms="10148" status="PASS">
+    <test started-at="2025-02-28T15:05:54 IST" name="Default test" finished-at="2025-02-28T15:06:30 IST" duration-ms="35410">
+      <class name="email.ContactUs">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:email.ContactUs@67f639d3]" started-at="2025-02-28T15:05:54 IST" name="setUp" finished-at="2025-02-28T15:05:56 IST" duration-ms="2213" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin()[pri:1, instance:businessUser.LoyaltyCard@53976f5c]" started-at="2025-01-22T21:20:42 IST" name="createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin" finished-at="2025-01-22T21:23:25 IST" duration-ms="162937" status="PASS">
+        <test-method signature="contactUsFormEmailValidation()[pri:0, instance:email.ContactUs@67f639d3]" started-at="2025-02-28T15:05:56 IST" name="contactUsFormEmailValidation" finished-at="2025-02-28T15:06:30 IST" duration-ms="33178" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin -->
-      </class> <!-- businessUser.LoyaltyCard -->
+        </test-method> <!-- contactUsFormEmailValidation -->
+      </class> <!-- email.ContactUs -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

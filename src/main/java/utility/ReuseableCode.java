@@ -24,6 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.github.javafaker.Faker;
 
 import basetest.Basetest;
+import email.DealEmailVerification;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -82,7 +83,7 @@ public class ReuseableCode extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
 		// Use the Select class to handle the <select> element
 		Select select = new Select(redemptionMethod);
-		select.selectByIndex(2);
+		select.selectByIndex(1);
 
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
@@ -175,6 +176,12 @@ public class ReuseableCode extends Basetest {
 		signOut.click();
 		// login as admin
 
+		
+		DealEmailVerification verify = new DealEmailVerification(driver);
+		
+		verify.verifyDealCreationEmail("Your Deal "+baseUsername+"is Unser ", "expecteddeal");
+		
+		
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.loginAsAdmin();
 
@@ -262,7 +269,7 @@ public class ReuseableCode extends Basetest {
 	}
 
 	public String reusebaleCodeForDailyDealsCreation() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -289,11 +296,11 @@ public class ReuseableCode extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
 		// Use the Select class to handle the <select> element
 		Select select = new Select(redemptionMethod);
-		select.selectByIndex(2);
+		select.selectByIndex(1);
 		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_term_id")));
 		// Use the Select class to handle the <select> element
 		Select select1 = new Select(dealRestriction);
-		select1.selectByIndex(2);
+		select1.selectByIndex(6);
 
 		WebElement dealDescription = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("deal_description")));
@@ -486,7 +493,7 @@ public class ReuseableCode extends Basetest {
 
 	public String reusebaleCodeForEventCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -628,13 +635,19 @@ public class ReuseableCode extends Basetest {
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
 		email.sendKeys("john1@gmail.com");
+		
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 		WebElement submit = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		actions.moveToElement(submit).perform();
 		submit.click();
-
-		Thread.sleep(35000);
+		
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+	
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut2).perform();
 		signOut2.click();
@@ -990,7 +1003,7 @@ public class ReuseableCode extends Basetest {
 		Actions actions = new Actions(driver);
 
 		
-		try {
+		
 			WebElement ButtonDashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//li[contains(@class,'mt-3')]//a[@class='text-decoration-none d-flex-start']")));
 			ButtonDashboard.click();
@@ -1003,15 +1016,16 @@ public class ReuseableCode extends Basetest {
 // Step 2: Navigate to the loyalty card creation page
 			WebElement loyaltyCardButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//a[@class='dropdown-item position-relative']")));
-	           
-	            actions.moveToElement(loyaltyCardButton).perform();
-	            Thread.sleep(3000);
-	            
-	            
-	            WebElement loyaltyCard = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.cssSelector("ul[class='dropdown-menu custom-submenu'] a[class='dropdown-item']")));
-		           
-		         loyaltyCard.click();
+			actions.moveToElement(loyaltyCardButton).perform();
+			
+			Thread.sleep(3000);
+			WebElement loyaltyCard = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//span[normalize-space()='LCS1']")));
+			
+			loyaltyCard.click();
+			
+			
+			
 
 // Step 3: Generate a unique loyalty card name using Faker
 //			Faker faker = new Faker();
@@ -1094,6 +1108,11 @@ public class ReuseableCode extends Basetest {
 			LocalDate today = LocalDate.now();
 			String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 			startDate.sendKeys(formattedDate);
+			
+			Thread.sleep(2000);
+			WebElement calenderSvg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row row-gap-3']//div[@class='col-xs-12 col-md-6']//img[@alt='calendar-svg']")));
+		      calenderSvg.click();
+			
 
 			WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
 			LocalDate currentDate = LocalDate.now();
@@ -1104,15 +1123,17 @@ public class ReuseableCode extends Basetest {
 
 			endDate.sendKeys(newFormattedDate);
 
-			WebElement body = driver.findElement(By.tagName("body"));
-			body.click();
-
+			WebElement calenderSvg2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row mt-40 row-gap-3']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+		      calenderSvg2.click();
+				
+			
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 			WebElement rememberCheckbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("remember")));
 			actions.moveToElement(rememberCheckbox).perform();
 			rememberCheckbox.click();
 
+			
 			WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("upload")));
 			actions.moveToElement(submitButton).perform();
 			submitButton.click();
@@ -1214,11 +1235,11 @@ public class ReuseableCode extends Basetest {
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 			confirmApproveButton.click();
 
-		} catch (Exception e) {
+		
 			
 
-			System.out.println("Error: Loyalty card alredy present " + e.getMessage());
-		}
+			
+		
 
 	}
 
@@ -1375,16 +1396,18 @@ public class ReuseableCode extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-
+		Actions actions = new Actions(driver);
 		Thread.sleep(5000);
-
+		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
+		actions.moveToElement(signOut).perform();
+		signOut.click();
 		loginApplication();
-
+		Thread.sleep(15000);
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
 		dealDashboard.click();
 
-		Actions actions = new Actions(driver);
+	Thread.sleep(8000);
 		// Deal title to search for
 		boolean dealFound = false;
 

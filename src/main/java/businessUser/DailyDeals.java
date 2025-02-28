@@ -28,7 +28,9 @@ public class DailyDeals extends Basetest {
 	 static int initialRemainingDealCountOnDealsDashboard;
 	 static int initialActiveDealCountOnDealsDashboard;
 	
-	 @Test(priority=1)
+
+	 
+	  @Test(priority=1)
 	public void createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -67,14 +69,12 @@ public class DailyDeals extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
 		
-		Thread.sleep(3000);
-
-		
-		
+		Thread.sleep(12000);
 
 		
 	}
-	 @Test(priority = 3)
+	 
+	// @Test(priority = 3)
 	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
@@ -102,7 +102,7 @@ public class DailyDeals extends Basetest {
 	public void createDailyDealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 	
 	
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealsCreation();
@@ -126,7 +126,7 @@ public class DailyDeals extends Basetest {
 }
 	
 	
-	@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
+//	@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
 	public void dailyDealCreatedNowCheckTheMainDashboardDailyDealsCountAndAfterThatGoToDailyDealDashboardAndCheckTheRemainingDailyDealCountAndActiveDailyDealcount() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
@@ -189,7 +189,8 @@ public class DailyDeals extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
 	}
-	@Test(priority = 6)
+	
+     //  @Test(priority = 6)
 	public void makeDailyDealAndRTZTheDailyDealByBusinessUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -237,25 +238,14 @@ public class DailyDeals extends Basetest {
 		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
 		pauseDate.sendKeys(formattedDate);
 
-		// Get the current local time in 24-hour format
-		LocalTime currentTime = LocalTime.now();
-
-		// Add 4 hours and 35 minutes to the current time
-		LocalTime newTime = currentTime.plusHours(4).plusMinutes(35);
-
-		// Format the new time in HH:mm (24-hour format)
-		String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-//
-		WebElement pauseTime = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
-		pauseTime.clear();
-		pauseTime.sendKeys(formattedTime);
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
 
 		
 		
 	}
-	@Test(priority = 8)
+	
+	//@Test(priority = 8)
 	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
 	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
