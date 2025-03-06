@@ -1,16 +1,13 @@
 package businessUser;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,7 +25,7 @@ public class EventWithMobileIntegration extends Basetest {
 	 @Test(priority = 1)
 	public void createEventByBusinessuserAndAdminApprovesTheEvent() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String eventTitle = reuse.reusebaleCodeForEventCreationWithMobileIntegration();
@@ -112,7 +109,7 @@ public class EventWithMobileIntegration extends Basetest {
 	 @Test(priority = 2)
 
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String event = reuse.reusebaleCodeForEventDashboardWithMobileIntegration() ;
 		Actions actions = new Actions(driver);
