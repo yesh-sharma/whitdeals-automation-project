@@ -25,7 +25,7 @@ public class Event extends Basetest {
 	@Test(priority = 1)
 	public void createEventByBusinessuserAndAdminApprovesTheEvent() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventCreation();

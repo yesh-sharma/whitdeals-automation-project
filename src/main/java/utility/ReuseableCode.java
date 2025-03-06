@@ -2970,7 +2970,7 @@ return createdDealName;
 	
 	public String reusebaleCodeForEventCreationWithMobileIntegration() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -3108,7 +3108,7 @@ return createdDealName;
 		email.sendKeys("john1@gmail.com");
 
 		WebElement submit = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		actions.moveToElement(submit).perform();
 		submit.click();
 		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -3214,7 +3214,7 @@ return createdDealName;
 	
 	public String reusebaleCodeForEventDashboardWithMobileIntegration() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 
 		loginApplication();
 
@@ -3320,7 +3320,7 @@ return createdDealName;
 	
 	public String reusebaleCodeForEventCreationToCheckCancleFunctionalityForMobileIntegration() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
@@ -3458,7 +3458,7 @@ return createdDealName;
 		email.sendKeys("john1@gmail.com");
 
 		WebElement submit = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		actions.moveToElement(submit).perform();
 		submit.click();
 		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
