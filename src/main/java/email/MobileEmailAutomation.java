@@ -12,11 +12,11 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import utility.MobileUtils;
 
-//@Test
+@Test
 public class MobileEmailAutomation {
 
 	// @Test
-	public void contactUs() {
+	public void contactUs() throws InterruptedException {
 
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
@@ -55,11 +55,13 @@ public class MobileEmailAutomation {
 		WebElement submitButton = wait1.until(ExpectedConditions.elementToBeClickable(
 				AppiumBy.androidUIAutomator("new UiSelector().description(\"Contact Us\").instance(2)")));
 		submitButton.click();
+		
+		Thread.sleep(5000);
 		driver1.quit();
 	}
 
 	// @Test
-	public void BusinessInfoPack() {
+	public void BusinessInfoPack() throws InterruptedException {
 
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
@@ -108,6 +110,7 @@ public class MobileEmailAutomation {
 		WebElement submit = wait1.until(ExpectedConditions.elementToBeClickable(
 				AppiumBy.androidUIAutomator("new UiSelector().description(\"Request Info Pack\")")));
 		submit.click();
+		Thread.sleep(5000);
 		driver1.quit();
 
 	}
@@ -169,7 +172,7 @@ public class MobileEmailAutomation {
 		WebElement submit1 = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Submit\")")));
 		submit1.click();
-
+		Thread.sleep(5000);
 		driver1.quit();
 
 	}
