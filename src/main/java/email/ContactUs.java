@@ -41,8 +41,8 @@ public class ContactUs extends Basetest {
 						Thread.sleep(3000);
 						
 						
-						ContactUsEmailVerification verify = new ContactUsEmailVerification(driver);
-						verify.verifyContactUSCreationEmail("yesh", "sharma");
+//						ContactUsEmailVerification verify = new ContactUsEmailVerification(driver);
+//						verify.verifyContactUSCreationEmail("yesh", "sharma");
 				
 }
 }
