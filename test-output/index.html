@@ -93,7 +93,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
+                    <span class="method-stats">6 methods, 1 failed,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -104,7 +104,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="email.MobileEmailAutomation" class="method navigator-link" hash-for-method="reportAProblem">reportAProblem</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="admin.DailyDealsAdmin" class="method navigator-link" hash-for-method="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal">searchDealcreatedByAdminForBusinessUserAndRTZThatDeal</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -118,12 +118,27 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="email.MobileEmailAutomation" class="method navigator-link" hash-for-method="BusinessInfoPack">BusinessInfoPack</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="admin.DailyDealsAdmin" class="method navigator-link" hash-for-method="createDailyDealByAdminForbusinessUser">createDailyDealByAdminForbusinessUser</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="email.MobileEmailAutomation" class="method navigator-link" hash-for-method="contactUs">contactUs</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="admin.DailyDealsAdmin" class="method navigator-link" hash-for-method="searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal">searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="admin.DailyDealsAdmin" class="method navigator-link" hash-for-method="searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal">searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="admin.DailyDealsAdmin" class="method navigator-link" hash-for-method="searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal">searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="admin.DailyDealsAdmin" class="method navigator-link" hash-for-method="searchDealcreatedByAdminForBusinessUserAndCancleThatDeal">searchDealcreatedByAdminForBusinessUserAndCancleThatDeal</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -141,22 +156,24 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">email.MobileEmailAutomation</span>
+              <span class="class-name">admin.DailyDealsAdmin</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="reportAProblem">
-                  </a> <!-- reportAProblem -->
-                  <span class="method-name">reportAProblem</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().description(&quot;Menu
-Tab 5 of 5&quot;) (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.29.0&apos;, revision: &apos;5fc1ec94cb&apos;
-System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.11&apos;
-Driver info: driver.version: unknown
-	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:265)
+                  <a name="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal">
+                  </a> <!-- searchDealcreatedByAdminForBusinessUserAndRTZThatDeal -->
+                  <span class="method-name">searchDealcreatedByAdminForBusinessUserAndRTZThatDeal</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[.=&apos;Ok&apos;] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.30.0&apos;, revision: &apos;509c7f17cc*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;15.3.2&apos;, java.version: &apos;17.0.11&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 134.0.6998.118, chrome: {chromedriverVersion: 134.0.6998.165 (fd886e2cb29..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51329}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:51329/devtoo..., se:cdpVersion: 134.0.6998.118, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3616ea871c25118e31895409a9aaa4c5
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at email.MobileEmailAutomation.reportAProblem(MobileEmailAutomation.java:127)
+	at utility.ReuseableCodeForAdminModule.reusebaleCodeForDailyDealsCreationForRTZ(ReuseableCodeForAdminModule.java:682)
+	at admin.DailyDealsAdmin.searchDealcreatedByAdminForBusinessUserAndRTZThatDeal(DailyDealsAdmin.java:204)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -194,21 +211,42 @@ Driver info: driver.version: unknown
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">email.MobileEmailAutomation</span>
+              <span class="class-name">admin.DailyDealsAdmin</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="BusinessInfoPack">
-                  </a> <!-- BusinessInfoPack -->
-                  <span class="method-name">BusinessInfoPack</span>
+                  <a name="createDailyDealByAdminForbusinessUser">
+                  </a> <!-- createDailyDealByAdminForbusinessUser -->
+                  <span class="method-name">createDailyDealByAdminForbusinessUser</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="contactUs">
-                  </a> <!-- contactUs -->
-                  <span class="method-name">contactUs</span>
+                  <a name="searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal">
+                  </a> <!-- searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal -->
+                  <span class="method-name">searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal">
+                  </a> <!-- searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal -->
+                  <span class="method-name">searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal">
+                  </a> <!-- searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal -->
+                  <span class="method-name">searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="searchDealcreatedByAdminForBusinessUserAndCancleThatDeal">
+                  </a> <!-- searchDealcreatedByAdminForBusinessUserAndCancleThatDeal -->
+                  <span class="method-name">searchDealcreatedByAdminForBusinessUserAndCancleThatDeal</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -216,7 +254,7 @@ Driver info: driver.version: unknown
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/x9/xxt7kvhx1v7fgwvg8m4x3n6c0000gn/T/testng-eclipse-854291954/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/x9/xxt7kvhx1v7fgwvg8m4x3n6c0000gn/T/testng-eclipse-1799110595/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -225,7 +263,7 @@ Driver info: driver.version: unknown
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;email.MobileEmailAutomation&quot;/&gt;
+      &lt;class name=&quot;admin.DailyDealsAdmin&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -265,24 +303,36 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(6);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'reportAProblem')
-data.setCell(0, 2, 'email.MobileEmailAutomation')
-data.setCell(0, 3, 47183);
+data.setCell(0, 1, 'searchDealcreatedByAdminForBusinessUserAndRTZThatDeal')
+data.setCell(0, 2, 'admin.DailyDealsAdmin')
+data.setCell(0, 3, 84682);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'BusinessInfoPack')
-data.setCell(1, 2, 'email.MobileEmailAutomation')
-data.setCell(1, 3, 43932);
+data.setCell(1, 1, 'createDailyDealByAdminForbusinessUser')
+data.setCell(1, 2, 'admin.DailyDealsAdmin')
+data.setCell(1, 3, 40625);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'contactUs')
-data.setCell(2, 2, 'email.MobileEmailAutomation')
-data.setCell(2, 3, 39657);
+data.setCell(2, 1, 'searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal')
+data.setCell(2, 2, 'admin.DailyDealsAdmin')
+data.setCell(2, 3, 40186);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'searchDealcreatedByAdminForBusinessUserAndCancleThatDeal')
+data.setCell(3, 2, 'admin.DailyDealsAdmin')
+data.setCell(3, 3, 23496);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal')
+data.setCell(4, 2, 'admin.DailyDealsAdmin')
+data.setCell(4, 3, 17735);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal')
+data.setCell(5, 2, 'admin.DailyDealsAdmin')
+data.setCell(5, 3, 16469);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -308,21 +358,81 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">email.MobileEmailAutomation</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">BusinessInfoPack</span>
+              <div class="chronological-class-name">admin.DailyDealsAdmin</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- test-method -->
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">contactUs</span>
-                <span class="method-start">43943 ms</span>
+                <span class="method-name">createDailyDealByAdminForbusinessUser</span>
+                <span class="method-start">1569 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">42196 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">42315 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal</span>
+                <span class="method-start">43543 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">61279 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">61380 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal</span>
+                <span class="method-start">62553 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">102739 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">102849 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal</span>
+                <span class="method-start">104033 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">120503 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">120600 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">searchDealcreatedByAdminForBusinessUserAndCancleThatDeal</span>
+                <span class="method-start">121721 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">145217 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">145312 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">reportAProblem</span>
-                <span class="method-start">83607 ms</span>
+                <span class="method-name">searchDealcreatedByAdminForBusinessUserAndRTZThatDeal</span>
+                <span class="method-start">146506 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">231192 ms</span>
+              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

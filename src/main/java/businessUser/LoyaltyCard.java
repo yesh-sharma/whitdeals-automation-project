@@ -25,7 +25,7 @@ public class LoyaltyCard extends Basetest {
     @Test(priority = 1)
 	public void createLoyaltycardByBusinessUserAndNoLoyaltyCardIsPresentAndApproveBytheAdmin()
 			throws InterruptedException {
-
+    	loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForLoyatyCardCreationNoCardIsPresent();
 
@@ -37,7 +37,6 @@ public class LoyaltyCard extends Basetest {
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminApprovesTheLoyaltyCard()
 			throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForLoyatyCardCreationOneCardIsAlreadyPresent();
 
@@ -56,7 +55,6 @@ public class LoyaltyCard extends Basetest {
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminDeclineWithOutMessageTheLoyaltyCard()
 			throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForLoyatyCardCreationOneCardIsAlreadyPresent();
 
@@ -79,7 +77,6 @@ public class LoyaltyCard extends Basetest {
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminDeclineWithMessageTheLoyaltyCard()
 			throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForLoyatyCardCreationOneCardIsAlreadyPresent();
 		WebElement declineButton = wait.until(
@@ -99,7 +96,7 @@ public class LoyaltyCard extends Basetest {
 	// @Test(priority = 5)
 
 	public void searchLoyaltycardAndCloneTheloyaltycard() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		Actions actions = new Actions(driver);
 		reuse.reusebaleCodeForLoyatycardDashboard();
@@ -114,7 +111,7 @@ public class LoyaltyCard extends Basetest {
 	// @Test(priority = 6)
 	
 	public void searchLoyaltycardAndPauseTheloyaltycard() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		Actions actions = new Actions(driver);
 		reuse.reusebaleCodeForLoyatycardDashboard();
@@ -152,8 +149,8 @@ public class LoyaltyCard extends Basetest {
 	// @Test(priority = 7)
 	
 	public void searchLoyaltycardAndcancleTheloyaltycardPartially() throws InterruptedException {
+		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCode reuse = new ReuseableCode(driver);
 		Actions actions = new Actions(driver);
 		reuse.reusebaleCodeForLoyatycardDashboard();
@@ -176,7 +173,7 @@ public class LoyaltyCard extends Basetest {
 	// @Test(priority = 9)
 	public void searchLoyaltycardAndcancleTheloyaltycardCompletely() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		Actions actions = new Actions(driver);
 		reuse.reusebaleCodeForLoyatycardDashboard();
@@ -212,7 +209,7 @@ public class LoyaltyCard extends Basetest {
 	
 	public void searchLoyaltycardAndEditLoyaltyCardAndApprovedByAdmin() throws InterruptedException {
 	
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		Actions actions = new Actions(driver);
 		reuse.reusebaleCodeForLoyatycardDashboard();

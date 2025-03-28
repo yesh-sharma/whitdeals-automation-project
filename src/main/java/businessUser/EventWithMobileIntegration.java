@@ -25,7 +25,7 @@ public class EventWithMobileIntegration extends Basetest {
 	 @Test(priority = 1)
 	public void createEventByBusinessuserAndAdminApprovesTheEvent() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+	
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String eventTitle = reuse.reusebaleCodeForEventCreationWithMobileIntegration();
@@ -109,7 +109,7 @@ public class EventWithMobileIntegration extends Basetest {
 	 @Test(priority = 2)
 
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+	
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String event = reuse.reusebaleCodeForEventDashboardWithMobileIntegration() ;
 		Actions actions = new Actions(driver);

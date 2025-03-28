@@ -1,33 +1,20 @@
 package businessUser;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
-import email.BaseEmailVerification;
-import email.DealEmailVerification;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-
-import utility.MobileUtils;
 import utility.ReuseableCode;
 
 //@Test
@@ -37,17 +24,11 @@ public class Deal extends Basetest {
 
 	static int initialRemainingDealCountOnDealsDashboard;
 	static int initialActiveDealCountOnDealsDashboard;
-	
 
-
-	DealEmailVerification verify = new DealEmailVerification(driver);
-	
-
-	
-	@Test(priority = 1)
-	
+	// @Test(priority = 1)
+@Test
 	public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		loginApplication();
 		// get the deal count
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[1]"));
@@ -73,7 +54,7 @@ public class Deal extends Basetest {
 		System.out.println("Initial Deal Count on deals dashboard: " + initialActiveDealCountOnDealsDashboard);
 
 		ReuseableCode reuse = new ReuseableCode(driver);
-		String dealName =reuse.reusebaleCodeFordealsCreation();
+		String dealName = reuse.reusebaleCodeFordealsCreation();
 
 		WebElement approveButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
@@ -83,14 +64,14 @@ public class Deal extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-
+        
 		
+		Thread.sleep(4000);
 	}
 
 	// @Test(priority = 4)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeFordealsCreation();
@@ -112,7 +93,6 @@ public class Deal extends Basetest {
 	// @Test(priority = 3)
 	public void createdealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeFordealsCreation();
@@ -136,7 +116,6 @@ public class Deal extends Basetest {
 	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
 			throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		loginApplication();
 
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[1]"));
@@ -163,11 +142,10 @@ public class Deal extends Basetest {
 				"Active count did not increase by 1!");
 
 	}
-	
-   
-	 //@Test(priority = 5)
+
+	// @Test(priority = 5)
 	public void makeDealAndCancleTheDealByBusinessUser() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String createdDealName = reuse.reusebaleCodeForDealDashboard();
 
@@ -198,16 +176,13 @@ public class Deal extends Basetest {
 		WebElement submit = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
-		
-	 	
-	 	  
-    }
-		
-	
-	//@Test(priority = 6)
-	public void makeDealAndRtzTheDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	}
+
+	// @Test(priority = 6)
+	public void makeDealAndRtzTheDeal() throws InterruptedException {
+		loginApplication();
+
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDealDashboard();
 		Actions actions = new Actions(driver);
@@ -229,25 +204,18 @@ public class Deal extends Basetest {
 		WebElement YesToCancle = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
 		YesToCancle.click();
-		 
+
 		Thread.sleep(5000);
-		
-	
-		
+
 	}
 
-
- 	
-	
-
-
-     //Test(priority = 7)
+	//@Test(priority = 7)
 	public void makeDealAndPauseTheDeal() throws InterruptedException {
+		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		ReuseableCode reuse = new ReuseableCode(driver);
-		String DealName =reuse.reusebaleCodeForDealDashboard();
-		System.out.println("yash123"+DealName);
+		String DealName = reuse.reusebaleCodeForDealDashboard();
+		System.out.println("yash123" + DealName);
 		Actions actions = new Actions(driver);
 
 		WebElement pauseButton = wait.until(ExpectedConditions
@@ -262,21 +230,20 @@ public class Deal extends Basetest {
 		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
 		pauseDate.sendKeys(formattedDate);
-	
-		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+
+		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
 		calenderIcon.click();
-		
+
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
-		
-		
-			 	
+
 	}
-	
+
 	// @Test(priority = 8)
 	public void makeDealAndCloneTheDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDealDashboard();
 		Actions actions = new Actions(driver);

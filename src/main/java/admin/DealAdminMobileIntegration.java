@@ -26,11 +26,8 @@ import utility.ReuseableCodeForAdminModule;
 
 public class DealAdminMobileIntegration extends Basetest {
 
-	
-	
 	public void createDealByAdminForbusinessUserAndClaimAndRedeemBytheMobileUser() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 
@@ -42,9 +39,7 @@ public class DealAdminMobileIntegration extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
 
-	
 		reuse.reusebaleCodeFordealsCreation();
-
 
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
@@ -55,7 +50,7 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement dealButton = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton.click();
-		
+
 		Actions actions = new Actions(driver);
 
 		WebElement allDeal = wait1.until(ExpectedConditions
@@ -87,22 +82,13 @@ public class DealAdminMobileIntegration extends Basetest {
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
 		confirmOk.click();
 
-		
-		
 	}
-
-	
-
-	
-
-	
 
 	public void dealCreatedByAdminForBusinessUserAndPauseThatDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
-		
+
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
@@ -111,18 +97,15 @@ public class DealAdminMobileIntegration extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
 
-	
 		reuse.reusebaleCodeFordealsCreationByAdminToCheckPauseFunctionality();
-		
+
 		Actions actions = new Actions(driver);
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut2).perform();
 		signOut2.click();
-		
-		
+
 		reuse.loginAsAdmin();
-		
-	
+
 		WebElement assetsButtonOnDashboard1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard1.click();
@@ -131,14 +114,7 @@ public class DealAdminMobileIntegration extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton1.click();
 
-		
-		
-		
 		reuse.reuseableCodeForDealDashBoard();
-		
-		
-	
-	
 
 		WebElement pauseButton = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='pauseIcon']")));
@@ -153,12 +129,8 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
 		pauseDate.sendKeys(formattedDate);
 
-	
-	
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
-
-		
 
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
@@ -166,53 +138,40 @@ public class DealAdminMobileIntegration extends Basetest {
 		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		
 		WebElement dealButton = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton.click();
-		
 
 		WebElement allDeal = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 		allDeal.click();
-		
-		  WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
-	         try {
-	        	    // Try to locate the element
-	        	
-	           WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
-	               
-	                   "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​P​a​u​s​e​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
-	                   
-	               )
-	           ));
-	        	    // If the element is found, fail the test
-	        	    System.out.println("Element found: Test passed.");
-	        	    
-	        	} catch (TimeoutException e) {
-	        	    // If the element is not found, pass the test
-	        	    System.out.println("Element not found: Test failed.");
-	        	    Assert.fail("Element with description was found, failing the test.");
-	        	} catch (Exception e) {
-	        	    // Catch any other unexpected exceptions
-	        	    System.out.println("An unexpected error occurred: " + e.getMessage());
-	        	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
-	        	}
-		
-		
-	 	
-		
-		
-		
-		
+
+		WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
+		try {
+			// Try to locate the element
+
+			WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​P​a​u​s​e​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
+
+			)));
+			// If the element is found, fail the test
+			System.out.println("Element found: Test passed.");
+
+		} catch (TimeoutException e) {
+			// If the element is not found, pass the test
+			System.out.println("Element not found: Test failed.");
+			Assert.fail("Element with description was found, failing the test.");
+		} catch (Exception e) {
+			// Catch any other unexpected exceptions
+			System.out.println("An unexpected error occurred: " + e.getMessage());
+			Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+		}
+
 	}
 
-	
-
-	
 	public void dealCreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
@@ -222,20 +181,13 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-		
-		
 
 		reuse.reusebaleCodeFordealsCreationByAdminToCheckCancleFunctionality();
-		
 
-		
 		Actions actions = new Actions(driver);
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut2).perform();
 		signOut2.click();
-		
-		
-		
 
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
@@ -243,52 +195,38 @@ public class DealAdminMobileIntegration extends Basetest {
 		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		
 		WebElement dealButton = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton.click();
-		
 
 		WebElement allDeal = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 		allDeal.click();
-		
-		  WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
-	         try {
-	        	    // Try to locate the element
-	        	
-	           WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
-	               
-	                   "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​C​a​n​c​l​e​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
-	                   
-	               )
-	           ));
-	        	    // If the element is found, fail the test
-	        	    System.out.println("Element found: Test passed.");
-	        	    
-	        	} catch (TimeoutException e) {
-	        	    // If the element is not found, pass the test
-	        	    System.out.println("Element not found: Test failed.");
-	        	    Assert.fail("Element with description was not found, failing the test.");
-	        	} catch (Exception e) {
-	        	    // Catch any other unexpected exceptions
-	        	    System.out.println("An unexpected error occurred: " + e.getMessage());
-	        	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
-	        	}
-		
-		
-	 	
-		
-		
-		
-		
-		
-		
-		
-		
+
+		WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
+		try {
+			// Try to locate the element
+
+			WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​C​a​n​c​l​e​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
+
+			)));
+			// If the element is found, fail the test
+			System.out.println("Element found: Test passed.");
+
+		} catch (TimeoutException e) {
+			// If the element is not found, pass the test
+			System.out.println("Element not found: Test failed.");
+			Assert.fail("Element with description was not found, failing the test.");
+		} catch (Exception e) {
+			// Catch any other unexpected exceptions
+			System.out.println("An unexpected error occurred: " + e.getMessage());
+			Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+		}
+
 		reuse.loginAsAdmin();
-		
-	
+
 		WebElement assetsButtonOnDashboard1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard1.click();
@@ -296,9 +234,7 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement dealsButton1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton1.click();
-		
-		
-		
+
 		reuse.reuseableCodeForDealDashBoardForCancleFunctionality();
 
 		WebElement pauseButton = wait.until(ExpectedConditions
@@ -325,7 +261,6 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement submit = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
-		
 
 		MobileUtils mobileUtils1 = new MobileUtils();
 		AndroidDriver driver11 = mobileUtils1.initializeMobileDriver();
@@ -333,52 +268,41 @@ public class DealAdminMobileIntegration extends Basetest {
 		FluentWait<AndroidDriver> wait21 = new FluentWait<>(driver11).withTimeout(Duration.ofSeconds(20))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		
 		WebElement dealButton1 = wait21.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton1.click();
-		
 
 		WebElement allDeal1 = wait21.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 		allDeal1.click();
-		
-		  WebDriverWait wait3 = new WebDriverWait(driver11, Duration.ofSeconds(15));
-	         try {
-	        	    // Try to locate the element
-	        	
-	           WebElement webView = wait3.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
-	               
-	                   "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​C​a​n​c​l​e​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
-	                   
-	               )
-	           ));
-	        	    // If the element is found, fail the test
-	        	    System.out.println("Element found: Test failed.");
-	        	    Assert.fail("Element with description was found, failing the test.");
-	        	} catch (TimeoutException e) {
-	        	    // If the element is not found, pass the test
-	        	    System.out.println("Element not found: Test passed.");
-	        	  
-	        	} catch (Exception e) {
-	        	    // Catch any other unexpected exceptions
-	        	    System.out.println("An unexpected error occurred: " + e.getMessage());
-	        	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
-	        	}
-		
-		
-	 	
-		
-		
-		
-		
+
+		WebDriverWait wait3 = new WebDriverWait(driver11, Duration.ofSeconds(15));
+		try {
+			// Try to locate the element
+
+			WebElement webView = wait3.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​C​a​n​c​l​e​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
+
+			)));
+			// If the element is found, fail the test
+			System.out.println("Element found: Test failed.");
+			Assert.fail("Element with description was found, failing the test.");
+		} catch (TimeoutException e) {
+			// If the element is not found, pass the test
+			System.out.println("Element not found: Test passed.");
+
+		} catch (Exception e) {
+			// Catch any other unexpected exceptions
+			System.out.println("An unexpected error occurred: " + e.getMessage());
+			Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+		}
 
 	}
 
-  @Test
+	@Test
 	public void DealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 
@@ -391,65 +315,50 @@ public class DealAdminMobileIntegration extends Basetest {
 		dealsButton.click();
 
 		String createdDealName = reuse.reusebaleCodeFordealsCreationForRTZForAdmin();
-		
 
 		Actions actions = new Actions(driver);
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut2).perform();
 		signOut2.click();
-		
+
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
 		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		
 		WebElement dealButton = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton.click();
-		
 
 		WebElement allDeal = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 		allDeal.click();
-		
-		  WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
-	         try {
-	        	    // Try to locate the element
-	        	
-	           WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
-	               
-	                   "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​R​t​Z​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
-	                   
-	               )
-	           ));
-	        	    // If the element is found, fail the test
-	        	    System.out.println("Element found: Test passed.");
-	        	    
-	        	} catch (TimeoutException e) {
-	        	    // If the element is not found, pass the test
-	        	    System.out.println("Element not found: Test failed.");
-	        	    Assert.fail("Element with description was not found, failing the test.");
-	        	} catch (Exception e) {
-	        	    // Catch any other unexpected exceptions
-	        	    System.out.println("An unexpected error occurred: " + e.getMessage());
-	        	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
-	        	}
-		
-		
-	 	
-		
-		
-		
-		
-		
-		
-		
-		
+
+		WebDriverWait wait2 = new WebDriverWait(driver1, Duration.ofSeconds(15));
+		try {
+			// Try to locate the element
+
+			WebElement webView = wait1.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​R​t​Z​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
+
+			)));
+			// If the element is found, fail the test
+			System.out.println("Element found: Test passed.");
+
+		} catch (TimeoutException e) {
+			// If the element is not found, pass the test
+			System.out.println("Element not found: Test failed.");
+			Assert.fail("Element with description was not found, failing the test.");
+		} catch (Exception e) {
+			// Catch any other unexpected exceptions
+			System.out.println("An unexpected error occurred: " + e.getMessage());
+			Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+		}
+
 		reuse.loginAsAdmin();
-		
-	
+
 		WebElement assetsButtonOnDashboard1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard1.click();
@@ -457,11 +366,6 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement dealsButton1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton1.click();
-		
-		
-		
-	
-	
 
 		boolean dealFound = false;
 
@@ -533,7 +437,7 @@ public class DealAdminMobileIntegration extends Basetest {
 			System.out.println("Deal successfully approved: " + createdDealName);
 		}
 		Thread.sleep(2000);
-		
+
 		WebElement cancleButton = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(cancleButton).click().perform();
@@ -551,8 +455,6 @@ public class DealAdminMobileIntegration extends Basetest {
 		WebElement YesToCancle = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
 		YesToCancle.click();
-		
-		
 
 		MobileUtils mobileUtils1 = new MobileUtils();
 		AndroidDriver driver11 = mobileUtils1.initializeMobileDriver();
@@ -560,58 +462,36 @@ public class DealAdminMobileIntegration extends Basetest {
 		FluentWait<AndroidDriver> wait21 = new FluentWait<>(driver11).withTimeout(Duration.ofSeconds(20))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		
 		WebElement dealButton1 = wait21.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton1.click();
-		
 
 		WebElement allDeal1 = wait21.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
 		allDeal1.click();
-		
-		  WebDriverWait wait3 = new WebDriverWait(driver11, Duration.ofSeconds(15));
-	         try {
-	        	    // Try to locate the element
-	        	
-	           WebElement webView = wait3.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
-	               
-	                   "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​R​t​Z​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
-	                   
-	               )
-	           ));
-	        	    // If the element is found, fail the test
-	        	    System.out.println("Element found: Test failed.");
-	        	    Assert.fail("Element with description was found, failing the test.");
-	        	} catch (TimeoutException e) {
-	        	    // If the element is not found, pass the test
-	        	    System.out.println("Element not found: Test passed.");
-	        	  
-	        	} catch (Exception e) {
-	        	    // Catch any other unexpected exceptions
-	        	    System.out.println("An unexpected error occurred: " + e.getMessage());
-	        	    Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
-	        	}
-		
-		
-	 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+		WebDriverWait wait3 = new WebDriverWait(driver11, Duration.ofSeconds(15));
+		try {
+			// Try to locate the element
+
+			WebElement webView = wait3.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator(
+
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().description(\"​D​e​a​l​C​r​e​a​t​e​d​B​y​A​d​m​i​n​A​n​d​C​h​e​c​k​R​t​Z​F​u​n​c​t​i​o​n​a​l​i​t​y​\").instance(0))"
+
+			)));
+			// If the element is found, fail the test
+			System.out.println("Element found: Test failed.");
+			Assert.fail("Element with description was found, failing the test.");
+		} catch (TimeoutException e) {
+			// If the element is not found, pass the test
+			System.out.println("Element not found: Test passed.");
+
+		} catch (Exception e) {
+			// Catch any other unexpected exceptions
+			System.out.println("An unexpected error occurred: " + e.getMessage());
+			Assert.fail("Test failed due to an unexpected error: " + e.getMessage());
+		}
+
 	}
 
 }

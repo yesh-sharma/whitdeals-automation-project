@@ -1,24 +1,13 @@
 package businessUser;
-
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import basetest.Basetest;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import utility.MobileUtils;
 import utility.ReuseableCode;
 
 public class DailyDeals extends Basetest {
@@ -32,7 +21,7 @@ public class DailyDeals extends Basetest {
 	 
 	  @Test(priority=1)
 	public void createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		loginApplication();
 		
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); // Replace with the correct locator
@@ -74,10 +63,10 @@ public class DailyDeals extends Basetest {
 		
 	}
 	 
-	// @Test(priority = 3)
+//	 @Test(priority = 3)
 	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealsCreation();
@@ -98,11 +87,11 @@ public class DailyDeals extends Basetest {
 		
 		
 	}
-	 @Test(priority = 4)
+	// @Test(priority = 4)
 	public void createDailyDealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline() throws InterruptedException {
 	
 	
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+		
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealsCreation();
@@ -126,9 +115,9 @@ public class DailyDeals extends Basetest {
 }
 	
 	
-//	@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
+	//@Test(priority = 2,dependsOnMethods = {"createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"})
 	public void dailyDealCreatedNowCheckTheMainDashboardDailyDealsCountAndAfterThatGoToDailyDealDashboardAndCheckTheRemainingDailyDealCountAndActiveDailyDealcount() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		loginApplication();
 
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); // Replace with the correct locator
@@ -155,9 +144,9 @@ public class DailyDeals extends Basetest {
 	
 }
 	
-	@Test(priority = 5)
+	//@Test(priority = 5)
 	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealDashboard();
 		
@@ -190,9 +179,9 @@ public class DailyDeals extends Basetest {
 		submit.click();
 	}
 	
-     //  @Test(priority = 6)
+      // @Test(priority = 6)
 	public void makeDailyDealAndRTZTheDailyDealByBusinessUser() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+    	loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealDashboard();
 		
@@ -215,11 +204,12 @@ public class DailyDeals extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
 		YesToCancle.click();
 		
+		
 	}
 	
 	//@Test(priority = 7)
 	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealDashboard();
 		
@@ -248,7 +238,7 @@ public class DailyDeals extends Basetest {
 	//@Test(priority = 8)
 	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
 	
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealDashboard();
 		

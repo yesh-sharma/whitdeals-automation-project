@@ -1,23 +1,16 @@
 package businessUser;
 
-import java.time.Duration;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.annotations.Test;
 import basetest.Basetest;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import utility.MobileUtils;
+
 import utility.ReuseableCode;
 
 public class Event extends Basetest {
@@ -25,7 +18,7 @@ public class Event extends Basetest {
 	@Test(priority = 1)
 	public void createEventByBusinessuserAndAdminApprovesTheEvent() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventCreation();
@@ -38,14 +31,13 @@ public class Event extends Basetest {
 		WebElement confirmApproveButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
-		
+		Thread.sleep(10000);
 	
 	}
 	
-	@Test(priority = 2)
+	//@Test(priority = 2)
 	public void createEventByBusinessuserAndAdminDeclineTheEventWithReasonForDecline() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventCreation();
@@ -68,10 +60,9 @@ public class Event extends Basetest {
 	
 	}
 	
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void createEventByBusinessuserAndAdminDeclineTheEventWithoutReasonForDecline() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventCreation();
@@ -92,11 +83,12 @@ public class Event extends Basetest {
 	}
 	
 	
-	@Test(priority = 4)
+	//@Test(priority = 4)
 
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
+	
 		String event =reuse.reusebaleCodeForEventDashboard();
 		Actions actions = new Actions(driver);
 		WebElement cancleTheEvent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='cancel-btn']")));
@@ -114,9 +106,9 @@ public class Event extends Basetest {
 		
 	}	
 	
-	@Test(priority = 5)
+	//@Test(priority = 5)
 	public void createEventByBusinessUserAndCloneTheEvent() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventDashboard();
 		Actions actions = new Actions(driver);

@@ -24,18 +24,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.github.javafaker.Faker;
 
 import basetest.Basetest;
+import basetest.LoginData;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
 public class ReuseableCodeForAdminModule extends Basetest {
 
+	WebDriver driver;
+	WebDriverWait wait;
+
 	public ReuseableCodeForAdminModule(WebDriver driver) {
 		this.driver = driver;
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 	}
 
 	public void loginAsAdmin() {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		driver.get("https://staging.whitdeals.com.au/login");
 		WebElement useremail = wait.until(ExpectedConditions.elementToBeClickable(By.id("user_name")));
 
@@ -52,14 +56,12 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	public String reusebaleCodeFordealsCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
-
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
 		dealButton.click();
 
 		// Faker faker = new Faker();
@@ -125,58 +127,51 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
 
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		Actions action = new Actions(driver);
 
 		// Locate the date input element
 		WebElement dateInput = driver.findElement(By.id("validFrom"));
+		action.moveToElement(dateInput).perform();
+		dateInput.click();
+		LocalDate today = LocalDate.now();
+		String day = String.valueOf(today.getDayOfMonth());
 
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
-       Actions action = new Actions(driver);
-
-		WebElement calenderIcon = driver.findElement(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']"));
-
-		// Send the current date to the input field
-		action.moveToElement(calenderIcon).click().perform();
-
-		
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		// Select the current date
+		WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+		todayDate.click();
 
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		
-		expiryDateInput.clear();
-		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-         Thread.sleep(2000);
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
-		Thread.sleep(1000);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		Actions actions = new Actions(driver);
+		action.moveToElement(expiryDateInput).perform();
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(1);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
+
+		Thread.sleep(2000);
+//		WebElement body = driver.findElement(By.tagName("body"));
+//		body.click();
+//		Thread.sleep(1000);
+//		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
-		actions.moveToElement(showTimerCheckbox).perform();
+		action.moveToElement(showTimerCheckbox).perform();
 		showTimerCheckbox.click();
 
 		WebElement Checkbox = driver.findElement(By.id("declaration"));
-		actions.moveToElement(Checkbox).perform();
+		action.moveToElement(Checkbox).perform();
 		Checkbox.click();
 
 		WebElement submitButton = driver.findElement(By.id("upload"));
-		actions.moveToElement(submitButton).perform();
+		action.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
-		actions.moveToElement(okButton).perform();
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
+		action.moveToElement(okButton).perform();
 		okButton.click();
-		
 
 		return dealName;
 
@@ -261,8 +256,6 @@ public class ReuseableCodeForAdminModule extends Basetest {
 	}
 
 	public String reusebaleCodeFordealsCreationForRTZ() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
@@ -395,14 +388,12 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	public String reusebaleCodeForDailyDealsCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 
 		// Combine username with the readable timestamp
@@ -468,19 +459,18 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -493,8 +483,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		Thread.sleep(10000);
@@ -582,14 +571,12 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	public String reusebaleCodeForDailyDealsCreationForRTZ() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 		// Combine username with the readable timestamp
 
@@ -664,19 +651,18 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -689,8 +675,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		Thread.sleep(10000);
@@ -700,13 +685,12 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	public String reusebaleCodeForEventCreation() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement eventButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Event']")));
+		WebElement eventButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Event']")));
 		eventButton.click();
 
 //		Faker faker = new Faker();
@@ -748,7 +732,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 			eventSubCategory.sendKeys(subCategory);
 			actions.sendKeys(Keys.ENTER).perform();
 		}
-		
+
 		WebElement eventDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("description")));
 		eventDescription.sendKeys("Get ready to embark on a culinary adventure like noet Dining Experience! Indulge ");
 
@@ -781,36 +765,31 @@ public class ReuseableCodeForAdminModule extends Basetest {
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Add schedule']")));
 		actions.moveToElement(addScheduled).click().perform();
 
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		LocalDate startDate = today.plusDays(1);
-		String formattedDate = startDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the date input element
-		WebElement dateInput = driver.findElement(By.id("validFrom"));
-		actions.moveToElement(dateInput).perform();
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
+				WebElement dateInput = driver.findElement(By.id("validFrom"));
+				actions.moveToElement(dateInput).perform();
+				// Send the current date to the input field
+			     dateInput.click();
+			     
+			     LocalDate today = LocalDate.now();
+			        String day = String.valueOf(today.getDayOfMonth());
 
-		WebElement calenderIcon = driver
-				.findElement(By.xpath("//div[@class='form-group ']//div[@class='col-6']//img[@alt='calendar-svg']"));
-		actions.moveToElement(calenderIcon).click().perform();
+			        // Select the current date
+			        WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+			        todayDate.click();
+			     
+			     
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(2);
+				// Locate the expiry date input field
+				WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+				actions.moveToElement(expiryDateInput).perform();
+				expiryDateInput.click();
+				LocalDate futureDate = LocalDate.now().plusDays(3);
+		        String day2 = String.valueOf(futureDate.getDayOfMonth());
 
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-		// Locate the expiry date input field
-		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		actions.moveToElement(expiryDateInput).perform();
-
-		expiryDateInput.sendKeys(newFormattedDate);
-		WebElement calenderIcon2 = driver
-				.findElement(By.xpath("//div[@class='form-group ']//div[@class=' col-6']//img[@alt='calendar-svg']"));
-		actions.moveToElement(calenderIcon2).click().perform();
-		Thread.sleep(2000);
+		        // Select the future date
+		        WebElement futureDateElement = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		        futureDateElement.click();
 		WebElement save = driver.findElement(By.xpath("//button[@id='notificationCreateBtn']"));
 		actions.moveToElement(save).click().perform();
 		// Send the formatted date to the input field
@@ -861,8 +840,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		actions.moveToElement(submit).perform();
 		submit.click();
 
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 
@@ -872,7 +850,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	public void reusebaleCodeForEventdashboard() throws InterruptedException {
 		String eventNameWithTimestamp = "EventCreatedByAdmin";
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
@@ -957,7 +935,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 	}
 
 	public void reusebaleCodeForLoyaltyCardCreation() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		String LCNameWithTimestamp = "LoyaltyCardbyAdmin";
 		Actions actions = new Actions(driver);
 		// Step 4: Fill out the loyalty card form
@@ -965,8 +943,8 @@ public class ReuseableCodeForAdminModule extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement eventButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Loyalty Card']")));
+		WebElement eventButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Loyalty Card']")));
 		eventButton.click();
 
 		WebElement LCTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lc_title")));
@@ -1036,25 +1014,23 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 		WebElement startDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_date")));
 		actions.moveToElement(startDate).perform();
-		
+
 		LocalDate today = LocalDate.now();
 		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 		startDate.sendKeys(formattedDate);
 		startDate.click();
-		
-		
+
 		WebElement body = driver.findElement(By.tagName("body"));
 		body.click();
-		
-		
-		WebElement calenderIcon = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//div[@class='row gy-3']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+
+		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//div[@class='row gy-3']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
 		actions.moveToElement(calenderIcon).perform();
 		calenderIcon.click();
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		
+
 		Thread.sleep(3000);
-		
+
 		WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
 		LocalDate currentDate = LocalDate.now();
 		LocalDate expiryDate = currentDate.plusDays(1);
@@ -1063,10 +1039,9 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
 		endDate.sendKeys(newFormattedDate);
-	
 
-		WebElement calenderIcon1 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//div[@class='col-9 col-md-4']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+		WebElement calenderIcon1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+				"//div[@class='col-9 col-md-4']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
 		actions.moveToElement(calenderIcon1).perform();
 		calenderIcon1.click();
 		WebElement body1 = driver.findElement(By.tagName("body"));
@@ -1081,22 +1056,15 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("upload")));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		
 
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
-		
-
-		
 
 	}
-	
-	
+
 	public void reuseableCodeForSpin2WinDashBoard() throws InterruptedException {
-	
+
 		String createdDealName = "Spin2WinCreatedByAdmin";
 		Actions actions = new Actions(driver);
 		// Deal title to search for
@@ -1172,18 +1140,15 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 
 	}
-	
-	
-	public String reusebaleCodeFordealsCreationByAdminToCheckPauseFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	public String reusebaleCodeFordealsCreationByAdminToCheckPauseFunctionality() throws InterruptedException {
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
 		dealButton.click();
 
 		// Faker faker = new Faker();
@@ -1248,44 +1213,34 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		// Use the Select class to handle the <select> element
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
-
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
+		Actions actions = new Actions(driver);
 		// Locate the date input element
 		WebElement dateInput = driver.findElement(By.id("validFrom"));
+		actions.moveToElement(dateInput).perform();
+		dateInput.click();
+		LocalDate today = LocalDate.now();
+		String day = String.valueOf(today.getDayOfMonth());
 
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
-       Actions action = new Actions(driver);
-
-		WebElement calenderIcon = driver.findElement(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']"));
-
-		// Send the current date to the input field
-		action.moveToElement(calenderIcon).click().perform();
-
-		
-		
-		
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		// Select the current date
+		WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+		todayDate.click();
 
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		
-		expiryDateInput.clear();
-		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-         Thread.sleep(2000);
+		actions.moveToElement(expiryDateInput).perform();
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(1);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
+		Thread.sleep(2000);
 		WebElement body = driver.findElement(By.tagName("body"));
 		body.click();
 		Thread.sleep(1000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		Actions actions = new Actions(driver);
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -1298,32 +1253,22 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
-		
 
-	return dealName;
+		return dealName;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	public String reusebaleCodeFordealsCreationByAdminToCheckCancleFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	public String reusebaleCodeFordealsCreationByAdminToCheckCancleFunctionality() throws InterruptedException {
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
 		dealButton.click();
 
 		// Faker faker = new Faker();
@@ -1389,43 +1334,36 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
 
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		Actions actions = new Actions(driver);
 
 		// Locate the date input element
 		WebElement dateInput = driver.findElement(By.id("validFrom"));
+		actions.moveToElement(dateInput).perform();
+		dateInput.click();
+		LocalDate today = LocalDate.now();
+		String day = String.valueOf(today.getDayOfMonth());
 
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
-       Actions action = new Actions(driver);
-
-		WebElement calenderIcon = driver.findElement(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']"));
-
-		// Send the current date to the input field
-		action.moveToElement(calenderIcon).click().perform();
-
-		
-		
-		
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		// Select the current date
+		WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+		todayDate.click();
 
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		
-		expiryDateInput.clear();
-		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-         Thread.sleep(2000);
+		actions.moveToElement(expiryDateInput).perform();
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(1);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
+
+		Thread.sleep(2000);
 		WebElement body = driver.findElement(By.tagName("body"));
 		body.click();
 		Thread.sleep(1000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		Actions actions = new Actions(driver);
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -1438,16 +1376,14 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 
-	return dealName;
+		return dealName;
 
 	}
-	
-	
+
 	public void reuseableCodeForDealDashBoardForCancleFunctionality() throws InterruptedException {
 
 		String createdDealName = "DealCreatedByAdminAndCheckCancleFunctionality";
@@ -1525,21 +1461,15 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 
 	}
-	
-	
-	
+
 	public String reusebaleCodeFordealsCreationForRTZForAdmin() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
-
-	
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
 		dealButton.click();
 
 		// Faker faker = new Faker();
@@ -1605,43 +1535,30 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
 
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		Actions actions = new Actions(driver);
 
 		// Locate the date input element
-		WebElement dateInput = driver.findElement(By.id("validFrom"));
+				WebElement dateInput = driver.findElement(By.id("validFrom"));
+				actions.moveToElement(dateInput).perform();
+				dateInput.click();
+				LocalDate today = LocalDate.now();
+				String day = String.valueOf(today.getDayOfMonth());
 
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
-       Actions action = new Actions(driver);
+				// Select the current date
+				WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+				todayDate.click();
 
-		WebElement calenderIcon = driver.findElement(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']"));
+				// Locate the expiry date input field
+				WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+				actions.moveToElement(expiryDateInput).perform();
+				expiryDateInput.click();
 
-		// Send the current date to the input field
-		action.moveToElement(calenderIcon).click().perform();
+				LocalDate tomorrow = LocalDate.now().plusDays(1);
+				String day2 = String.valueOf(tomorrow.getDayOfMonth());
 
-		
-		
-		
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-		// Locate the expiry date input field
-		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		
-		expiryDateInput.clear();
-		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-         Thread.sleep(2000);
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
-		Thread.sleep(1000);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		Actions actions = new Actions(driver);
+				// Select tomorrow's date
+				WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+				tomorrowDate.click();
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -1654,26 +1571,22 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-	
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 
-	return dealName;
+		return dealName;
 	}
 
-	
 	public String reusebaleCodeForDailyDealsCreationForMobileIntegration() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 
 		// Combine username with the readable timestamp
@@ -1739,18 +1652,19 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
+
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
@@ -1764,29 +1678,25 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
-		
+
 		Thread.sleep(10000);
 		return dealName;
 
 	}
-	
-	
-	
-	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckPauseFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckPauseFunctionality()
+			throws InterruptedException {
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 
 		// Combine username with the readable timestamp
@@ -1852,19 +1762,18 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -1877,15 +1786,14 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		Thread.sleep(10000);
 		return dealName;
 
 	}
-	
+
 	public void reusebaleCodeForDailyDealsDashboardForPauseFunctionality() throws InterruptedException {
 
 		String createdDealName = "DailyDealCreatedByAdminAndCheckPauseFunctionality";
@@ -1964,17 +1872,15 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	}
 
-	
-	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckCancleFunctionality() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckCancleFunctionality()
+			throws InterruptedException {
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 
 		// Combine username with the readable timestamp
@@ -2040,19 +1946,18 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -2065,19 +1970,15 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		Thread.sleep(10000);
 		return dealName;
 
 	}
-	
-	
-	
-	
+
 	public void reusebaleCodeForDailyDealsDashboardForCancleFunctionality() throws InterruptedException {
 
 		String createdDealName = "DailyDealCreatedByAdminAndCheckCancleFunctionality";
@@ -2155,18 +2056,16 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 
 	}
-	
-	
-	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckRTZFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckRTZFunctionality()
+			throws InterruptedException {
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 
 		// Combine username with the readable timestamp
@@ -2230,21 +2129,18 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement body = driver.findElement(By.tagName("body"));
 		body.click();
 		Thread.sleep(2000);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		expiryDateInput.click();
+
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		String day2 = String.valueOf(tomorrow.getDayOfMonth());
+
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+		tomorrowDate.click();
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -2257,32 +2153,24 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
-		
-		
+
 		Thread.sleep(10000);
 		return dealName;
 
 	}
-	
-	
-	
-	
 
 	public String reusebaleCodeFordealsCreationByAdminToCheckcashierFunctionality() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Deal']")));
 		dealButton.click();
 
 		// Faker faker = new Faker();
@@ -2347,44 +2235,37 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		// Use the Select class to handle the <select> element
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
+		Actions actions = new Actions(driver);
+		// started date
+				WebElement dateInput = driver.findElement(By.id("validFrom"));
+				actions.moveToElement(dateInput).perform();
+				dateInput.click();
+				LocalDate today = LocalDate.now();
+				String day = String.valueOf(today.getDayOfMonth());
 
-		// Get today's date in the format yyyy-MM-dd
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+				WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+				todayDate.click();
 
-		// Locate the date input element
-		WebElement dateInput = driver.findElement(By.id("validFrom"));
 
-		// Send the current date to the input field
-		dateInput.sendKeys(formattedDate);
-       Actions action = new Actions(driver);
+				// Expiry date
+				WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+				actions.moveToElement(expiryDateInput).perform();
+				// Send the formatted date to the input field
+				expiryDateInput.click();
 
-		WebElement calenderIcon = driver.findElement(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']"));
+				LocalDate tomorrow = LocalDate.now().plusDays(1);
+				String nextDay = String.valueOf(tomorrow.getDayOfMonth());
 
-		// Send the current date to the input field
-		action.moveToElement(calenderIcon).click().perform();
-
+				// Select tomorrow's date
+				WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + nextDay + "']"));
+				tomorrowDate.click();
 		
-		
-		
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
-
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-		// Locate the expiry date input field
-		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		
-		expiryDateInput.clear();
-		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-         Thread.sleep(2000);
+		Thread.sleep(2000);
 		WebElement body = driver.findElement(By.tagName("body"));
 		body.click();
 		Thread.sleep(1000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		Actions actions = new Actions(driver);
+	
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -2397,27 +2278,19 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
-		
 
-	
-		
-		
-		
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
 		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		
 		WebElement dealButton1 = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Deals\")")));
 		dealButton1.click();
-		
 
 		WebElement allDeal = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Deals\")")));
@@ -2429,84 +2302,59 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement goToWallet = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Go To Wallet\")")));
 		goToWallet.click();
-		
-		WebElement RedeemButton = wait1.until(ExpectedConditions.elementToBeClickable(
-				AppiumBy.androidUIAutomator("new UiSelector().description(\"Redeem\")")));
+
+		WebElement RedeemButton = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Redeem\")")));
 		RedeemButton.click();
-		
-		WebElement okButtonMobile = wait1.until(ExpectedConditions.elementToBeClickable(
-				AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
+
+		WebElement okButtonMobile = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
 		okButtonMobile.click();
-		
 
 		WebElement viewCode = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"View Code\")")));
 		viewCode.click();
-		
 
-		WebElement Code = wait1.until(ExpectedConditions
-				.elementToBeClickable(AppiumBy.xpath("//android.view.View[@index=\"10\"]")));
-		
+		WebElement Code = wait1
+				.until(ExpectedConditions.elementToBeClickable(AppiumBy.xpath("//android.view.View[@index=\"10\"]")));
+
 		Thread.sleep(3000);
-	
+
 		@SuppressWarnings("deprecation")
 		String contentDesc = Code.getAttribute("content-desc");
 		System.out.println("Dynamic Content-Desc: " + contentDesc);
 
-		
 		Thread.sleep(3000);
 		driver1.quit();
-		
-		
+
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
-	
-		loginApplicationAsCashier() ;
-		
-		WebElement codeInput = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.id("dealCode")));
+
+		LoginData logindata = new LoginData(driver, wait);
+		logindata.loginApplicationAsCashier();
+
+		WebElement codeInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealCode")));
 		codeInput.sendKeys(contentDesc);
-		
-		
-		
-		
-		WebElement validate= wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.id("validate")));
+
+		WebElement validate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate")));
 		validate.click();
-		
-		
-		WebElement done= wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Done']")));
+
+		WebElement done = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Done']")));
 		done.click();
-		
-		
+
 		Thread.sleep(4000);
-		
-		
+
 		WebElement signOut1 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut1).perform();
 		signOut1.click();
-		loginApplicationAsAdmin();
-		
-		
-		
-		
-		
-		
-		
-		
+		logindata.loginApplicationAsAdmin();
 
-	return dealName;
+		return dealName;
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	public void reuseableCodeForDealDashBoardForCashierFunctionality() throws InterruptedException {
 
 		String createdDealName = "DealCreatedByAdminAndCheckcashierFunctionality";
@@ -2584,23 +2432,16 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckCashierFunctionality() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+	public String reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckCashierFunctionality()
+			throws InterruptedException {
 
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement dealButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
+		WebElement dealButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deal']")));
 		dealButton.click();
 
 		// Combine username with the readable timestamp
@@ -2666,20 +2507,21 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(3);
 
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
 		// Locate the expiry date input field
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
-		expiryDateInput.sendKeys(newFormattedDate);
-		body.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		expiryDateInput.click();
+		LocalDate futureDate = LocalDate.now().plusDays(3);
+		String day = String.valueOf(futureDate.getDayOfMonth());
 
+		// Select the future date
+		WebElement futureDateElement = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+		futureDateElement.click();
+
+		Thread.sleep(5000);
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
 		showTimerCheckbox.click();
@@ -2691,9 +2533,8 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 		Thread.sleep(10000);
@@ -2701,116 +2542,87 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement signOut = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut).perform();
 		signOut.click();
-		
-		
+
 		MobileUtils mobileUtils = new MobileUtils();
 		AndroidDriver driver1 = mobileUtils.initializeMobileDriver();
 
 		FluentWait<AndroidDriver> wait1 = new FluentWait<>(driver1).withTimeout(Duration.ofSeconds(20))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(Exception.class);
 
-		WebElement dailyDealButton = wait1.until(ExpectedConditions
-				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)")));
+		WebElement dailyDealButton = wait1.until(ExpectedConditions.elementToBeClickable(
+				AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)")));
 		dailyDealButton.click();
-		
 
-		WebElement allDeal = wait1.until(ExpectedConditions
-				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"All Daily Deals\")")));
+		WebElement allDeal = wait1.until(ExpectedConditions.elementToBeClickable(
+				AppiumBy.androidUIAutomator("new UiSelector().description(\"All Daily Deals\")")));
 		allDeal.click();
-		
-		
-		
-		
+
 		WebElement claimButton = wait1.until(ExpectedConditions.elementToBeClickable(
 				AppiumBy.androidUIAutomator("new UiSelector().description(\"Claim\").instance(0)")));
 		claimButton.click();
 		WebElement goToWallet = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Go To Wallet\")")));
 		goToWallet.click();
-		
-		WebElement RedeemButton = wait1.until(ExpectedConditions.elementToBeClickable(
-				AppiumBy.androidUIAutomator("new UiSelector().description(\"Redeem\")")));
+
+		WebElement RedeemButton = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Redeem\")")));
 		RedeemButton.click();
-		
-		WebElement okButtonMobile = wait1.until(ExpectedConditions.elementToBeClickable(
-				AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
+
+		WebElement okButtonMobile = wait1.until(ExpectedConditions
+				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"Ok\")")));
 		okButtonMobile.click();
-		
 
 		WebElement viewCode = wait1.until(ExpectedConditions
 				.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().description(\"View Code\")")));
 		viewCode.click();
-		
 
-		WebElement Code = wait1.until(ExpectedConditions
-				.elementToBeClickable(AppiumBy.xpath("//android.view.View[@index=\"10\"]")));
-		
+		WebElement Code = wait1
+				.until(ExpectedConditions.elementToBeClickable(AppiumBy.xpath("//android.view.View[@index=\"10\"]")));
+
 		Thread.sleep(3000);
-	
+
 		@SuppressWarnings("deprecation")
 		String contentDesc = Code.getAttribute("content-desc");
 		System.out.println("Dynamic Content-Desc: " + contentDesc);
 
-		
 		Thread.sleep(3000);
 		driver1.quit();
-		
-	
-		loginApplicationAsCashier() ;
-		
-		WebElement codeInput = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.id("dealCode")));
+
+		LoginData logindata = new LoginData(driver, wait);
+		logindata.loginApplicationAsCashier();
+
+		WebElement codeInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealCode")));
 		codeInput.sendKeys(contentDesc);
-		
-		
-		
-		
-		WebElement validate= wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.id("validate")));
+
+		WebElement validate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate")));
 		validate.click();
-		
-		
-		WebElement done= wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Done']")));
+
+		WebElement done = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Done']")));
 		done.click();
-		
-		
+
 		Thread.sleep(4000);
-		
-		
+
 		WebElement signOut2 = driver.findElement(By.xpath("//span[normalize-space()='Sign Out']"));
 		actions.moveToElement(signOut2).perform();
 		signOut2.click();
-		
-		loginApplicationAsAdmin();
-		
-		
 
-	Thread.sleep(5000);
-	
-	
+		logindata.loginApplicationAsAdmin();
 
-	WebElement assests = wait
-			.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
-	assests.click();
-	
-	
+		Thread.sleep(5000);
+
+		WebElement assests = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
+		assests.click();
 
 		WebElement dealDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
 		dealDashboard.click();
 
-		
-	      return dealName;
+		return dealName;
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	public void reusebaleCodeForDailyDealsDashboardForcashierFunctionality() throws InterruptedException {
 
 		String createdDealName = "DailyDealCreatedByAdminAndCheckCashierValidationFunctionality";
@@ -2888,7 +2700,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		Thread.sleep(2000);
 
 	}
-	
+
 	public void reuseableCodeForDealDashBoardAdmin() throws InterruptedException {
 
 		String createdDealName = "DealCreatedByAdmin";
@@ -2967,21 +2779,4 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 	}
 
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

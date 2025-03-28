@@ -1,38 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+<testng-results ignored="0" total="6" passed="5" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-06T15:16:37 IST" name="Default suite" finished-at="2025-03-06T15:18:48 IST" duration-ms="130807">
+  <suite started-at="2025-03-26T11:14:29 IST" name="Default suite" finished-at="2025-03-26T11:18:20 IST" duration-ms="231330">
     <groups>
     </groups>
-    <test started-at="2025-03-06T15:16:37 IST" name="Default test" finished-at="2025-03-06T15:18:48 IST" duration-ms="130807">
-      <class name="email.MobileEmailAutomation">
-        <test-method signature="BusinessInfoPack()[pri:0, instance:email.MobileEmailAutomation@f0da945]" started-at="2025-03-06T15:16:37 IST" name="BusinessInfoPack" finished-at="2025-03-06T15:17:21 IST" duration-ms="43932" status="PASS">
+    <test started-at="2025-03-26T11:14:29 IST" name="Default test" finished-at="2025-03-26T11:18:20 IST" duration-ms="231330">
+      <class name="admin.DailyDealsAdmin">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:14:29 IST" name="setUp" finished-at="2025-03-26T11:14:30 IST" duration-ms="1568" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- BusinessInfoPack -->
-        <test-method signature="contactUs()[pri:0, instance:email.MobileEmailAutomation@f0da945]" started-at="2025-03-06T15:17:21 IST" name="contactUs" finished-at="2025-03-06T15:18:01 IST" duration-ms="39657" status="PASS">
+        </test-method> <!-- setUp -->
+        <test-method signature="createDailyDealByAdminForbusinessUser()[pri:1, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:14:30 IST" name="createDailyDealByAdminForbusinessUser" finished-at="2025-03-26T11:15:11 IST" duration-ms="40625" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- contactUs -->
-        <test-method signature="reportAProblem()[pri:0, instance:email.MobileEmailAutomation@f0da945]" started-at="2025-03-06T15:18:01 IST" name="reportAProblem" finished-at="2025-03-06T15:18:48 IST" duration-ms="47183" status="FAIL">
+        </test-method> <!-- createDailyDealByAdminForbusinessUser -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:15:11 IST" name="tearDown" finished-at="2025-03-26T11:15:11 IST" duration-ms="118" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:15:11 IST" name="setUp" finished-at="2025-03-26T11:15:12 IST" duration-ms="1228" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal()[pri:2, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:15:12 IST" name="searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal" finished-at="2025-03-26T11:15:30 IST" duration-ms="17735" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:15:30 IST" name="tearDown" finished-at="2025-03-26T11:15:30 IST" duration-ms="101" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:15:30 IST" name="setUp" finished-at="2025-03-26T11:15:31 IST" duration-ms="1173" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal()[pri:3, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:15:31 IST" name="searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal" finished-at="2025-03-26T11:16:11 IST" duration-ms="40186" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:11 IST" name="tearDown" finished-at="2025-03-26T11:16:11 IST" duration-ms="110" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:11 IST" name="setUp" finished-at="2025-03-26T11:16:13 IST" duration-ms="1184" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal()[pri:4, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:13 IST" name="searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal" finished-at="2025-03-26T11:16:29 IST" duration-ms="16469" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:29 IST" name="tearDown" finished-at="2025-03-26T11:16:29 IST" duration-ms="97" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:29 IST" name="setUp" finished-at="2025-03-26T11:16:30 IST" duration-ms="1121" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="searchDealcreatedByAdminForBusinessUserAndCancleThatDeal()[pri:5, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:30 IST" name="searchDealcreatedByAdminForBusinessUserAndCancleThatDeal" finished-at="2025-03-26T11:16:54 IST" duration-ms="23496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchDealcreatedByAdminForBusinessUserAndCancleThatDeal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:54 IST" name="tearDown" finished-at="2025-03-26T11:16:54 IST" duration-ms="95" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:54 IST" name="setUp" finished-at="2025-03-26T11:16:55 IST" duration-ms="1194" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal()[pri:6, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:16:55 IST" name="searchDealcreatedByAdminForBusinessUserAndRTZThatDeal" finished-at="2025-03-26T11:18:20 IST" duration-ms="84682" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().description("Menu
-Tab 5 of 5") (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.29.0', revision: '5fc1ec94cb'
-System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.3.1', java.version: '17.0.11'
-Driver info: driver.version: unknown]]>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //button[.='Ok'] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: '4.30.0', revision: '509c7f17cc*'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.3.2', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 134.0.6998.118, chrome: {chromedriverVersion: 134.0.6998.165 (fd886e2cb29..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51329}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:51329/devtoo..., se:cdpVersion: 134.0.6998.118, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3616ea871c25118e31895409a9aaa4c5]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().description("Menu
-Tab 5 of 5") (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.29.0', revision: '5fc1ec94cb'
-System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.3.1', java.version: '17.0.11'
-Driver info: driver.version: unknown
-at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:265)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[.='Ok'] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: '4.30.0', revision: '509c7f17cc*'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.3.2', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 134.0.6998.118, chrome: {chromedriverVersion: 134.0.6998.165 (fd886e2cb29..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51329}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:51329/devtoo..., se:cdpVersion: 134.0.6998.118, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3616ea871c25118e31895409a9aaa4c5
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at email.MobileEmailAutomation.reportAProblem(MobileEmailAutomation.java:127)
+at utility.ReuseableCodeForAdminModule.reusebaleCodeForDailyDealsCreationForRTZ(ReuseableCodeForAdminModule.java:682)
+at admin.DailyDealsAdmin.searchDealcreatedByAdminForBusinessUserAndRTZThatDeal(DailyDealsAdmin.java:204)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -66,8 +125,12 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reportAProblem -->
-      </class> <!-- email.MobileEmailAutomation -->
+        </test-method> <!-- searchDealcreatedByAdminForBusinessUserAndRTZThatDeal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:admin.DailyDealsAdmin@47e2e487]" started-at="2025-03-26T11:18:20 IST" name="tearDown" finished-at="2025-03-26T11:18:20 IST" duration-ms="129" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- admin.DailyDealsAdmin -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

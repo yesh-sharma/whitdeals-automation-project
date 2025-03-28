@@ -1,7 +1,7 @@
 package admin;
 
 import java.io.File;
-import java.time.Duration;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -12,28 +12,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
 import utility.ReuseableCodeForAdminModule;
 
 public class SpinToWin extends Basetest {
-	
-	
-	@Test(priority=1)
+
+	@Test(priority = 1)
 	public void createSpin2WinByAdminForbusinessUser() throws InterruptedException {
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
-		
+
 		WebElement createButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnGroupDrop1")));
 		createButtonOnDashboard.click();
 
-		WebElement spin2WinButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Spin 2 Win']")));
+		WebElement spin2WinButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Spin 2 Win']")));
 		spin2WinButton.click();
 
 		String dealName = "Spin2WinCreatedByAdmin";
@@ -50,7 +48,6 @@ public class SpinToWin extends Basetest {
 		// Use the Select class to handle the <select> element
 		Select select = new Select(redemptionMethod);
 		select.selectByIndex(1);
-
 
 		WebElement dealDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealinfo")));
 		dealDescription.sendKeys(
@@ -77,81 +74,73 @@ public class SpinToWin extends Basetest {
 		cropImage.click();
 
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		
 
 		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_id")));
 		// Use the Select class to handle the <select> element
 		Select select2 = new Select(address);
 		select2.selectByIndex(2);
-		
+
 		Actions actions = new Actions(driver);
 		// Get today's date in the format yyyy-MM-dd
-				LocalDate today = LocalDate.now();
-				String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		LocalDate today = LocalDate.now();
+		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-				// Locate the date input element
-				WebElement dateInput = driver.findElement(By.id("validFrom"));
+		// Locate the date input element
+		WebElement dateInput = driver.findElement(By.id("validFrom"));
 
-				// Send the current date to the input field
-				
-				actions.moveToElement(dateInput).perform();
-				dateInput.sendKeys(formattedDate);
-				
-				
-				WebElement svgImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']")));
-				svgImage.click();
-				
-				js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		// Send the current date to the input field
 
-				LocalDate currentDate = LocalDate.now();
-				LocalDate expiryDate = currentDate.plusDays(1);
+		actions.moveToElement(dateInput).perform();
+		dateInput.sendKeys(formattedDate);
 
-				// Format the date in the required format (yyyy-MM-dd)
-				String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		WebElement svgImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+				"//div[@class='row g-3 mt-40 row-gap-3']//div[@class='col-xs-12 col-lg-5 mt-0']//img[@alt='calendar-svg']")));
+		svgImage.click();
 
-				// Locate the expiry date input field
-				WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-				
-				actions.moveToElement(expiryDateInput).perform();
-				// Send the formatted date to the input field
-				expiryDateInput.sendKeys(newFormattedDate);
-		
-		
+		LocalDate currentDate = LocalDate.now();
+		LocalDate expiryDate = currentDate.plusDays(1);
 
-				WebElement body = driver.findElement(By.tagName("body"));
-				body.click();
-				Thread.sleep(1000);
-				js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-			
+		// Format the date in the required format (yyyy-MM-dd)
+		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-				WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
-				actions.moveToElement(showTimerCheckbox).perform();
-				showTimerCheckbox.click();
+		// Locate the expiry date input field
+		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 
-				WebElement Checkbox = driver.findElement(By.id("declaration"));
-				actions.moveToElement(Checkbox).perform();
-				Checkbox.click();
+		actions.moveToElement(expiryDateInput).perform();
+		// Send the formatted date to the input field
+		expiryDateInput.sendKeys(newFormattedDate);
 
-				WebElement submitButton = driver.findElement(By.id("upload"));
-				actions.moveToElement(submitButton).perform();
-				submitButton.click();
-				
-				WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.xpath("//button[.='Ok']")));
-				actions.moveToElement(okButton).perform();
-				okButton.click();
-				Thread.sleep(10000);
-}
-	
-	   //  @Test(priority=2)
+		WebElement body = driver.findElement(By.tagName("body"));
+		body.click();
+		Thread.sleep(1000);
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
+		actions.moveToElement(showTimerCheckbox).perform();
+		showTimerCheckbox.click();
+
+		WebElement Checkbox = driver.findElement(By.id("declaration"));
+		actions.moveToElement(Checkbox).perform();
+		Checkbox.click();
+
+		WebElement submitButton = driver.findElement(By.id("upload"));
+		actions.moveToElement(submitButton).perform();
+		submitButton.click();
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+		Thread.sleep(10000);
+	}
+
+	// @Test(priority=2)
 	public void searchSpin2WinCreatedByAdminForBusinessUserAndCloneThatExistingSpin2Win() throws InterruptedException {
-		
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
-		
+
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
@@ -159,151 +148,131 @@ public class SpinToWin extends Basetest {
 		WebElement spin2WinButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
 		spin2WinButton.click();
-		
+
 		reuse.reuseableCodeForSpin2WinDashBoard();
-		 Actions actions = new Actions(driver);
-		 WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Deal'][normalize-space()='Clone']")));
-			actions.moveToElement(pauseButton).click().perform();
-
-			WebElement yesButton = wait
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Yes']")));
-			yesButton.click();
-		
-	
-	}
-	
-	
-	//@Test(priority=3)
-	
-	public void searchSpin2WinCreatedByAdminForBusinessUserAndPauseThatExistingSpin2Win() throws InterruptedException {
-		
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
-		reuse.loginAsAdmin();
-		
-		WebElement assetsButtonOnDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
-		assetsButtonOnDashboard.click();
-
-		WebElement spin2WinButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
-		spin2WinButton.click();
-		
-		reuse.reuseableCodeForSpin2WinDashBoard();
-		
-		 Actions actions = new Actions(driver);
-			
-		    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//ul[@class='dropdown-menu show']//a[@id='pauseIcon']")));
-			actions.moveToElement(pauseButton).click().perform();
-		
-			Thread.sleep(1000);
-
-			WebElement yesButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yesPauseDeal")));
-			actions.moveToElement(yesButton).click().perform();
-			LocalDate today = LocalDate.now();
-			String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-			WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
-			pauseDate.sendKeys(formattedDate);
-
-			// Get the current local time in 24-hour format
-			LocalTime currentTime = LocalTime.now();
-
-			// Add 4 hours and 35 minutes to the current time
-			LocalTime newTime = currentTime.plusHours(4).plusMinutes(31);
-
-			// Format the new time in HH:mm (24-hour format)
-			String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-	//
-			//WebElement pauseTime = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
-			//pauseTime.clear();
-			//pauseTime.sendKeys(formattedTime);
-			WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
-			confirm.click();
-		
-			
-	
-	}
-	
-	
-	//@Test(priority=4)
-	public void searchSpin2WinCreatedByAdminForBusinessUserAndEditThatExistingSpin2Win() throws InterruptedException {
-		
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
-		reuse.loginAsAdmin();
-		
-		WebElement assetsButtonOnDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
-		assetsButtonOnDashboard.click();
-
-		WebElement spin2WinButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
-		spin2WinButton.click();
-		
-		reuse.reuseableCodeForSpin2WinDashBoard();
-		
-		
-		 Actions actions = new Actions(driver);
-			
-		    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//ul[@class='dropdown-menu show']//a[@title='Edit Deal'][normalize-space()='Edit']")));
-			actions.moveToElement(pauseButton).click().perform();
-		
-			WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealinfo")));
-			// Use the Select class to handle the <select> element
-		    dealRestriction.sendKeys("test");
-		
-			WebElement Checkbox = driver.findElement(By.id("declaration"));
-			actions.moveToElement(Checkbox).perform();
-			Checkbox.click();
-
-			WebElement submitButton = driver.findElement(By.id("upload"));
-			actions.moveToElement(submitButton).perform();
-			submitButton.click();
-			
-			WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//button[.='Ok']")));
-			actions.moveToElement(okButton).perform();
-			okButton.click();
-			
-			
-			
-			Thread.sleep(10000);
-		
-		
-		
-	
-	}
-	
-	
-	
-	//@Test(priority=5)
-	public void searchSpin2WinCreatedByAdminForBusinessUserAndCancelThatExistingSpin2Win() throws InterruptedException {
-		
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
-		reuse.loginAsAdmin();
-		
-		WebElement assetsButtonOnDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
-		assetsButtonOnDashboard.click();
-
-		WebElement spin2WinButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
-		spin2WinButton.click();
-		
-		reuse.reuseableCodeForSpin2WinDashBoard();
-		
-		
 		Actions actions = new Actions(driver);
-		
-	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
+		WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Deal'][normalize-space()='Clone']")));
+		actions.moveToElement(pauseButton).click().perform();
+
+		WebElement yesButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Yes']")));
+		yesButton.click();
+
+	}
+
+	// @Test(priority=3)
+
+	public void searchSpin2WinCreatedByAdminForBusinessUserAndPauseThatExistingSpin2Win() throws InterruptedException {
+
+		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
+		reuse.loginAsAdmin();
+
+		WebElement assetsButtonOnDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
+		assetsButtonOnDashboard.click();
+
+		WebElement spin2WinButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
+		spin2WinButton.click();
+
+		reuse.reuseableCodeForSpin2WinDashBoard();
+
+		Actions actions = new Actions(driver);
+
+		WebElement pauseButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='pauseIcon']")));
+		actions.moveToElement(pauseButton).click().perform();
+
+		Thread.sleep(1000);
+
+		WebElement yesButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yesPauseDeal")));
+		actions.moveToElement(yesButton).click().perform();
+		LocalDate today = LocalDate.now();
+		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
+		pauseDate.sendKeys(formattedDate);
+
+		// Get the current local time in 24-hour format
+		LocalTime currentTime = LocalTime.now();
+
+		// Add 4 hours and 35 minutes to the current time
+		LocalTime newTime = currentTime.plusHours(4).plusMinutes(31);
+
+		// Format the new time in HH:mm (24-hour format)
+		String formattedTime = newTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+		//
+		// WebElement pauseTime =
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseTime")));
+		// pauseTime.clear();
+		// pauseTime.sendKeys(formattedTime);
+		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
+		confirm.click();
+
+	}
+
+	// @Test(priority=4)
+	public void searchSpin2WinCreatedByAdminForBusinessUserAndEditThatExistingSpin2Win() throws InterruptedException {
+
+		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
+		reuse.loginAsAdmin();
+
+		WebElement assetsButtonOnDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
+		assetsButtonOnDashboard.click();
+
+		WebElement spin2WinButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
+		spin2WinButton.click();
+
+		reuse.reuseableCodeForSpin2WinDashBoard();
+
+		Actions actions = new Actions(driver);
+
+		WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Edit Deal'][normalize-space()='Edit']")));
+		actions.moveToElement(pauseButton).click().perform();
+
+		WebElement dealRestriction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealinfo")));
+		// Use the Select class to handle the <select> element
+		dealRestriction.sendKeys("test");
+
+		WebElement Checkbox = driver.findElement(By.id("declaration"));
+		actions.moveToElement(Checkbox).perform();
+		Checkbox.click();
+
+		WebElement submitButton = driver.findElement(By.id("upload"));
+		actions.moveToElement(submitButton).perform();
+		submitButton.click();
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
+		actions.moveToElement(okButton).perform();
+		okButton.click();
+
+		Thread.sleep(10000);
+
+	}
+
+	// @Test(priority=5)
+	public void searchSpin2WinCreatedByAdminForBusinessUserAndCancelThatExistingSpin2Win() throws InterruptedException {
+
+		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
+		reuse.loginAsAdmin();
+
+		WebElement assetsButtonOnDashboard = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
+		assetsButtonOnDashboard.click();
+
+		WebElement spin2WinButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Spin 2 Win']")));
+		spin2WinButton.click();
+
+		reuse.reuseableCodeForSpin2WinDashBoard();
+
+		Actions actions = new Actions(driver);
+
+		WebElement pauseButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(pauseButton).click().perform();
 		Thread.sleep(1000);
 
@@ -326,20 +295,7 @@ public class SpinToWin extends Basetest {
 		WebElement submit = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
-	
-	
-		
-	
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

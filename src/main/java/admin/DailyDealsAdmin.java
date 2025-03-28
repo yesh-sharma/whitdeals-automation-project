@@ -1,8 +1,8 @@
 package admin;
 
-import java.time.Duration;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -12,23 +12,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
 import utility.ReuseableCodeForAdminModule;
 
 public class DailyDealsAdmin extends Basetest {
-	
-	
-	@Test(priority=1)
-	
-	
+
+	@Test(priority = 1)
+
 	public void createDailyDealByAdminForbusinessUser() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 
@@ -51,11 +48,11 @@ public class DailyDealsAdmin extends Basetest {
 		Assert.assertEquals(activeDealCountAfterCreation, activeDealCount + 1, "Active count did not increase by 1!");
 
 	}
-	@Test(priority=2)
-	
+
+	@Test(priority = 2)
+
 	public void searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
@@ -78,13 +75,10 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-          @Test(priority=4)
-	
-	
-	
+	@Test(priority = 4)
+
 	public void searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
@@ -110,19 +104,18 @@ public class DailyDealsAdmin extends Basetest {
 		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
 		pauseDate.sendKeys(formattedDate);
 
-		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
+		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
 		calenderIcon.click();
 		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
 		confirm.click();
 
-	
 	}
 
-	@Test(priority=3)
-	
+	@Test(priority = 3)
+
 	public void searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
@@ -148,26 +141,20 @@ public class DailyDealsAdmin extends Basetest {
 		actions.moveToElement(Checkbox).perform();
 		Checkbox.click();
 
-
 		WebElement submitButton = driver.findElement(By.id("upload"));
 		actions.moveToElement(submitButton).perform();
 		submitButton.click();
-		
-		
-		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//button[.='Ok']")));
+
+		WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[.='Ok']")));
 		actions.moveToElement(okButton).perform();
 		okButton.click();
-		
 
 	}
-	
-	
-	@Test(priority=5)
-	
+
+	@Test(priority = 5)
+
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
 		WebElement assetsButtonOnDashboard = wait
@@ -180,9 +167,8 @@ public class DailyDealsAdmin extends Basetest {
 		reuse.reusebaleCodeForDailyDealsDashboard();
 		Actions actions = new Actions(driver);
 
-
-	    WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
+		WebElement pauseButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
 		actions.moveToElement(pauseButton).click().perform();
 		Thread.sleep(1000);
 
@@ -205,116 +191,109 @@ public class DailyDealsAdmin extends Basetest {
 		WebElement submit = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
 		submit.click();
-	
-			
 
 	}
-	@Test(priority=6)
-	
-	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
-		
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+	@Test(priority = 6)
+
+	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
+
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.loginAsAdmin();
-		
-		
-		
-		String createdDealName= reuse.reusebaleCodeForDailyDealsCreationForRTZ();
-		
 
-	    Actions actions = new Actions(driver);
-	
-			boolean dealFound = false;
+		String createdDealName = reuse.reusebaleCodeForDailyDealsCreationForRTZ();
 
-			// Loop through pagination
-			while (true) {
-				// Locate the table rows
-				List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
+		Actions actions = new Actions(driver);
 
-				// Print the count of rows
-				System.out.println("Number of deals found: " + rows.size());
+		boolean dealFound = false;
 
-				// Print all rows on the current page
-				for (WebElement row : rows) {
-					System.out.println("Row text: " + row.getText());
-				}
+		// Loop through pagination
+		while (true) {
+			// Locate the table rows
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='deals']//tr"));
 
-				// Iterate through the rows to find the desired deal
-				for (WebElement row : rows) {
-					String rowText = row.getText();
-					System.out.println("Checking row: " + rowText);
+			// Print the count of rows
+			System.out.println("Number of deals found: " + rows.size());
 
-					// Check if the row contains the desired deal title
-					if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
-						System.out.println("Match found for deal title: " + createdDealName);
+			// Print all rows on the current page
+			for (WebElement row : rows) {
+				System.out.println("Row text: " + row.getText());
+			}
 
-						try {
-							// Locate the checkbox and click it
-							WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
-							actions.moveToElement(checkbox).click().perform();
+			// Iterate through the rows to find the desired deal
+			for (WebElement row : rows) {
+				String rowText = row.getText();
+				System.out.println("Checking row: " + rowText);
 
-							System.out.println("Checkbox clicked for deal: " + createdDealName);
-							dealFound = true;
-						} catch (Exception e) {
-							System.out.println("Error clicking the checkbox: " + e.getMessage());
-						}
+				// Check if the row contains the desired deal title
+				if (rowText.toLowerCase().contains(createdDealName.toLowerCase())) {
+					System.out.println("Match found for deal title: " + createdDealName);
 
-						// Exit both the row and pagination loops
-						break;
+					try {
+						// Locate the checkbox and click it
+						WebElement checkbox = row.findElement(By.xpath(".//button[@type='button']"));
+						actions.moveToElement(checkbox).click().perform();
+
+						System.out.println("Checkbox clicked for deal: " + createdDealName);
+						dealFound = true;
+					} catch (Exception e) {
+						System.out.println("Error clicking the checkbox: " + e.getMessage());
 					}
-				}
 
-				// If deal is found, stop further searching
-				if (dealFound) {
-					System.out.println("Deal found and approved. Stopping further search.");
-					break;
-				}
-
-				// Handle pagination if deal is not found
-				try {
-					WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
-					if (nextButton.isEnabled()) {
-						System.out.println("Navigating to the next page...");
-						actions.moveToElement(nextButton).click().perform();
-						Thread.sleep(2000); // Allow time for the next page to load
-					} else {
-						System.out.println("No more pages to search.");
-						break;
-					}
-				} catch (NoSuchElementException e) {
-					System.out.println("Pagination 'Next' button not found. Ending search.");
+					// Exit both the row and pagination loops
 					break;
 				}
 			}
 
-			// Final result
-			if (!dealFound) {
-				System.out.println("Deal not found: " + createdDealName);
-			} else {
-				System.out.println("Deal successfully approved: " + createdDealName);
+			// If deal is found, stop further searching
+			if (dealFound) {
+				System.out.println("Deal found and approved. Stopping further search.");
+				break;
 			}
-			Thread.sleep(2000);
 
-			WebElement cancleButton = wait.until(ExpectedConditions
-					.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
-			actions.moveToElement(cancleButton).click().perform();
+			// Handle pagination if deal is not found
+			try {
+				WebElement nextButton = driver.findElement(By.xpath("//button[@class='dt-paging-button next']"));
+				if (nextButton.isEnabled()) {
+					System.out.println("Navigating to the next page...");
+					actions.moveToElement(nextButton).click().perform();
+					Thread.sleep(2000); // Allow time for the next page to load
+				} else {
+					System.out.println("No more pages to search.");
+					break;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Pagination 'Next' button not found. Ending search.");
+				break;
+			}
+		}
 
-			Thread.sleep(1000);
+		// Final result
+		if (!dealFound) {
+			System.out.println("Deal not found: " + createdDealName);
+		} else {
+			System.out.println("Deal successfully approved: " + createdDealName);
+		}
+		Thread.sleep(2000);
 
-			WebElement confirmation = wait
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='showAction()']")));
-			actions.moveToElement(confirmation).click().perform();
+		WebElement cancleButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
+		actions.moveToElement(cancleButton).click().perform();
 
-			Thread.sleep(1000);
-			WebElement cancleTheDeal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rtz-btn")));
-			cancleTheDeal.click();
-			Thread.sleep(1000);
-			WebElement YesToCancle = wait
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
-			YesToCancle.click();
-		
+		Thread.sleep(1000);
+
+		WebElement confirmation = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='showAction()']")));
+		actions.moveToElement(confirmation).click().perform();
+
+		Thread.sleep(1000);
+		WebElement cancleTheDeal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rtz-btn")));
+		cancleTheDeal.click();
+		Thread.sleep(1000);
+		WebElement YesToCancle = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
+		YesToCancle.click();
 
 	}
-	
+
 }

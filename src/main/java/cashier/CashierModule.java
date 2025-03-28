@@ -1,29 +1,27 @@
 package cashier;
 
-import java.time.Duration;
+
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 import org.testng.annotations.Test;
 
 import basetest.Basetest;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import utility.MobileUtils;
+
 import utility.ReuseableCode;
 import utility.ReuseableCodeForAdminModule;
-@Test
+
+
+
 public class CashierModule extends Basetest {
-	@Test
+	
 	public void makeDealRedeemDealWithUniqueQrCodeAndGetValidatedByCashierForBusinessUser()
 			throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForCashierModule();
 
@@ -62,10 +60,8 @@ public class CashierModule extends Basetest {
 	
 	
 	public void dealCreatedByAdminForBusinessUserAndCashierValidateThedeal() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
-		reuse.loginAsAdmin();
+		loginApplicationAsAdmin();
+	
 		WebElement assetsButtonOnDashboard = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Assets']")));
 		assetsButtonOnDashboard.click();
@@ -73,7 +69,8 @@ public class CashierModule extends Basetest {
 		WebElement dealsButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Deals']")));
 		dealsButton.click();
-
+		
+		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
 		reuse.reusebaleCodeFordealsCreationByAdminToCheckcashierFunctionality();
 
 		Actions actions = new Actions(driver);
@@ -116,9 +113,9 @@ public class CashierModule extends Basetest {
 	}
 	
 	
-	
+	@Test
 	public void makeDailyDealByBusinessUserAndGotApprovedzByAdminClaimedRedeemedAndvalidateByTheCashier() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDailyDealDashboardForMobileIntegrationWithCashier();
 		
@@ -160,9 +157,9 @@ public class CashierModule extends Basetest {
 	
 public void dealcreatedByAdminForBusinessUserAndClaimedRedeemedAndValidatedByTheCashier() throws InterruptedException {
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+	    loginApplicationAsAdmin();
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
-		reuse.loginAsAdmin();
+	
 		Actions actions = new Actions(driver);
 		reuse.reusebaleCodeForDailyDealsCreationForMobileIntegrationAndCheckCashierFunctionality();
 

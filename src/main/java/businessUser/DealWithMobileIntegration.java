@@ -25,7 +25,7 @@ import io.appium.java_client.android.AndroidDriver;
 import utility.MobileUtils;
 import utility.ReuseableCode;
 
-
+@Test
 public class DealWithMobileIntegration extends Basetest {
 
 	static int initialRemainingDealCountOnDashboard;
@@ -36,7 +36,7 @@ public class DealWithMobileIntegration extends Basetest {
 
 	@Test
 	public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+
 		loginApplication();
 		// get the deal count
 		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[1]"));
@@ -164,7 +164,7 @@ public class DealWithMobileIntegration extends Basetest {
    
 
 	public void makeDealAndCancleTheDealByBusinessUserAndVerifyByMobileUser() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+	
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String createdDealName = reuse.reusebaleCodeForDealDashBoardWithMobileToCheckCancleFunctionality();
 
@@ -245,7 +245,7 @@ public class DealWithMobileIntegration extends Basetest {
 	// @Test(priority = 6)
 	public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileUserRedeemedTheClaimedDealAndThenSearchThatDeal() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+		
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForDealDashBoardWithMobileToCheckRTZFunctionality();
 		Actions actions = new Actions(driver);
@@ -370,7 +370,7 @@ public class DealWithMobileIntegration extends Basetest {
 	
 public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileUserRemovedTheClaimedDeal() throws InterruptedException {
 
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+
 	ReuseableCode reuse = new ReuseableCode(driver);
 	reuse.reusebaleCodeForDealDashBoardWithMobileToCheckRTZFunctionality();
 	Actions actions = new Actions(driver);
@@ -490,7 +490,7 @@ public void makeDealAndMobileUserClaimTheDealAndBuisnessUserRTZTheDealAndMobileU
 	
 	public void makeDealAndPauseTheDealAndVerifybyMobileUserDealIsPaused() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+		
 		ReuseableCode reuse = new ReuseableCode(driver);
 		String DealName =reuse.reusebaleCodeForDealDashboard();
 		System.out.println("yash123"+DealName);
