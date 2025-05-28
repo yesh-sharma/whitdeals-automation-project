@@ -40,6 +40,7 @@ public class Basetest {
             options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36");
             options.addArguments("--disable-blink-features=AutomationControlled");
+          
 
             Map<String, Object> prefs = new HashMap<>();
             prefs.put("profile.managed_default_content_settings.images", 2);
@@ -117,13 +118,13 @@ public class Basetest {
 }
     
     
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    } 
-    
+//    @AfterMethod
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    } 
+//    
     
     
     

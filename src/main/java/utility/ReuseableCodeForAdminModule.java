@@ -84,7 +84,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement businessName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("business_id")));
 		// Use the Select class to handle the <select> element
 		Select selectBusinessUser = new Select(businessName);
-		selectBusinessUser.selectByIndex(4);
+		selectBusinessUser.selectByIndex(2);
 
 		WebElement redemptionMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dealType")));
 		// Use the Select class to handle the <select> element
@@ -405,7 +405,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement businessName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("business_id")));
 		// Use the Select class to handle the <select> element
 		Select selectBusinessUser = new Select(businessName);
-		selectBusinessUser.selectByIndex(4);
+		selectBusinessUser.selectByIndex(2);
 
 		WebElement redemptionMethod = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("validate_method")));
@@ -711,7 +711,7 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		WebElement businessName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("business_id")));
 		// Use the Select class to handle the <select> element
 		Select selectBusinessUser = new Select(businessName);
-		selectBusinessUser.selectByIndex(5);
+		selectBusinessUser.selectByIndex(1);
 
 		WebElement eventMainCategory = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("select2-main_category-container")));
@@ -844,8 +844,10 @@ public class ReuseableCodeForAdminModule extends Basetest {
 		actions.moveToElement(okButton).perform();
 		okButton.click();
 
+		Thread.sleep(10000);
 		return eventNameWithTimestamp;
-
+		
+		
 	}
 
 	public void reusebaleCodeForEventdashboard() throws InterruptedException {
@@ -1014,32 +1016,27 @@ public class ReuseableCodeForAdminModule extends Basetest {
 
 		WebElement startDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_date")));
 		actions.moveToElement(startDate).perform();
-
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-		startDate.sendKeys(formattedDate);
 		startDate.click();
+		LocalDate today = LocalDate.now();
+		String day = String.valueOf(today.getDayOfMonth());
 
-		WebElement body = driver.findElement(By.tagName("body"));
-		body.click();
+		WebElement todayDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+		todayDate.click();
 
-		WebElement calenderIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//div[@class='row gy-3']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
-		actions.moveToElement(calenderIcon).perform();
-		calenderIcon.click();
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-
-		Thread.sleep(3000);
+		Thread.sleep(2000);
+	
 
 		WebElement endDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish_date")));
-		LocalDate currentDate = LocalDate.now();
-		LocalDate expiryDate = currentDate.plusDays(1);
+		actions.moveToElement(endDate).perform();
+		// Send the formatted date to the input field
+		endDate.click();
 
-		// Format the date in the required format (yyyy-MM-dd)
-		String newFormattedDate = expiryDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		LocalDate tomorrow = LocalDate.now().plusDays(1);
+		String nextDay = String.valueOf(tomorrow.getDayOfMonth());
 
-		endDate.sendKeys(newFormattedDate);
-
+		// Select tomorrow's date
+		WebElement tomorrowDate = driver.findElement(By.xpath("//td[@class='day' and text()='" + nextDay + "']"));
+		tomorrowDate.click();
 		WebElement calenderIcon1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
 				"//div[@class='col-9 col-md-4']//div[@class='input-group date mt-2']//img[@alt='calendar-svg']")));
 		actions.moveToElement(calenderIcon1).perform();

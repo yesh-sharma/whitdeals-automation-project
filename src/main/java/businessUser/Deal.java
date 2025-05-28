@@ -25,15 +25,18 @@ public class Deal extends Basetest {
 	static int initialRemainingDealCountOnDealsDashboard;
 	static int initialActiveDealCountOnDealsDashboard;
 
-	// @Test(priority = 1)
-@Test
-	public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
+	
+	@Test(priority = 1)
+    public void createdealBybusinessUserAndAdminApprovesTheDeal() throws InterruptedException {
 
 		loginApplication();
 		// get the deal count
-		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[1]"));
+		
+		WebElement remainingDealCountElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='display-5'])[1]")));
+
 		initialRemainingDealCountOnDashboard = Integer.parseInt(remainingDealCountElement.getText());
 		System.out.println("Initial Deal Count on dashboard: " + initialRemainingDealCountOnDashboard);
+
 
 		// GET TOTAL CLAIM TEXT
 		WebElement TotalClaimedCountBox = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [1]"));
@@ -70,7 +73,7 @@ public class Deal extends Basetest {
 	}
 
 	// @Test(priority = 4)
-	public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
+	   public void createdealBybusinessUserAndAdminDeclineThedealWithReasonForDecline() throws InterruptedException {
 
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -111,8 +114,8 @@ public class Deal extends Basetest {
 
 	}
 
-//	 @Test(priority = 2, dependsOnMethods = {
-//	 "createdealBybusinessUserAndAdminApprovesTheDeal" })
+	// @Test(priority = 2, dependsOnMethods = {
+	// "createdealBybusinessUserAndAdminApprovesTheDeal" })
 	public void dealCreatedNowCheckTheMainDashboardDealsCountAndAfterThatGoToDealDashboardAndCheckTheRemainingDealCountAndActiveDealcount()
 			throws InterruptedException {
 

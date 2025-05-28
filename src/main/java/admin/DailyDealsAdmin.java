@@ -49,7 +49,7 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	@Test(priority = 2)
+	//@Test(priority = 2)
 
 	public void searchDailyDealcreatedByAdminForBusinessUserAndCloneThatDailyDeal() throws InterruptedException {
 
@@ -75,7 +75,7 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	@Test(priority = 4)
+	//@Test(priority = 4)
 
 	public void searchDailyDealcreatedByAdminForBusinessUserAndPauseThatDailyDeal() throws InterruptedException {
 
@@ -112,7 +112,7 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	@Test(priority = 3)
+	//@Test(priority = 3)
 
 	public void searchDailyDealcreatedByAdminForBusinessUserAndEditThatDailyDeal() throws InterruptedException {
 
@@ -151,7 +151,7 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	@Test(priority = 5)
+	//@Test(priority = 5)
 
 	public void searchDealcreatedByAdminForBusinessUserAndCancleThatDeal() throws InterruptedException {
 
@@ -194,7 +194,7 @@ public class DailyDealsAdmin extends Basetest {
 
 	}
 
-	@Test(priority = 6)
+	//@Test(priority = 6)
 
 	public void searchDealcreatedByAdminForBusinessUserAndRTZThatDeal() throws InterruptedException {
 

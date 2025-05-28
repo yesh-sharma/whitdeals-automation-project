@@ -1,6 +1,5 @@
 package businessUser;
 
-
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebElement;
@@ -15,9 +14,8 @@ import utility.ReuseableCode;
 
 public class Event extends Basetest {
 
-	@Test(priority = 1)
+	 @Test(priority = 1)
 	public void createEventByBusinessuserAndAdminApprovesTheEvent() throws InterruptedException {
-
 
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
@@ -32,100 +30,83 @@ public class Event extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
 		confirmApproveButton.click();
 		Thread.sleep(10000);
-	
+     
 	}
-	
-	//@Test(priority = 2)
+
+     // @Test(priority = 2)
 	public void createEventByBusinessuserAndAdminDeclineTheEventWithReasonForDecline() throws InterruptedException {
 
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventCreation();
-	
-		WebElement declineButton  = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
-		declineButton.click();  
-             
-	       
-			WebElement declineMessage  = wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.id("decline_comment")));
-			declineMessage.sendKeys("declining because of testing");
-	             
 
-             Thread.sleep(2000);
-		WebElement confirmDeclineButton  = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
-		confirmDeclineButton.click();  
-             
-	
+		WebElement declineButton = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
+		declineButton.click();
+
+		WebElement declineMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("decline_comment")));
+		declineMessage.sendKeys("declining because of testing");
+
+		Thread.sleep(2000);
+		WebElement confirmDeclineButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
+		confirmDeclineButton.click();
+
 	}
-	
-	//@Test(priority = 3)
+
+	// @Test(priority = 3)
 	public void createEventByBusinessuserAndAdminDeclineTheEventWithoutReasonForDecline() throws InterruptedException {
 
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventCreation();
-	
-		WebElement approveButton  = wait.until(
+
+		WebElement approveButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
-		approveButton.click();  
-	         
-			WebElement declineMessage  = wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.id("no_comment")));
-			declineMessage.click();
-			
-	         Thread.sleep(2000);
-		WebElement confirmApproveButton  = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
-		confirmApproveButton.click();  
-	
+		approveButton.click();
+
+		WebElement declineMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("no_comment")));
+		declineMessage.click();
+
+		Thread.sleep(2000);
+		WebElement confirmApproveButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
+		confirmApproveButton.click();
+
 	}
-	
-	
-	//@Test(priority = 4)
+	 
+
+//	@Test(priority = 4)
 
 	public void createEventByBusinessUserAfterThatCancled() throws InterruptedException {
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
-	
-		String event =reuse.reusebaleCodeForEventDashboard();
+
+		String event = reuse.reusebaleCodeForEventDashboard();
 		Actions actions = new Actions(driver);
-		WebElement cancleTheEvent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='cancel-btn']")));
+		WebElement cancleTheEvent = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='cancel-btn']")));
 		actions.moveToElement(cancleTheEvent).click().perform();
-	
+
 		Thread.sleep(1000);
-		
+
 		WebElement YesToCancle = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Yes']")));
-		YesToCancle.click();	
-		
-			
-		
+		YesToCancle.click();
 
-		
-	}	
-	
-	//@Test(priority = 5)
+	}
+
+	// @Test(priority = 5)
 	public void createEventByBusinessUserAndCloneTheEvent() throws InterruptedException {
 		loginApplication();
 		ReuseableCode reuse = new ReuseableCode(driver);
 		reuse.reusebaleCodeForEventDashboard();
 		Actions actions = new Actions(driver);
-		WebElement cloneTheEvent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Event'][normalize-space()='Clone']")));
+		WebElement cloneTheEvent = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Event'][normalize-space()='Clone']")));
 		actions.moveToElement(cloneTheEvent).click().perform();
-	    Thread.sleep(1000);
-		
+		Thread.sleep(1000);
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

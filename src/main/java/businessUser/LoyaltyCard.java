@@ -1,24 +1,18 @@
 package businessUser;
-
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
 import basetest.Basetest;
 import utility.ReuseableCode;
+
 
 public class LoyaltyCard extends Basetest {
 
@@ -51,7 +45,7 @@ public class LoyaltyCard extends Basetest {
 
 	}
 
-	//@Test(priority = 3)
+//	@Test(priority = 3)
 	public void createLoyaltyCardByBusinessuserButAtLeastOneLoyaltyCardShouldBePresentAndAdminDeclineWithOutMessageTheLoyaltyCard()
 			throws InterruptedException {
 

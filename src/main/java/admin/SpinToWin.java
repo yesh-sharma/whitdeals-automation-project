@@ -31,7 +31,7 @@ public class SpinToWin extends Basetest {
 		createButtonOnDashboard.click();
 
 		WebElement spin2WinButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Spin 2 Win']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Prize']")));
 		spin2WinButton.click();
 
 		String dealName = "Spin2WinCreatedByAdmin";

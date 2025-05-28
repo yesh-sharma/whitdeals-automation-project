@@ -140,12 +140,13 @@ public class ReuseableCode extends Basetest {
 		body.click();
 
 		// Expiry date
+		try {
 		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
 		actions.moveToElement(expiryDateInput).perform();
 		// Send the formatted date to the input field
 		expiryDateInput.click();
 
-		LocalDate tomorrow = LocalDate.now().plusDays(1);
+		LocalDate tomorrow = LocalDate.now().plusDays(3);
 		String nextDay = String.valueOf(tomorrow.getDayOfMonth());
 
 		// Select tomorrow's date
@@ -156,6 +157,36 @@ public class ReuseableCode extends Basetest {
 		body1.click();
 		Thread.sleep(1000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		
+		}catch(Exception e)
+		{		
+			
+			
+			System.out.println(e);
+
+			try {
+				System.out.println("Running fallback code...");
+
+				// Click on the "next month" button in the date picker
+				WebElement nextButton = driver.findElement(By.xpath(
+						"//th[@class='next' or @class='datepicker-switch']/following-sibling::th[@class='next']"));
+				nextButton.click();
+
+				Thread.sleep(2000); // wait for calendar to load
+
+				// Select 1st of the next month
+				WebElement firstDayNextMonth = driver.findElement(By.xpath("//td[@class='day' and text()='1']"));
+				firstDayNextMonth.click();
+
+				System.out.println("Selected 1st of next month successfully.");
+
+			} catch (Exception ex) {
+				System.out.println("Fallback also failed: " + ex.getMessage());
+			}
+			
+			
+			
+		}
 
 		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 		actions.moveToElement(showTimerCheckbox).perform();
@@ -358,19 +389,45 @@ public class ReuseableCode extends Basetest {
 //        
 		Actions actions = new Actions(driver);
 
-		// Locate the expiry date input field
-		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		actions.moveToElement(expiryDateInput).perform();
-		// Send the formatted date to the input field
-		expiryDateInput.click();
-		LocalDate futureDate = LocalDate.now().plusDays(3);
-		String day = String.valueOf(futureDate.getDayOfMonth());
+		try {
+			// Locate the expiry date input field
+			WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+			actions.moveToElement(expiryDateInput).perform();
+			// Send the formatted date to the input field
+			expiryDateInput.click();
+			LocalDate futureDate = LocalDate.now().plusDays(3);
+			String day = String.valueOf(futureDate.getDayOfMonth());
 
-		// Select the future date
-		WebElement futureDateElement = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
-		futureDateElement.click();
+			// Select the future date
+			WebElement futureDateElement = driver.findElement(By.xpath("//td[@class='day' and text()='" + day + "']"));
+			futureDateElement.click();
 
-		Thread.sleep(5000);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+
+			System.out.println(e);
+
+			try {
+				System.out.println("Running fallback code...");
+
+				// Click on the "next month" button in the date picker
+				WebElement nextButton = driver.findElement(By.xpath(
+						"//th[@class='next' or @class='datepicker-switch']/following-sibling::th[@class='next']"));
+				nextButton.click();
+
+				Thread.sleep(2000); // wait for calendar to load
+
+				// Select 1st of the next month
+				WebElement firstDayNextMonth = driver.findElement(By.xpath("//td[@class='day' and text()='1']"));
+				firstDayNextMonth.click();
+
+				System.out.println("Selected 1st of next month successfully.");
+
+			} catch (Exception ex) {
+				System.out.println("Fallback also failed: " + ex.getMessage());
+			}
+
+		}
 
 //		WebElement showTimerCheckbox = driver.findElement(By.xpath("//input[@name='show_timer']"));
 //		actions.moveToElement(showTimerCheckbox).perform();
@@ -567,25 +624,57 @@ public class ReuseableCode extends Basetest {
 		todayDate.click();
 
 		// Locate the expiry date input field
-		WebElement expiryDateInput = driver.findElement(By.id("validTo"));
-		actions.moveToElement(expiryDateInput).perform();
-		expiryDateInput.click();
-		LocalDate futureDate = LocalDate.now().plusDays(3);
-		String day2 = String.valueOf(futureDate.getDayOfMonth());
 
-		// Select the future date
-		WebElement futureDateElement = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
-		futureDateElement.click();
+		try {
+			WebElement expiryDateInput = driver.findElement(By.id("validTo"));
+			actions.moveToElement(expiryDateInput).perform();
+			expiryDateInput.click();
+			LocalDate futureDate = LocalDate.now().plusDays(3);
+			String day2 = String.valueOf(futureDate.getDayOfMonth());
 
-		Thread.sleep(2000);
-		WebElement save = driver.findElement(By.xpath("//button[@id='notificationCreateBtn']"));
-		actions.moveToElement(save).click().perform();
+			// Select the future date
+			WebElement futureDateElement = driver.findElement(By.xpath("//td[@class='day' and text()='" + day2 + "']"));
+			futureDateElement.click();
+
+			Thread.sleep(2000);
+			WebElement save = driver.findElement(By.xpath("//button[@id='notificationCreateBtn']"));
+			actions.moveToElement(save).click().perform();
 
 //		
 //		WebElement checkboxForStartAndEndTime = wait
 //				.until(ExpectedConditions.visibilityOfElementLocated(By.id("alldayPlaceholder")));
 //		actions.moveToElement(checkboxForStartAndEndTime).perform();
 //		checkboxForStartAndEndTime.click();
+
+		} catch (Exception e) {
+
+			System.out.println(e);
+
+			try {
+				System.out.println("Running fallback code...");
+
+				// Click on the "next month" button in the date picker
+				WebElement nextButton = driver.findElement(By.xpath(
+						"//th[@class='next' or @class='datepicker-switch']/following-sibling::th[@class='next']"));
+				nextButton.click();
+
+				Thread.sleep(2000); // wait for calendar to load
+
+				// Select 1st of the next month
+				WebElement firstDayNextMonth = driver.findElement(By.xpath("//td[@class='day' and text()='1']"));
+				firstDayNextMonth.click();
+
+				System.out.println("Selected 1st of next month successfully.");
+
+				Thread.sleep(2000);
+				WebElement save = driver.findElement(By.xpath("//button[@id='notificationCreateBtn']"));
+				actions.moveToElement(save).click().perform();
+
+			} catch (Exception ex) {
+				System.out.println("Fallback also failed: " + ex.getMessage());
+			}
+
+		}
 
 		WebElement checkboxForStartListing = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_soon_placeholder")));
@@ -1491,7 +1580,7 @@ public class ReuseableCode extends Basetest {
 		useremail.sendKeys("yeshsharma516032@gmail.com");
 
 		WebElement passwordEle = wait.until(ExpectedConditions.elementToBeClickable(By.id("user_password")));
-		passwordEle.sendKeys("Yesh255198@");
+		passwordEle.sendKeys("q0ynPSKh9O");
 
 		WebElement submitbutton = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));

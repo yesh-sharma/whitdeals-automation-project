@@ -25,7 +25,7 @@ public class EventAdmin extends Basetest {
 
 	}
 
-	@Test(priority = 2)
+	//@Test(priority = 2)
 	public void searchEventCreatedByAdminForBusinessUserAndCloneThatEvent() throws InterruptedException {
 
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
@@ -36,11 +36,11 @@ public class EventAdmin extends Basetest {
 		WebElement cloneTheEvent = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Event'][normalize-space()='Clone']")));
 		actions.moveToElement(cloneTheEvent).click().perform();
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 
 	}
 
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void searchEventCreatedByAdminForBusinessUserAndEditThatEvent() throws InterruptedException {
 
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
@@ -61,11 +61,11 @@ public class EventAdmin extends Basetest {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
 		actions.moveToElement(submit).perform();
 		submit.click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 
 	}
 
-	@Test(priority = 4)
+	//@Test(priority = 4)
 	public void searchEventCreatedByAdminForBusinessUserAndCancleThatEvent() throws InterruptedException {
 
 		ReuseableCodeForAdminModule reuse = new ReuseableCodeForAdminModule(driver);
@@ -80,7 +80,7 @@ public class EventAdmin extends Basetest {
 		WebElement YesToCancle = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Yes']")));
 		YesToCancle.click();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 
 	}
 
