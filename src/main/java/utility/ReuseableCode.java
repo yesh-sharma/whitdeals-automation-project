@@ -360,7 +360,7 @@ public class ReuseableCode extends Basetest {
 		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_id")));
 		// Use the Select class to handle the <select> element
 		Select select2 = new Select(address);
-		select2.selectByIndex(2);
+		select2.selectByIndex(1);
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 

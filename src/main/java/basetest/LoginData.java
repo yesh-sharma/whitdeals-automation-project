@@ -20,10 +20,10 @@ public class LoginData {
 	        driver.get("https://staging.whitdeals.com.au/login");
 
 	        WebElement useremail = wait.until(ExpectedConditions.elementToBeClickable(By.id("user_name")));
-	        useremail.sendKeys("yeshsharma516032@gmail.com");
+	        useremail.sendKeys("hcl");
 
 	        WebElement passwordEle = wait.until(ExpectedConditions.elementToBeClickable(By.id("user_password")));
-	        passwordEle.sendKeys("Yesh255198@");
+	        passwordEle.sendKeys("g6jh30zm");
 
 	        WebElement submitbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
 	        submitbutton.click();

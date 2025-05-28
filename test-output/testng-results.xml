@@ -1,21 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="8" passed="6" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-19T15:02:11 IST" name="Default suite" finished-at="2025-05-19T15:02:54 IST" duration-ms="42836">
+  <suite started-at="2025-05-28T14:44:08 IST" name="Default suite" finished-at="2025-05-28T14:53:14 IST" duration-ms="545908">
     <groups>
     </groups>
-    <test started-at="2025-05-19T15:02:11 IST" name="Default test" finished-at="2025-05-19T15:02:54 IST" duration-ms="42836">
-      <class name="admin.DailyDealsAdmin">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:admin.DailyDealsAdmin@26e356f0]" started-at="2025-05-19T15:02:11 IST" name="setUp" finished-at="2025-05-19T15:02:13 IST" duration-ms="1935" status="PASS">
+    <test started-at="2025-05-28T14:44:08 IST" name="Default test" finished-at="2025-05-28T14:53:14 IST" duration-ms="545908">
+      <class name="businessUser.Deal">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:44:08 IST" name="setUp" finished-at="2025-05-28T14:44:10 IST" duration-ms="1496" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createDailyDealByAdminForbusinessUser()[pri:1, instance:admin.DailyDealsAdmin@26e356f0]" started-at="2025-05-19T15:02:13 IST" name="createDailyDealByAdminForbusinessUser" finished-at="2025-05-19T15:02:54 IST" duration-ms="40876" status="PASS">
+        <test-method signature="createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal()[pri:1, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:44:10 IST" name="createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal" finished-at="2025-05-28T14:45:00 IST" duration-ms="49592" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createDailyDealByAdminForbusinessUser -->
-      </class> <!-- admin.DailyDealsAdmin -->
+        </test-method> <!-- createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:45:00 IST" name="setUp" finished-at="2025-05-28T14:45:02 IST" duration-ms="2126" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyDealCountsAfterDealCreation()[pri:2, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:45:02 IST" name="verifyDealCountsAfterDealCreation" finished-at="2025-05-28T14:45:09 IST" depends-on-methods="businessUser.Deal.createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal" duration-ms="7588" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Deal count did not decrease by 1! expected [47] but found [46]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Deal count did not decrease by 1! expected [47] but found [46]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+at org.testng.Assert.assertEquals(Assert.java:122)
+at org.testng.Assert.assertEquals(Assert.java:907)
+at businessUser.Deal.verifyDealCountsAfterDealCreation(Deal.java:103)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDealCountsAfterDealCreation -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:45:09 IST" name="setUp" finished-at="2025-05-28T14:45:12 IST" duration-ms="2340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="createDailyDealByBusinessUserAndAdminDeclineTheDailyDeal()[pri:3, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:45:12 IST" name="createDailyDealByBusinessUserAndAdminDeclineTheDailyDeal" finished-at="2025-05-28T14:46:00 IST" duration-ms="48699" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createDailyDealByBusinessUserAndAdminDeclineTheDailyDeal -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:46:00 IST" name="setUp" finished-at="2025-05-28T14:46:02 IST" duration-ms="1817" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="createDailyDealByBusinessUserAndAdminDeclineTheDealWithoutReasonForDecline()[pri:4, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:46:02 IST" name="createDailyDealByBusinessUserAndAdminDeclineTheDealWithoutReasonForDecline" finished-at="2025-05-28T14:46:40 IST" duration-ms="38039" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createDailyDealByBusinessUserAndAdminDeclineTheDealWithoutReasonForDecline -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:46:40 IST" name="setUp" finished-at="2025-05-28T14:46:42 IST" duration-ms="1725" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="cancelDailyDealByBusinessUser()[pri:5, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:46:42 IST" name="cancelDailyDealByBusinessUser" finished-at="2025-05-28T14:48:53 IST" duration-ms="130908" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //a[normalize-space()='Daily Deals'] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.5', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.114, chrome: {chromedriverVersion: 136.0.7103.113 (76fa3c17824..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56787}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:56787/devtoo..., se:cdpVersion: 136.0.7103.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5248552159191fff9fa0988dcd1f5419]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //a[normalize-space()='Daily Deals'] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.5', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.114, chrome: {chromedriverVersion: 136.0.7103.113 (76fa3c17824..., userDataDir: /var/folders/x9/xxt7kvhx1v7...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56787}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:56787/devtoo..., se:cdpVersion: 136.0.7103.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5248552159191fff9fa0988dcd1f5419
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at utility.ReuseableCode.reusebaleCodeForDailyDealDashboard(ReuseableCode.java:1481)
+at businessUser.Deal.cancelDailyDealByBusinessUser(Deal.java:132)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelDailyDealByBusinessUser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:48:53 IST" name="setUp" finished-at="2025-05-28T14:48:55 IST" duration-ms="1830" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="rtzDailyDealByBusinessUser()[pri:6, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:48:55 IST" name="rtzDailyDealByBusinessUser" finished-at="2025-05-28T14:50:21 IST" duration-ms="86587" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- rtzDailyDealByBusinessUser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:50:21 IST" name="setUp" finished-at="2025-05-28T14:50:23 IST" duration-ms="2226" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="pauseDailyDeal()[pri:7, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:50:23 IST" name="pauseDailyDeal" finished-at="2025-05-28T14:51:46 IST" duration-ms="82298" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pauseDailyDeal -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:51:46 IST" name="setUp" finished-at="2025-05-28T14:51:48 IST" duration-ms="1877" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="cloneDailyDeal()[pri:8, instance:businessUser.Deal@55634720]" started-at="2025-05-28T14:51:48 IST" name="cloneDailyDeal" finished-at="2025-05-28T14:53:14 IST" duration-ms="86712" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cloneDailyDeal -->
+      </class> <!-- businessUser.Deal -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
