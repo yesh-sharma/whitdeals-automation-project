@@ -9,247 +9,161 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import basetest.Basetest;
+import pageobjectmodal.DailyDealsPage;
+import pageobjectmodal.DashboardPageForDailyDeal;
 import utility.ReuseableCode;
 
 public class DailyDeals extends Basetest {
 
-	static int initialRemainingDailyDealCountOnDashboard;
+	private static int initialRemainingDailyDealCountOnDashboard;
+    private static int initialRemainingDealCountOnDealsDashboard;
+    private static int initialActiveDealCountOnDealsDashboard;
+    
+    private DashboardPageForDailyDeal dashboardPage;
+    private DailyDealsPage dailyDealsPage;
 
-	static int initialRemainingDealCountOnDealsDashboard;
-	static int initialActiveDealCountOnDealsDashboard;
+    @Test(priority = 1)
+    public void createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dashboardPage = new DashboardPageForDailyDeal(driver, wait);
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        // Get initial counts from dashboard
+        initialRemainingDailyDealCountOnDashboard = dashboardPage.getRemainingDealCount();
+        System.out.println("Initial Deal Count on dashboard: " + initialRemainingDailyDealCountOnDashboard);
+        
+        int claimedCountBeforeClaiming = dashboardPage.getTotalClaimedCount();
+        System.out.println("Initial Claimed Count on deals dashboard: " + claimedCountBeforeClaiming);
+        
+        // Navigate to daily deals page
+        dashboardPage.clickDailyDealsLink();
+        
+        // Get initial counts from deals dashboard
+        initialRemainingDealCountOnDealsDashboard = dailyDealsPage.getRemainingDealCount();
+        System.out.println("Initial Deal Count on deals dashboard: " + initialRemainingDealCountOnDealsDashboard);
+        
+        initialActiveDealCountOnDealsDashboard = dailyDealsPage.getActiveDealCount();
+        System.out.println("Initial Active Deal Count on deals dashboard: " + initialActiveDealCountOnDealsDashboard);
+        
+        // Create deal and approve
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealsCreation();
+        
+        dailyDealsPage.approveDeal();
+    }
 
-	@Test(priority = 1)
-	public void createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal() throws InterruptedException {
+    //@Test(priority = 3)
+    public void createDailyDealByBusinessUserAndAdminDeclineTheDailyDeal() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dashboardPage = new DashboardPageForDailyDeal(driver, wait);
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealsCreation();
+        
+        dailyDealsPage.declineDealWithReason("declining because of testing");
+    }
 
-		loginApplication();
-		WebElement remainingDealCountElement = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='display-5'])[2]")));
-		initialRemainingDailyDealCountOnDashboard = Integer.parseInt(remainingDealCountElement.getText());
-		System.out.println("Initial Deal Count on dashboard: " + initialRemainingDailyDealCountOnDashboard);
+   // @Test(priority = 4)
+    public void createDailyDealByBusinessUserAndAdminDeclineTheDealWithoutReasonForDecline() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dashboardPage = new DashboardPageForDailyDeal(driver, wait);
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealsCreation();
+        
+        dailyDealsPage.declineDealWithoutReason();
+    }
 
-		// GET TOTAL CLAIM TEXT
-		WebElement TotalClaimedCountBox = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [1]"));
-		int claimedCountBeforeClaiming = Integer.parseInt(TotalClaimedCountBox.getText());
-		System.out.println("Initial Claimed Count on deals dashboard: " + claimedCountBeforeClaiming);
+  //  @Test(priority = 2, dependsOnMethods = { "createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal" })
+    public void verifyDealCountsAfterDealCreation() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dashboardPage = new DashboardPageForDailyDeal(driver, wait);
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        // Verify updated counts on dashboard
+        int updatedRemainingDealCountOnDashboard = dashboardPage.getRemainingDealCount();
+        System.out.println("Updated Deal Count on dashboard: " + updatedRemainingDealCountOnDashboard);
+        Assert.assertEquals(updatedRemainingDealCountOnDashboard, 
+                           initialRemainingDailyDealCountOnDashboard - 1,
+                           "Deal count did not decrease by 1!");
+        
+        // Navigate to deals dashboard
+        dashboardPage.clickDailyDealsLink();
+        
+        // Verify updated counts on deals dashboard
+        int updatedRemainingDealCountOnDealsDashboard = dailyDealsPage.getRemainingDealCount();
+        System.out.println("Updated Deal Count on deals dashboard: " + updatedRemainingDealCountOnDealsDashboard);
+        Assert.assertEquals(updatedRemainingDealCountOnDealsDashboard,
+                           initialRemainingDealCountOnDealsDashboard - 1,
+                           "Deal count did not decrease by 1!");
+        
+        int updatedActiveDealCountOnDealsDashboard = dailyDealsPage.getActiveDealCount();
+        System.out.println("Updated Active Deal Count on deals dashboard: " + updatedActiveDealCountOnDealsDashboard);
+        Assert.assertEquals(updatedActiveDealCountOnDealsDashboard,
+                           initialActiveDealCountOnDealsDashboard + 1,
+                           "Active count did not increase by 1!");
+    }
 
-		WebElement dealDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
-		dealDashboard.click();
+   // @Test(priority = 5)
+    public void cancelDailyDealByBusinessUser() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealDashboard();
+        
+        dailyDealsPage.cancelDeal("testing this functionality");
+    }
 
-		// get the deal count
-		WebElement remainingDealCount = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [3]")); // Replace
-																												// with
-																												// the
-																												// correct
-																												// locator
-		initialRemainingDealCountOnDealsDashboard = Integer.parseInt(remainingDealCount.getText());
-		System.out.println("Initial Deal Count on deals dashboard: " + initialRemainingDealCountOnDealsDashboard);
+  //  @Test(priority = 6)
+    public void rtzDailyDealByBusinessUser() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealDashboard();
+        
+        dailyDealsPage.rtzDeal();
+    }
 
-		WebElement activedealCount = driver.findElement(By.xpath("//div[@class='display-5']")); // Replace with the
-																								// correct locator
-		initialActiveDealCountOnDealsDashboard = Integer.parseInt(activedealCount.getText());
-		System.out.println("Initial Deal Count on deals dashboard: " + initialActiveDealCountOnDealsDashboard);
+   // @Test(priority = 7)
+    public void pauseDailyDeal() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealDashboard();
+        
+        dailyDealsPage.pauseDeal();
+    }
 
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealsCreation();
-		WebElement approveButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
-		approveButton.click();
+   // @Test(priority = 8)
+    public void cloneDailyDeal() throws InterruptedException {
+        loginApplication();
+        
+        // Initialize page objects
+        dailyDealsPage = new DailyDealsPage(driver, wait);
+        
+        ReuseableCode reuse = new ReuseableCode(driver);
+        reuse.reusebaleCodeForDailyDealDashboard();
+        
+        dailyDealsPage.cloneDeal();
+    }
 
-		Thread.sleep(2000);
-		WebElement confirmApproveButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[.='Approve']")));
-		confirmApproveButton.click();
-
-		Thread.sleep(12000);
-
-	}
-
-	//@Test(priority = 3)
-	public void createDailyDealByBusinessUserAndAdmindeclineTheDailyDeal() throws InterruptedException {
-
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealsCreation();
-
-		WebElement declineButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
-		declineButton.click();
-
-		WebElement declineMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("decline_comment")));
-		declineMessage.sendKeys("declining because of testing");
-
-		Thread.sleep(2000);
-		WebElement confirmDeclineButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
-		confirmDeclineButton.click();
-
-	}
-
-	//@Test(priority = 4)
-	public void createDailyDealBybusinessUserAndAdminDeclineThedealWithoutReasonForDecline()
-			throws InterruptedException {
-
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealsCreation();
-
-		WebElement declineButton = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Decline']")));
-		declineButton.click();
-
-		WebElement declineMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("no_comment")));
-		declineMessage.click();
-
-		Thread.sleep(2000);
-		WebElement confirmApproveButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@onclick='handleDeclineModal(true)']")));
-		confirmApproveButton.click();
-
-	}
-
-	//@Test(priority = 2, dependsOnMethods = { "createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal" })
-	public void dailyDealCreatedNowCheckTheMainDashboardDailyDealsCountAndAfterThatGoToDailyDealDashboardAndCheckTheRemainingDailyDealCountAndActiveDailyDealcount()
-			throws InterruptedException {
-
-		loginApplication();
-
-		WebElement remainingDealCountElement = driver.findElement(By.xpath("(//div[@class='display-5'])[2]")); // Replace
-																												// with
-																												// the
-																												// correct
-																												// locator
-		int updatedInitialRemainingDealCountOnDashboard = Integer.parseInt(remainingDealCountElement.getText());
-		System.out.println("Initial Deal Count on dashboard: " + updatedInitialRemainingDealCountOnDashboard);
-		Assert.assertEquals(updatedInitialRemainingDealCountOnDashboard, initialRemainingDailyDealCountOnDashboard - 1,
-				"Deal count did not decrease by 1!");
-
-		WebElement dealDashboard = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Daily Deals']")));
-		dealDashboard.click();
-
-		WebElement remainingDealCount = driver.findElement(By.xpath("(//div[@class='display-5 mt-2']) [3]")); // Replace
-																												// with
-																												// the
-																												// correct
-																												// locator
-		int updatedInitialRemainingDealCountOnDealsDashboard = Integer.parseInt(remainingDealCount.getText());
-		System.out
-				.println("Initial Deal Count on deals dashboard: " + updatedInitialRemainingDealCountOnDealsDashboard);
-		Assert.assertEquals(updatedInitialRemainingDealCountOnDealsDashboard,
-				initialRemainingDealCountOnDealsDashboard - 1, "Deal count did not decrease by 1!");
-
-		WebElement activedealCount = driver.findElement(By.xpath("//div[@class='display-5']")); // Replace with the
-																								// correct locator
-		int updatedInitialActiveDealCountOnDealsDashboard = Integer.parseInt(activedealCount.getText());
-		System.out.println("Initial Deal Count on deals dashboard: " + updatedInitialActiveDealCountOnDealsDashboard);
-		Assert.assertEquals(updatedInitialActiveDealCountOnDealsDashboard, initialActiveDealCountOnDealsDashboard + 1,
-				"Active count did not increase by 1!");
-
-	}
-
-	//@Test(priority = 5)
-	public void makeDailyDealAndCancleTheDealByBusinessUser() throws InterruptedException {
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealDashboard();
-
-		Actions actions = new Actions(driver);
-		WebElement cancleButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
-		actions.moveToElement(cancleButton).click().perform();
-
-		Thread.sleep(1000);
-
-		WebElement confirmation = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='showAction()']")));
-		actions.moveToElement(confirmation).click().perform();
-
-		Thread.sleep(1000);
-		WebElement cancleTheDeal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cancel-btn")));
-		cancleTheDeal.click();
-		Thread.sleep(1000);
-		WebElement YesToCancle = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
-		YesToCancle.click();
-		Thread.sleep(2000);
-		WebElement canclellationReason = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("cancellation_reason")));
-		canclellationReason.sendKeys("testing this functionality");
-
-		WebElement submit = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Submit']")));
-		submit.click();
-	}
-
-	//@Test(priority = 6)
-	public void makeDailyDealAndRTZTheDailyDealByBusinessUser() throws InterruptedException {
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealDashboard();
-
-		Actions actions = new Actions(driver);
-		WebElement cancleButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='puase-btn']")));
-		actions.moveToElement(cancleButton).click().perform();
-
-		Thread.sleep(1000);
-		WebElement confirmation = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@onclick='showAction()']")));
-		actions.moveToElement(confirmation).click().perform();
-
-		Thread.sleep(1000);
-		WebElement cancleTheDeal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rtz-btn")));
-		cancleTheDeal.click();
-		Thread.sleep(1000);
-		WebElement YesToCancle = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='yes']")));
-		YesToCancle.click();
-
-	}
-
-	//@Test(priority = 7)
-	public void makeDailyDealAndPauseTheDeal() throws InterruptedException {
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealDashboard();
-
-		Actions actions = new Actions(driver);
-		WebElement pauseButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//ul[@class='dropdown-menu show']//a[@id='pauseIcon']")));
-		actions.moveToElement(pauseButton).click().perform();
-
-		Thread.sleep(1000);
-
-		WebElement yesButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yesPauseDeal")));
-		actions.moveToElement(yesButton).click().perform();
-		LocalDate today = LocalDate.now();
-		String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-		WebElement pauseDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pauseDate")));
-		pauseDate.sendKeys(formattedDate);
-
-		WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPauseDeal")));
-		confirm.click();
-
-	}
-
-	//@Test(priority = 8)
-	public void makeDailyDealAndCloneTheDailyDeal() throws InterruptedException {
-
-		loginApplication();
-		ReuseableCode reuse = new ReuseableCode(driver);
-		reuse.reusebaleCodeForDailyDealDashboard();
-
-		Actions actions = new Actions(driver);
-		WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//ul[@class='dropdown-menu show']//a[@title='Clone Deal'][normalize-space()='Clone']")));
-		actions.moveToElement(pauseButton).click().perform();
-
-		Thread.sleep(1000);
-		WebElement YesToClone = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='btn btn-primary']")));
-		YesToClone.click();
-		Thread.sleep(3000);
-
-	}
 }

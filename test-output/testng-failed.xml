@@ -5,10 +5,8 @@
     <classes>
       <class name="businessUser.Deal">
         <methods>
-          <include name="cancelDailyDealByBusinessUser"/>
           <include name="setUp"/>
-          <include name="verifyDealCountsAfterDealCreation"/>
-          <include name="createDailyDealByBusinessUserAndAdminApprovesTheDailyDeal"/>
+          <include name="makeDealAndPauseTheDeal"/>
         </methods>
       </class> <!-- businessUser.Deal -->
     </classes>

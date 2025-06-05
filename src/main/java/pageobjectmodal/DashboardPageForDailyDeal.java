@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public class DashboardPage {
+public class DashboardPageForDailyDeal {
 	
 	
 	 private WebDriver driver;
@@ -28,7 +28,7 @@ public class DashboardPage {
 	    private WebElement dailyDealsLink;
 	    
 	    // Constructor
-	    public DashboardPage(WebDriver driver, WebDriverWait wait) {
+	    public DashboardPageForDailyDeal(WebDriver driver, WebDriverWait wait) {
 	        this.driver = driver;
 	        this.wait = wait;
 	        PageFactory.initElements(driver, this);

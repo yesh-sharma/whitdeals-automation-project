@@ -122,7 +122,7 @@ public class ReuseableCode extends Basetest {
 		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_id")));
 		// Use the Select class to handle the <select> element
 		Select select2 = new Select(address);
-		select2.selectByIndex(2);
+		select2.selectByIndex(1);
 		WebElement body = driver.findElement(By.tagName("body"));
 
 		Actions actions = new Actions(driver);
